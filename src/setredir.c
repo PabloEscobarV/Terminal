@@ -6,14 +6,14 @@
 /*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 14:53:03 by blackrider        #+#    #+#             */
-/*   Updated: 2024/06/20 17:30:19 by blackrider       ###   ########.fr       */
+/*   Updated: 2024/06/20 18:01:14 by blackrider       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../hdrs/pipex.h"
 #include "../libft/libft.h"
 
-t_uchar	setredir(const char **argv)
+t_uchar	setredir(const char *args)
 {
 	
 }

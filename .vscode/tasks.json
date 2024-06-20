@@ -12,6 +12,8 @@
                 "-lft",
                 "-L../get_next_line",
                 "-lgnl",
+                "-L../ft_printf",
+                "-lftprintffull",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}"
             ],
