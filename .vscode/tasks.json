@@ -10,6 +10,8 @@
                 "${file}",
                 "-L../libft/",
                 "-lft",
+                "-L../get_next_line",
+                "-lgnl",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}"
             ],
