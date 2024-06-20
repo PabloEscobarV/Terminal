@@ -6,24 +6,15 @@
 /*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:04:18 by blackrider        #+#    #+#             */
-/*   Updated: 2024/06/19 16:52:05 by blackrider       ###   ########.fr       */
+/*   Updated: 2024/06/20 13:53:02 by blackrider       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
 #include "../hdrs/pipex.h"
 #include <stdlib.h>
-#include <stdio.h>
 #include <unistd.h>
-
-void	printmatrix(char **matrix)
-{
-	while (*matrix)
-	{
-		printf("%s\n", *matrix);
-		++matrix;
-	}
-}
+#include <stdio.h>
 
 char	**getpath(const char **envp)
 {
@@ -71,23 +62,32 @@ char	*getfilepath(char **envp, const char *filename)
 	return (filepath);
 }
 
-int	main(int argc, char **argv, char **envp)
-{
-	char	*path;
+// void	printmatrix(char **matrix)
+// {
+// 	while (*matrix)
+// 	{
+// 		printf("%s\n", *matrix);
+// 		++matrix;
+// 	}
+// }
 
-	path = getfilepath(envp, "/cd");
-	if (!path)
-	{
-		printf("ERROR!!!\n");
-		return (0);
-	}
-	printf("%s\n", path);
-	// printmatrix(envp);
-	// char	**path;
+// int	main(int argc, char **argv, char **envp)
+// {
+// 	char	*path;
 
-	// path = getpath((const char **)envp);
-	// path = crtfullpath(path, "/ls");
-	// printmatrix(path);
-	free(path);
-	return (0);
-}
+// 	path = getfilepath(envp, "/cd");
+// 	if (!path)
+// 	{
+// 		printf("ERROR!!!\n");
+// 		return (0);
+// 	}
+// 	printf("%s\n", path);
+// 	// printmatrix(envp);
+// 	// char	**path;
+
+// 	// path = getpath((const char **)envp);
+// 	// path = crtfullpath(path, "/ls");
+// 	// printmatrix(path);
+// 	free(path);
+// 	return (0);
+// }
