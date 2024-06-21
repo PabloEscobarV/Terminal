@@ -6,7 +6,7 @@
 /*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:10:54 by blackrider        #+#    #+#             */
-/*   Updated: 2024/06/20 18:01:13 by blackrider       ###   ########.fr       */
+/*   Updated: 2024/06/21 22:20:11 by blackrider       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,17 @@ typedef struct	s_args
 	char	**argv;
 	char	**envp;
 }				t_args;
+
+typedef struct	s_splt
+{
+	int			sizesplt;
+	const char	*args;
+	const char	*args_s;
+	const char	*args_f;
+	const char	**splt;
+	int			*lens;
+}				t_splt;
+
 
 char	*getfilepath(char **envp, const char *filename);
 ///////////////////////////////BIT`s OPERATIONS///////////////////////////////
