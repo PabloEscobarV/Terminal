@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
+/*   By: polenyc <polenyc@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:10:54 by blackrider        #+#    #+#             */
-/*   Updated: 2024/06/21 22:20:11 by blackrider       ###   ########.fr       */
+/*   Updated: 2024/06/24 12:53:09 by polenyc          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ typedef struct	s_splt
 
 
 char	*getfilepath(char **envp, const char *filename);
+///////////////////////////////FT_SPLITS///////////////////////////////
+char	**ft_splits(const char *str, const char **splt);
 ///////////////////////////////BIT`s OPERATIONS///////////////////////////////
 void	setbit(t_uchar *data, t_uchar bit);
 void	resetbit(t_uchar *data, t_uchar bit);

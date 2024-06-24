@@ -8,6 +8,7 @@
                 "-fdiagnostics-color=always",
                 "-g",
                 "${file}",
+                "ft_splits.c",
                 "-L../libft/",
                 "-lft",
                 "-L../get_next_line",
