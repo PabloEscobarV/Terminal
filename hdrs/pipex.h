@@ -6,7 +6,7 @@
 /*   By: polenyc <polenyc@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:10:54 by blackrider        #+#    #+#             */
-/*   Updated: 2024/06/24 12:53:09 by polenyc          ###   ########.fr       */
+/*   Updated: 2024/06/24 13:00:16 by polenyc          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,6 @@ typedef struct	s_args
 	char	**argv;
 	char	**envp;
 }				t_args;
-
-typedef struct	s_splt
-{
-	int			sizesplt;
-	const char	*args;
-	const char	*args_s;
-	const char	*args_f;
-	const char	**splt;
-	int			*lens;
-}				t_splt;
-
 
 char	*getfilepath(char **envp, const char *filename);
 ///////////////////////////////FT_SPLITS///////////////////////////////
