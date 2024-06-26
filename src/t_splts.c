@@ -1,31 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   setindata.c                                        :+:      :+:    :+:   */
+/*   t_splts.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: polenyc <polenyc@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/20 13:20:54 by blackrider        #+#    #+#             */
-/*   Updated: 2024/06/26 13:41:23 by polenyc          ###   ########.fr       */
+/*   Created: 2024/06/26 14:05:30 by polenyc           #+#    #+#             */
+/*   Updated: 2024/06/26 14:09:57 by polenyc          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../hdrs/pipex.h"
-#include "../libft/libft.h"
 #include <stdlib.h>
-#include <stdio.h>
 
-int main()
+void	*freespltst(t_splts *splts)
 {
-    t_llist *llst;
-    char    **splt;
-
-    splt = ft_split(SPLTQTS, '0');
-    printmatrix(splt);
-	llst = ft_splits("grep -A2 main.: || wc -l | cd .. $ ls -a $$ sudo \"sudo data\"", (const char **)splt);
-    llistiter(llst, printllist);
-	ft_free_d((void **)splt);
-	llistclear(&llst, delllst);
-    return (0);
+	ft_free_d(splts->spltqts);
+	ft_free_d(splts->splts);
+	free(splts);
+	splts = NULL;
+	return (splts);
 }
 
+t_splts	*crtspltst()
+{
+	t_splts	*splts;
+
+	splts = malloc(sizeof(t_splts));
+	if (!splts)
+		return (NULL);
+	splts->spltqts = ft_split(SPLTQTS, SPLTCH);
+	splts->splts = ft_split(SPLTS, SPLTCH);
+	if (!splts->spltqts || !splts->splts)
+		return (freespltst(splts));
+	return (splts);
+}

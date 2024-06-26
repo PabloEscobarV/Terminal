@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   getpath.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
+/*   By: polenyc <polenyc@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:04:18 by blackrider        #+#    #+#             */
-/*   Updated: 2024/06/23 17:34:01 by blackrider       ###   ########.fr       */
+/*   Updated: 2024/06/26 10:28:26 by polenyc          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@ char	**getpath(const char **envp)
 	char	**paths;
 
 	size = ft_strlen(PATH);
-	while (ft_strncmp(*envp, PATH, size))
+	while (*envp && ft_strncmp(*envp, PATH, size))
 		++envp;
+	if (!(*envp))
+		return (NULL);
 	path = ft_substr(*envp, size, ft_strlen((char *)*envp));
 	paths = ft_split(path, DERPATHCHAR);
 	free(path);
@@ -53,16 +55,21 @@ char	*getfilepath(char **envp, const char *filename)
 
 	if (!envp || !filename)
 		return (NULL);
+	filename = ft_strjoin(DIRSLASH, filename);
 	envp = crtfullpath(getpath((const char **)envp), filename);
+	if (!envp)
+		return (ft_free((void *)filename));
 	tmp = envp;
-	while (access(*envp, F_OK))
+	printmatrix(envp);
+	while (*envp && access(*envp, F_OK))
 		++envp;
 	filepath = ft_strdup(*envp);
 	ft_free_d((void **)tmp);
+	free((void *)filename);
 	return (filepath);
 }
 
-// void	printmatrix(char **matrix)
+// static void	printmatrix(char **matrix)
 // {
 // 	while (*matrix)
 // 	{
@@ -75,7 +82,7 @@ char	*getfilepath(char **envp, const char *filename)
 // {
 // 	char	*path;
 
-// 	path = getfilepath(envp, "/cd");
+// 	path = getfilepath(envp, "grep");
 // 	if (!path)
 // 	{
 // 		printf("ERROR!!!\n");

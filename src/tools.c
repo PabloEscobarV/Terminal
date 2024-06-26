@@ -1,19 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   setredir.c                                         :+:      :+:    :+:   */
+/*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
+/*   By: polenyc <polenyc@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/20 14:53:03 by blackrider        #+#    #+#             */
-/*   Updated: 2024/06/20 18:01:14 by blackrider       ###   ########.fr       */
+/*   Created: 2024/06/26 12:03:51 by polenyc           #+#    #+#             */
+/*   Updated: 2024/06/26 12:05:39 by polenyc          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../hdrs/pipex.h"
-#include "../libft/libft.h"
+#include <stdio.h>
 
-t_uchar	setredir(const char *args)
+void	printllist(void *data)
 {
-	
+	printf("[0]: %d\t[1]: %d\t|%s|\n", ((t_arg *)(data))->x,
+		((t_arg *)(data))->size, ((t_arg *)(data))->arg);
+}
+
+void	printmatrix(char **matrix)
+{
+	while (*matrix)
+	{
+		printf("%s\n", *matrix);
+		++matrix;
+	}
 }

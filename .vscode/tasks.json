@@ -10,7 +10,7 @@
                 "${file}",
                 "ft_splits.c",
                 "t_arg.c",
-                "",
+                "tools.c",
                 "-L../libft/",
                 "-lft",
                 "-L../get_next_line",
