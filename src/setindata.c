@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setindata.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: polenyc <polenyc@student.42.fr>            +#+  +:+       +#+        */
+/*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 13:20:54 by blackrider        #+#    #+#             */
-/*   Updated: 2024/06/26 13:41:23 by polenyc          ###   ########.fr       */
+/*   Updated: 2024/06/26 15:42:24 by blackrider       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int main()
 	llst = ft_splits("grep -A2 main.: || wc -l | cd .. $ ls -a $$ sudo \"sudo data\"", (const char **)splt);
     llistiter(llst, printllist);
 	ft_free_d((void **)splt);
-	llistclear(&llst, delllst);
+	llistclear(&llst, freeargt);
     return (0);
 }
 

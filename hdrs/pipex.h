@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: polenyc <polenyc@student.42.fr>            +#+  +:+       +#+        */
+/*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:10:54 by blackrider        #+#    #+#             */
-/*   Updated: 2024/06/26 14:49:19 by polenyc          ###   ########.fr       */
+/*   Updated: 2024/06/26 15:51:53 by blackrider       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ typedef struct	s_arg
 	char	*arg;
 	int		x;
 	int		size;
-	int		xsplt;
 }				t_arg;
 
 typedef struct	s_splts
@@ -86,7 +85,7 @@ t_args	*allocargs(const char *path, const char **argv, const char **envp);
 t_args	crtargs(const char *path, const char **argv, const char **envp);
 ///////////////////////////////T_ARG///////////////////////////////
 t_arg	*crtargt(char *str, int x, int size);
-void	delllst(void *data);
+void	freeargt(void *data);
 ///////////////////////////////TOOLS///////////////////////////////
 void	printllist(void *data);
 void	printmatrix(char **matrix);

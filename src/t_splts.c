@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   t_splts.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: polenyc <polenyc@student.42.fr>            +#+  +:+       +#+        */
+/*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 14:05:30 by polenyc           #+#    #+#             */
-/*   Updated: 2024/06/26 14:09:57 by polenyc          ###   ########.fr       */
+/*   Updated: 2024/06/26 15:56:55 by blackrider       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 void	*freespltst(t_splts *splts)
 {
-	ft_free_d(splts->spltqts);
-	ft_free_d(splts->splts);
+	ft_free_d((void **)splts->spltqts);
+	ft_free_d((void **)splts->splts);
 	free(splts);
 	splts = NULL;
 	return (splts);

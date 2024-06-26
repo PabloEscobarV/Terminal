@@ -11,6 +11,7 @@
                 "ft_splits.c",
                 "t_arg.c",
                 "tools.c",
+                "t_splts.c",
                 "-L../libft/",
                 "-lft",
                 "-L../get_next_line",
