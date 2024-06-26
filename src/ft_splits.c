@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_splits.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: polenyc <polenyc@student.42.fr>            +#+  +:+       +#+        */
+/*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:41:10 by polenyc           #+#    #+#             */
-/*   Updated: 2024/06/26 14:53:52 by polenyc          ###   ########.fr       */
+/*   Updated: 2024/06/26 18:47:23 by blackrider       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,32 +47,31 @@ static int		ft_offset(const char *str, const char **splt, int strsize)
     return (strsize);
 }
 
-static t_llist	*setnodedata(const char **splt, const char *str, int size, int *i)
+static t_llist	*setnodedata(const char **splt, const char *str, int *si)
 {
 	int		offset;
 	t_llist	*node;
 
-	*i += ft_offset(str + *i, splt, size);
- 	offset = ft_offset(str + *i, splt, size);
-	node = llistnewnode(crtargt(NULL, *i, 0));
-	while (!offset && ++(*i) < size)
-		offset = ft_offset(str + *i, splt, size);
-	((t_arg *)(node->data))->size = *i - ((t_arg *)(node->data))->x;
-	*i += offset;
+	si[1] += ft_offset(str + si[1], splt, si[0]);
+ 	offset = ft_offset(str + si[1], splt, si[0]);
+	node = llistnewnode(crtargt(NULL, si[1], 0));
+	while (!offset && ++(si[1]) < si[0])
+		offset = ft_offset(str + si[1], splt, si[0]);
+	((t_arg *)(node->data))->size = si[1] - ((t_arg *)(node->data))->x;
+	si[1] += offset;
 	return (node);
 }
 
 static t_llist	*setllstdata(const char *str, const char **splt)
 {
-	int		i;
-	int		strsize;
+	int		si[2];
 	t_llist	*llst;
 
-	strsize = ft_strlen(str);
+	si[0] = ft_strlen(str);
 	llst = NULL;
-	i = 0;
-	while (i < strsize)
-		llistadd_back(&llst, setnodedata(splt, str, strsize, &i));
+	si[1] = 0;
+	while (si[1] < si[0])
+		llistadd_back(&llst, setnodedata(splt, str, si));
 	return (llst);
 }
 
