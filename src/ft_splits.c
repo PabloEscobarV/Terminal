@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_splits.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: polenyc <polenyc@student.42.fr>            +#+  +:+       +#+        */
+/*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:41:10 by polenyc           #+#    #+#             */
-/*   Updated: 2024/06/24 12:52:42 by polenyc          ###   ########.fr       */
+/*   Updated: 2024/06/25 13:57:46 by blackrider       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,6 @@
 #include "../libft/libft.h"
 #include <stdlib.h>
 #include <stdio.h>
-
-static int		*crtdata(int x, int size)
-{
-	int	*tmp;
-
-	tmp = malloc(2 * sizeof(int));
-	*tmp = x;
-	tmp[1] = size;
-	return (tmp);
-}
 
 static int		issplt(const char *str, const char **splt)
 {
@@ -64,10 +54,10 @@ static t_llist	*setnodedata(const char **splt, const char *str, int size, int *i
 
 	*i += ft_offset(str + *i, splt, size);
  	offset = ft_offset(str + *i, splt, size);
-	node = llistnewnode(crtdata(*i, 0));
+	node = llistnewnode(crtargt(NULL, *i, 0));
 	while (!offset && ++(*i) < size)
 		offset = ft_offset(str + *i, splt, size);
-	((int *)(node->data))[1] = *i - ((int *)(node->data))[0];
+	((t_arg *)(node->data))->size = *i - ((t_arg *)(node->data))->x;
 	*i += offset;
 	return (node);
 }
@@ -86,29 +76,77 @@ static t_llist	*setllstdata(const char *str, const char **splt)
 	return (llst);
 }
 
-char	**ft_splits(const char *str, const char **splt)
+t_llist	*ft_splits(const char *str, const char **splt)
 {
-	int		size;
-	char	**strs;
 	t_llist	*llst;
+	t_llist	*ll;
 
 	if (!str || !splt)
 		return (NULL);
 	llst = setllstdata(str, splt);
-	size = llistsize(llst);
-	strs = malloc((size + 1) * sizeof(char *));
-	if (!strs)
-		return (llistclear(&llst, ft_freenode));
-	strs[size] = NULL;
-	if (llst->previous)
-		llst = llst->previous;
-	while (size && llst)
+	if (!llst)
+		return (NULL);
+	ll = llst;
+	while (ll)
 	{
-		--size;
-		strs[size] = ft_strndup(str + ((int *)(llst->data))[0],
-			((int *)(llst->data))[1]);
-		llst = llst->previous;
+		((t_arg *)(ll->data))->arg = ft_strndup(str + ((t_arg *)(ll->data))->x,
+			((t_arg *)(ll->data))->size);
+		ll = ll->next;
 	}
-	llistclear(&llst, ft_freenode);
-	return (strs);
+	return (llst);
 }
+
+// char	**ft_splits(const char *str, const char **splt)
+// {
+// 	int		size;
+// 	char	**strs;
+// 	t_llist	*llst;
+
+// 	if (!str || !splt)
+// 		return (NULL);
+// 	llst = setllstdata(str, splt);
+// 	size = llistsize(llst);
+// 	strs = malloc((size + 1) * sizeof(char *));
+// 	if (!strs)
+// 		return (llistclear(&llst, ft_freenode));
+// 	strs[size] = NULL;
+// 	if (llst->previous)
+// 		llst = llst->previous;
+// 	while (size && llst)
+// 	{
+// 		--size;
+// 		strs[size] = ft_strndup(str + ((int *)(llst->data))[0],
+// 			((int *)(llst->data))[1]);
+// 		llst = llst->previous;
+// 	}
+// 	llistclear(&llst, ft_freenode);
+// 	return (strs);
+// }
+
+// char	**llist_splits(t_llist **llst, const char *str, const char **splt)
+// {
+// 	int		size;
+// 	char	**strs;
+// 	t_llist	*ll;
+
+// 	if (!str || !splt)
+// 		return (NULL);
+// 	*llst = setllstdata(str, splt);
+// 	ll = *llst;
+// 	size = llistsize(*llst);
+// 	strs = malloc((size + 1) * sizeof(char *));
+// 	if (!strs)
+// 		return (llistclear(llst, ft_freenode));
+// 	strs[size] = NULL;
+// 	if ((*llst)->previous)
+// 		*llst = (*llst)->previous;
+// 	while (size && llst)
+// 	{
+// 		--size;
+// 		strs[size] = ft_strndup(str + ((int *)((*llst)->data))[0],
+// 			((int *)((*llst)->data))[1]);
+// 		*llst = (*llst)->previous;
+// 	}
+// 	*llst = ll;
+// 	return (strs);
+// }

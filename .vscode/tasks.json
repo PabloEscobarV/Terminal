@@ -9,6 +9,8 @@
                 "-g",
                 "${file}",
                 "ft_splits.c",
+                "t_arg.c",
+                "",
                 "-L../libft/",
                 "-lft",
                 "-L../get_next_line",
