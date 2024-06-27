@@ -6,7 +6,7 @@
 /*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:41:10 by polenyc           #+#    #+#             */
-/*   Updated: 2024/06/27 16:25:05 by blackrider       ###   ########.fr       */
+/*   Updated: 2024/06/27 20:03:38 by blackrider       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,21 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-static int	isqts(t_cchar *str, t_cchar ***splt)
+static int	isqts(t_cchar *str, t_cchar **splt)
+{
+	t_cchar	*tmp;
+
+	while (*splt)
+	{
+		tmp = ft_strlcmp(str, (t_cchar *)*splt);
+		if (tmp)
+			return (tmp - str);
+		++(splt);
+	}
+	return (0);
+}
+
+static int	isqtssv(t_cchar *str, t_cchar ***splt)
 {
 	t_cchar	*tmp;
 
@@ -47,57 +61,83 @@ static int	ft_offsetqt(t_cchar *str, t_cchar **qts, int *crd, int strsize)
 {
 	t_cchar	*tmp;
 
-	crd[1] = isqts(str + crd[0], &qts);
+	crd[1] = isqtssv(str + crd[0], &qts);
 	if (!crd[1])
 		return (0);
 	crd[1] += crd[0];
 	crd[0] = crd[1];
+	tmp = ft_strlcmp(str + crd[1], (t_cchar *)*qts);
 	while (!tmp && (++crd[1] < strsize))
 		tmp = ft_strlcmp(str + crd[1], (t_cchar *)*qts);
+	if (crd[1] >= strsize)
+		return (-1);
 	str += crd[1];
 	crd[1] -= crd[0];
 	return ((int)(tmp - str));
 }
 
-static int	ft_offset(t_cchar *str, t_cchar **splt, int *crd, int strsize)
+static int	skipsplts(t_cchar *str, t_cchar **splt, int *crd, int strsize)
 {
-    int tmp;
+	int	tmp;
 
     tmp = issplt(str + crd[0], splt);
 	crd[1] = tmp + crd[0];
 	while (tmp)
 	{
 		if (crd[1] >= strsize)
+		{
+			crd[0] = crd[1];
 			return (tmp);
+		}
 		tmp = issplt(str + crd[1], splt);
 		crd[1] += tmp;
 	}
 	crd[0] = crd[1];
-    while (!tmp && (++crd[1] < strsize))
-        tmp = issplt(str + crd[1], splt);
+	return (0);
+}
+static int	ft_offset(t_cchar *str, t_splqt *splt, int *crd, int strsize)
+{
+    int tmp;
+
+	tmp = skipsplts(str, splt->splts, crd, strsize);
+	if (tmp)
+		return (tmp);
+    while (!tmp && crd[1] < strsize)
+	{
+		tmp = isqts(str + crd[1], splt->qts);
+		if (tmp)
+		{
+			tmp = 0;
+			break ;
+		}
+		++crd[1];
+        tmp = issplt(str + crd[1], splt->splts);
+	}
 	crd[1] -= crd[0];
 	return (tmp);
 }
 
-static t_llist	*setnodedata(t_cchar *str, int *si, t_cchar **qts, t_cchar **splt)
+static t_llist	*setnodedata(t_cchar *str, int *si, t_splqt *splt)
 {
 	int		tmp;
 	int		crd[2];
 	t_llist	*node;
 
 	crd[0] = si[1];
-	tmp = ft_offsetqt(str, qts, crd, si[0]);
+	tmp = ft_offsetqt(str, splt->qts, crd, si[0]);
 	if (!tmp)
 		tmp = ft_offset(str, splt, crd, si[0]);
-	if (crd[1] >= si[0])
+	si[1] = tmp + crd[0] + crd[1];
+	if (crd[0] >= si[0])
+		return (NULL);
+	if (!crd[1])
 		return (NULL);
 	node = llistnewnode(crtargt(NULL, crd[0], crd[1]));
 	((t_arg *)(node->data))->arg = ft_strndup(str + crd[0], crd[1]);
-	si[1] = tmp + crd[0] + crd[1];
 	return (node);
 }
 
-static t_llist	*setllstdata(t_cchar *str, t_cchar ***spltrs)
+static t_llist	*setllstdata(t_cchar *str, t_splqt *splt)
 {
 	int			si[2];
 	t_llist		*llst;
@@ -105,12 +145,12 @@ static t_llist	*setllstdata(t_cchar *str, t_cchar ***spltrs)
 	si[0] = ft_strlen(str);
 	llst = NULL;
 	si[1] = 0;
-	while ((si[1] < si[0])
-		&& llistadd_back(&llst, setnodedata(str, si, spltrs[0], spltrs[1])));
+	while ((si[1] < si[0]))
+		llistadd_back(&llst, setnodedata(str, si, splt));
 	return (llst);
 }
 
-t_llist	*ft_splits(t_cchar *str, t_cchar ***splt)
+t_llist	*ft_splits(t_cchar *str, t_splqt *splt)
 {
 	t_llist	*llst;
 
@@ -122,41 +162,43 @@ t_llist	*ft_splits(t_cchar *str, t_cchar ***splt)
 	return (llst);
 }
 
-static char	***crtspltrs(t_cchar *splts, char delimer, int size)
-{
-	int		tmp;
-	int		i;
-	char	***spltrs;
-
-	spltrs = malloc((size + 1) * sizeof(char **));
-	if (!spltrs)
-		return (NULL);
-	spltrs[size] = NULL;
-	i = 0;
-	tmp = 0;
-	while (i < size)
-	{
-		spltrs[i] = ft_split(splts + tmp, delimer);
-		tmp = ft_strlen(splts) + 1;
-		++i;
-	}
-	return (spltrs);
-}
-
 int main()
 {
     t_llist *llst;
-    char    ***splt;
+    t_splqt	*splqt;
 
-    splt = crtspltrs("\"0'\0||0$$0|0$0", SPLTCH, 2);
-    printmatrix(splt[0]);
-	printmatrix(splt[1]);
-	llst = ft_splits("||$$| objdump | grep -A2 main.: || wc -l $$ ls -a|||$|$", (t_cchar ***)splt);
+	splqt = crtsplqtt((t_cchar **)ft_split("\"0'", SPLTCH),
+		(t_cchar **)ft_split("||0$$0>>0|0$", SPLTCH));
+    // printmatrix(splqt->qts);
+	// printmatrix(splqt->splts);
+	llst = ft_splits("|$||$$|$grep -A2 | echo \"data || data | datta >> data\" >> file1.txt||$$||$", splqt);
     llistiter(llst, printllist);
-	ft_free_d((void **)splt);
+	freesplqtt(splqt);
 	llistclear(&llst, freeargt);
     return (0);
 }
+
+// static char	***crtspltrs(t_cchar *splts, char delimer, int size)
+// {
+// 	int		tmp;
+// 	int		i;
+// 	char	***spltrs;
+
+// 	spltrs = malloc((size + 1) * sizeof(char **));
+// 	if (!spltrs)
+// 		return (NULL);
+// 	spltrs[size] = NULL;
+// 	i = 0;
+// 	tmp = 0;
+// 	while (i < size)
+// 	{
+// 		spltrs[i] = ft_split(splts + tmp, delimer);
+// 		tmp = ft_strlen(splts) + 1;
+// 		++i;
+// 	}
+// 	return (spltrs);
+// }
+
 
 // static int		issplt(t_cchar *str, t_cchar **splt)
 // {

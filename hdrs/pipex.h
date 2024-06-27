@@ -6,7 +6,7 @@
 /*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:10:54 by blackrider        #+#    #+#             */
-/*   Updated: 2024/06/27 15:39:22 by blackrider       ###   ########.fr       */
+/*   Updated: 2024/06/27 19:10:47 by blackrider       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,13 @@ typedef struct	s_arg
 
 typedef struct	s_splts
 {
-	char	**spltqts;
-	char	**splts;
-}				t_splts;
+	t_cchar	**qts;
+	t_cchar	**splts;
+}				t_splqt;
 
 char	*getfilepath(char **envp, const char *filename);
 ///////////////////////////////FT_SPLITS///////////////////////////////
-t_llist	*ft_splits(const char *str, const char ***splt);
+t_llist	*ft_splits(const char *str, t_splqt *splt);
 ///////////////////////////////BIT`s OPERATIONS///////////////////////////////
 void	setbit(t_uchar *data, t_uchar bit);
 void	resetbit(t_uchar *data, t_uchar bit);
@@ -89,7 +89,7 @@ t_arg	*crtargt(char *str, int x, int size);
 void	freeargt(void *data);
 ///////////////////////////////TOOLS///////////////////////////////
 void	printllist(void *data);
-void	printmatrix(char **matrix);
-///////////////////////////////TOOLS///////////////////////////////
-t_splts	*crtspltst();
-void	*freespltst(t_splts *splts);
+void	printmatrix(t_cchar **matrix);
+///////////////////////////////T_SPLQT///////////////////////////////
+t_splqt	*crtsplqtt(t_cchar **qts, t_cchar **splts);
+void	*freesplqtt(t_splqt *splqt);

@@ -6,7 +6,7 @@
 /*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 13:58:57 by polenyc           #+#    #+#             */
-/*   Updated: 2024/06/27 15:53:00 by blackrider       ###   ########.fr       */
+/*   Updated: 2024/06/27 19:32:42 by blackrider       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,14 +82,15 @@ t_llist	*spliter(const char *args, t_splts *splts)
 int main()
 {
     t_llist *llst;
-    char    ***splt;
+    t_splqt	*splqt;
 
-    splt = crtspltrs("\"0'\0||0$$0|0$0", SPLTCH, 2);
-    printmatrix(splt[0]);
-	printmatrix(splt[1]);
-	llst = ft_splits("|||a||b|c$$v||||", (t_cchar ***)splt);
+	splqt = crtsplqtt((t_cchar **)ft_split("\"0'", SPLTCH),
+		(t_cchar **)ft_split("||0$$0|0$", SPLTCH));
+    printmatrix(splqt->qts);
+	printmatrix(splqt->splts);
+	llst = ft_splits("|a|b|", splqt);
     llistiter(llst, printllist);
-	ft_free_d((void **)splt);
+	freesplqtt(splqt);
 	llistclear(&llst, freeargt);
     return (0);
 }

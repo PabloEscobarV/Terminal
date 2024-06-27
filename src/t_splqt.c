@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tools.c                                            :+:      :+:    :+:   */
+/*   t_splqt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/26 12:03:51 by polenyc           #+#    #+#             */
-/*   Updated: 2024/06/27 19:10:30 by blackrider       ###   ########.fr       */
+/*   Created: 2024/06/27 19:02:06 by blackrider        #+#    #+#             */
+/*   Updated: 2024/06/27 20:08:17 by blackrider       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../hdrs/pipex.h"
-#include <stdio.h>
 
-void	printllist(void *data)
+t_splqt	*crtsplqtt(t_cchar **qts, t_cchar **splts)
 {
-	printf("[0]: %d\t[1]: %d\t|%s|\n", ((t_arg *)(data))->x,
-		((t_arg *)(data))->size, ((t_arg *)(data))->arg);
+	t_splqt	*splqt;
+
+	splqt = malloc(sizeof(t_splqt));
+	if (!splqt)
+		return (NULL);
+	splqt->qts = qts;
+	splqt->splts = splts;
+	return (splqt);
 }
 
-void	printmatrix(t_cchar **matrix)
+void	*freesplqtt(t_splqt *splqt)
 {
-	while (*matrix)
-	{
-		printf("%s\n", *matrix);
-		++matrix;
-	}
+	ft_free_d((void **)(splqt->qts));
+	ft_free_d((void **)splqt->splts);
+	free(splqt);
+	splqt = NULL;
+	return (splqt);
 }
