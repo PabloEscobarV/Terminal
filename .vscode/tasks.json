@@ -8,7 +8,7 @@
                 "-fdiagnostics-color=always",
                 "-g",
                 "${file}",
-                "ft_splits.c",
+                // "ft_splits.c",
                 "t_arg.c",
                 "tools.c",
                 "t_splts.c",

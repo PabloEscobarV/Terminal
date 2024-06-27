@@ -6,7 +6,7 @@
 /*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:10:54 by blackrider        #+#    #+#             */
-/*   Updated: 2024/06/26 15:51:53 by blackrider       ###   ########.fr       */
+/*   Updated: 2024/06/27 15:39:22 by blackrider       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 #define HERDOC			"<<"
 #define SPLTCH			'0'
 #define SPLTQTS			"\"0'"
-#define SPLTS			"$$0||0>>0<<0>0<0|0"
+#define SPLTS			"$$0||0>>0<<0>0<0|0$"
 // #define SPLTS			" $$ 0$$0 || 0||0>>0<<0 | 0 $ 0<0>0|0\"0'0`0\\0*0"
 
 #include "../libft/libft.h"
@@ -50,6 +50,7 @@ enum	e_quotes
 // };
 
 typedef unsigned char	t_uchar;
+typedef const char		t_cchar;
 
 typedef struct	s_args
 {
@@ -75,7 +76,7 @@ typedef struct	s_splts
 
 char	*getfilepath(char **envp, const char *filename);
 ///////////////////////////////FT_SPLITS///////////////////////////////
-t_llist	*ft_splits(const char *str, const char **splt);
+t_llist	*ft_splits(const char *str, const char ***splt);
 ///////////////////////////////BIT`s OPERATIONS///////////////////////////////
 void	setbit(t_uchar *data, t_uchar bit);
 void	resetbit(t_uchar *data, t_uchar bit);
