@@ -1,29 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tools.c                                            :+:      :+:    :+:   */
+/*   t_crds.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/26 12:03:51 by polenyc           #+#    #+#             */
-/*   Updated: 2024/06/28 19:47:37 by blackrider       ###   ########.fr       */
+/*   Created: 2024/06/28 16:14:27 by blackrider        #+#    #+#             */
+/*   Updated: 2024/06/28 17:24:19 by blackrider       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../hdrs/pipex.h"
-#include <stdio.h>
 
-void	printllist(void *data)
+t_crds	*crdcrdst(int i, int size, int strsize)
 {
-	printf("[0]: %d\t[1]: %d\t|%s|\n", ((t_arg *)(data))->x,
-		((t_arg *)(data))->size, ((t_arg *)(data))->arg);
+	t_crds	*crds;
+
+	crds = malloc(sizeof(t_crds));
+	if (!crds)
+		return (NULL);
+	crds->i = i;
+	crds->size = size;
+	crds->strsize = strsize;
 }
 
-void	printmatrix(t_cchar **matrix)
+void	freecrds(t_crds *crds)
 {
-	while (*matrix)
-	{
-		printf("%s\n", *matrix);
-		++matrix;
-	}
+	free(crds);
+	crds = NULL;
+	return (crds);
 }
