@@ -6,11 +6,11 @@
 /*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 12:03:51 by polenyc           #+#    #+#             */
-/*   Updated: 2024/06/28 19:47:37 by blackrider       ###   ########.fr       */
+/*   Updated: 2024/06/29 15:31:23 by blackrider       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../hdrs/pipex.h"
+#include "../hdrs/splitter.h"
 #include <stdio.h>
 
 void	printllist(void *data)

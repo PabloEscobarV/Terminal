@@ -6,11 +6,11 @@
 /*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 13:02:37 by blackrider        #+#    #+#             */
-/*   Updated: 2024/06/26 15:52:18 by blackrider       ###   ########.fr       */
+/*   Updated: 2024/06/29 15:29:53 by blackrider       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../hdrs/pipex.h"
+#include "../hdrs/splitter.h"
 
 t_arg	*crtargt(char *str, int x, int size)
 {

@@ -6,11 +6,11 @@
 /*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 16:14:27 by blackrider        #+#    #+#             */
-/*   Updated: 2024/06/28 17:24:19 by blackrider       ###   ########.fr       */
+/*   Updated: 2024/06/29 15:55:25 by blackrider       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../hdrs/pipex.h"
+#include "../hdrs/splitter.h"
 
 t_crds	*crdcrdst(int i, int size, int strsize)
 {
@@ -22,9 +22,10 @@ t_crds	*crdcrdst(int i, int size, int strsize)
 	crds->i = i;
 	crds->size = size;
 	crds->strsize = strsize;
+	return (crds);
 }
 
-void	freecrds(t_crds *crds)
+void	*freecrds(t_crds *crds)
 {
 	free(crds);
 	crds = NULL;

@@ -6,13 +6,13 @@
 /*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 19:02:06 by blackrider        #+#    #+#             */
-/*   Updated: 2024/06/27 20:08:17 by blackrider       ###   ########.fr       */
+/*   Updated: 2024/06/29 15:29:38 by blackrider       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../hdrs/pipex.h"
+#include "../hdrs/splitter.h"
 
-t_splqt	*crtsplqtt(t_cchar **qts, t_cchar **splts)
+t_splqt	*crtsplqtt(t_cchar **qts, t_cchar **splts, t_cchar spcs)
 {
 	t_splqt	*splqt;
 
@@ -21,6 +21,7 @@ t_splqt	*crtsplqtt(t_cchar **qts, t_cchar **splts)
 		return (NULL);
 	splqt->qts = qts;
 	splqt->splts = splts;
+	splqt->spcs = spcs;
 	return (splqt);
 }
 
