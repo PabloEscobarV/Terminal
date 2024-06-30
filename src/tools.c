@@ -6,18 +6,12 @@
 /*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 12:03:51 by polenyc           #+#    #+#             */
-/*   Updated: 2024/06/30 15:11:14 by blackrider       ###   ########.fr       */
+/*   Updated: 2024/06/30 14:08:39 by blackrider       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../hdrs/splitter.h"
+#include "../hdrs/pipex.h"
 #include <stdio.h>
-
-void	printllist(void *data)
-{
-	printf("args:\t|%s|\tsplt:\t%s\n", ((t_arg *)(data))->arg,
-		((t_arg *)(data))->spliter);
-}
 
 void	printmatrix(t_cchar **matrix)
 {

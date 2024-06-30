@@ -1,29 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tools.c                                            :+:      :+:    :+:   */
+/*   cmpstrv.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/26 12:03:51 by polenyc           #+#    #+#             */
-/*   Updated: 2024/06/30 15:11:14 by blackrider       ###   ########.fr       */
+/*   Created: 2024/06/29 15:24:52 by blackrider        #+#    #+#             */
+/*   Updated: 2024/06/30 15:16:32 by blackrider       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../hdrs/splitter.h"
-#include <stdio.h>
 
-void	printllist(void *data)
+t_cchar	*cmpstrv(t_cchar *str, t_cchar **splt)
 {
-	printf("args:\t|%s|\tsplt:\t%s\n", ((t_arg *)(data))->arg,
-		((t_arg *)(data))->spliter);
-}
-
-void	printmatrix(t_cchar **matrix)
-{
-	while (*matrix)
-	{
-		printf("%s\n", *matrix);
-		++matrix;
-	}
+	while (*splt && !ft_strlcmp(str, (t_cchar *)*splt))
+		++splt;
+	return (*splt);
 }

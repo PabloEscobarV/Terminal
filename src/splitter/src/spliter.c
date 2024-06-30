@@ -6,7 +6,7 @@
 /*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 13:10:06 by blackrider        #+#    #+#             */
-/*   Updated: 2024/06/29 15:56:07 by blackrider       ###   ########.fr       */
+/*   Updated: 2024/06/30 16:36:39 by blackrider       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,17 @@
 #include "../../../libft/libft.h"
 #include <stdlib.h>
 #include <stdio.h>
+
+static void		skipspaces(t_cchar *str, t_crds* crds, t_splqt *splt)
+{
+	while (str[crds->i] && str[crds->i] == splt->spcs)
+		++crds->i;
+	if (crds->i >= crds->strsize)
+		return ;
+	while (--crds->size && str[crds->size] == splt->spcs);
+	++crds->size;
+	crds->strsize = crds->size - crds->i;
+}
 
 t_llist	*spliter(t_cchar *str, t_splqt *splt)
 {
@@ -26,20 +37,21 @@ t_llist	*spliter(t_cchar *str, t_splqt *splt)
 	crds.size = 0;
 	crds.strsize = ft_strlen(str);
 	llst = NULL;
-	while (crds.size < crds.strsize)
+	skipspaces(str, &crds, splt);
+	while (crds.i < crds.strsize)
 	{
 		if (llistadd_back(&llst, setnodestr(str, &crds, splt)))
 			continue ;
 		llistadd_back(&llst, setnodedata(str, &crds, splt));
 	}
-	if (crds.i < 0)
+	if (crds.size < 0)
 		return (llistclear(&llst, freeargt));
 	return (llst);
 }
 
 int main()
 {
-	char	str[] = "echo 'data | dtat $ data || data $$ data' >> file.txt || cd .. | grep -A2 main.: $$ cd .. | ls -a ";
+	char	str[] = " | | | | |||$$$     objdump -M intel -D ./test | grep -A20 main.: || wc -l $$ ls -a || cd .. | echo \" data1 || data2 | data3 $$ data4 $ data5 | \" >> file.txt   | | | | | | | | | | |";
 	t_llist *llst;
     t_splqt	*splqt;
 
@@ -59,6 +71,7 @@ int main()
     return (0);
 }
 
+// "|||$$$     objdump -M intel -D ./test | grep -A20 main.: || wc -l $$ ls -a || cd .. | echo \" data1 || data2 | data3 $$ data4 $ data5 | \" >> file.txt   ||";
 // " objdump -M intel -D ./test | grep -A2 main.: || echo \"data1 | data2 || datat3 $$ data4 $ data5 |\" >> file.txt $ cd .. $$ ls -a "
 
 // static t_cchar	*cmpstrv(t_cchar *str, t_cchar **splt)

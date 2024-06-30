@@ -6,7 +6,7 @@
 /*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:04:18 by blackrider        #+#    #+#             */
-/*   Updated: 2024/06/28 19:55:08 by blackrider       ###   ########.fr       */
+/*   Updated: 2024/06/30 14:09:08 by blackrider       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ char	*getfilepath(char **envp, const char *filename)
 	if (!envp)
 		return (ft_free((void *)filename));
 	tmp = envp;
-	printmatrix((t_cchar **)envp);
 	while (*envp && access(*envp, F_OK))
 		++envp;
 	filepath = ft_strdup(*envp);
@@ -78,23 +77,23 @@ char	*getfilepath(char **envp, const char *filename)
 // 	}
 // }
 
-int	main(int argc, char **argv, char **envp)
-{
-	char	*path;
+// int	main(int argc, char **argv, char **envp)
+// {
+// 	char	*path;
 
-	path = getfilepath(envp, "grep");
-	if (!path)
-	{
-		printf("ERROR!!!\n");
-		return (0);
-	}
-	printf("%s\n", path);
-	// printmatrix(envp);
-	// char	**path;
+// 	path = getfilepath(envp, "grep");
+// 	if (!path)
+// 	{
+// 		printf("ERROR!!!\n");
+// 		return (0);
+// 	}
+// 	printf("%s\n", path);
+// 	// printmatrix(envp);
+// 	// char	**path;
 
-	// path = getpath((const char **)envp);
-	// path = crtfullpath(path, "/ls");
-	// printmatrix(path);
-	free(path);
-	return (0);
-}
+// 	// path = getpath((const char **)envp);
+// 	// path = crtfullpath(path, "/ls");
+// 	// printmatrix(path);
+// 	free(path);
+// 	return (0);
+// }
