@@ -6,7 +6,7 @@
 /*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 15:27:33 by blackrider        #+#    #+#             */
-/*   Updated: 2024/06/30 16:21:09 by blackrider       ###   ########.fr       */
+/*   Updated: 2024/06/30 17:43:09 by blackrider       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,12 @@ static t_cchar	*offset(t_cchar *str, t_crds *crds, t_splqt *splt)
 	if (skipsplt(str, crds, splt))
 		return (NULL);
 	crds->size = crds->i;
-	tmp = NULL;
-	if (cmpstrv(str + crds->size, splt->qts))
-		return (NULL);
+	tmp = cmpstrv(str + crds->size, splt->qts);
 	while (!tmp && ++crds->size < crds->strsize)
 	{
-		if (cmpstrv(str + crds->size, splt->qts))
-			return (NULL);
+		tmp = cmpstrv(str + crds->size, splt->qts);
+		if (tmp)
+			return (tmp);
 		tmp = cmpstrv(str + crds->size, splt->splts);
 	}
 	return (tmp);
@@ -83,7 +82,10 @@ t_llist	*setnodedata(t_cchar *str, t_crds *crds, t_splqt *splt)
 	skipspaces(str, crds, splt, &res);
 	if (checkcrds(crds, &res))
 		return (NULL);
-	crds->i = ft_strlen(tmp) + crds->size;
+	if (cmpstrv(str + crds->i, splt->qts))
+		crds->i = crds->size;
+	else
+		crds->i = ft_strlen(tmp) + crds->size;
 	if (crds->i >= crds->strsize)
 		tmp = NULL;
 	node = llistnewnode(crtargt(ft_strndup(str + res.i, res.strsize), tmp));

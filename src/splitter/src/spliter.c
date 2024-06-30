@@ -6,7 +6,7 @@
 /*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 13:10:06 by blackrider        #+#    #+#             */
-/*   Updated: 2024/06/30 16:36:39 by blackrider       ###   ########.fr       */
+/*   Updated: 2024/06/30 17:15:35 by blackrider       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,12 @@
 
 static void		skipspaces(t_cchar *str, t_crds* crds, t_splqt *splt)
 {
-	while (str[crds->i] && str[crds->i] == splt->spcs)
+	while (str[crds->i] && (str[crds->i] == splt->spcs || cmpstrv(str + crds->i, splt->splts)))
 		++crds->i;
 	if (crds->i >= crds->strsize)
 		return ;
-	while (--crds->size && str[crds->size] == splt->spcs);
-	++crds->size;
-	crds->strsize = crds->size - crds->i;
+	while (--crds->strsize && (str[crds->strsize] == splt->spcs || cmpstrv(str + crds->strsize, splt->splts)));
+	++crds->strsize;
 }
 
 t_llist	*spliter(t_cchar *str, t_splqt *splt)
@@ -51,7 +50,7 @@ t_llist	*spliter(t_cchar *str, t_splqt *splt)
 
 int main()
 {
-	char	str[] = " | | | | |||$$$     objdump -M intel -D ./test | grep -A20 main.: || wc -l $$ ls -a || cd .. | echo \" data1 || data2 | data3 $$ data4 $ data5 | \" >> file.txt   | | | | | | | | | | |";
+	char	str[] = "echo 'data' >> file.txt";
 	t_llist *llst;
     t_splqt	*splqt;
 
