@@ -6,7 +6,7 @@
 /*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 13:10:06 by blackrider        #+#    #+#             */
-/*   Updated: 2024/06/30 15:22:09 by blackrider       ###   ########.fr       */
+/*   Updated: 2024/06/30 17:50:12 by blackrider       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ t_llist	*spliter(t_cchar *str, t_splqt *splt)
 
 int main()
 {
-	char	str[] = "||a|b||";
+	char	str[] =  " | || |  echo 'a | data || data1 $$ data2 | data3 $ data$ |' >> file.txt | grep -A2 main.: || ls -a $$ cd .. | | | | | | ";
 	t_llist *llst;
     t_splqt	*splqt;
 
