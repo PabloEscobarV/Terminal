@@ -6,11 +6,11 @@
 /*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 15:24:52 by blackrider        #+#    #+#             */
-/*   Updated: 2024/06/29 15:26:50 by blackrider       ###   ########.fr       */
+/*   Updated: 2024/07/01 16:07:15 by blackrider       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../hdrs/splitter.h"
+#include "../hdrs/splitterlcl.h"
 
 static int	cmpstrv(t_cchar *str, t_cchar **splt)
 {

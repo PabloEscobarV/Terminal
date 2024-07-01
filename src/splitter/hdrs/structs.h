@@ -1,33 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_crds.c                                           :+:      :+:    :+:   */
+/*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/28 16:14:27 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/01 16:00:31 by blackrider       ###   ########.fr       */
+/*   Created: 2024/07/01 15:58:15 by blackrider        #+#    #+#             */
+/*   Updated: 2024/07/01 15:59:32 by blackrider       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../hdrs/splitterlcl.h"
+#pragma once
 
-t_crds	*crdcrdst(int i, int size, int strsize)
+typedef const char	t_cchar;
+
+typedef struct	s_arg
 {
-	t_crds	*crds;
+	char	*arg;
+	int		x;
+	int		size;
+}				t_arg;
 
-	crds = malloc(sizeof(t_crds));
-	if (!crds)
-		return (NULL);
-	crds->i = i;
-	crds->size = size;
-	crds->strsize = strsize;
-	return (crds);
-}
-
-void	*freecrds(t_crds *crds)
+typedef struct	s_splts
 {
-	free(crds);
-	crds = NULL;
-	return (crds);
-}
+	char	spcs;
+	t_cchar	**qts;
+	t_cchar	**splts;
+}				t_splqt;
+
+typedef struct	s_crds
+{
+	int	i;
+	int	size;
+	int	strsize;
+}				t_crds;
