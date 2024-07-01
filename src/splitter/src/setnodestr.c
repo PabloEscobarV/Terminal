@@ -5,43 +5,57 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/01 17:16:17 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/01 17:16:23 by blackrider       ###   ########.fr       */
+/*   Created: 2024/06/29 15:23:47 by blackrider        #+#    #+#             */
+/*   Updated: 2024/07/01 16:00:15 by blackrider       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../hdrs/splitterlcl.h"
 
-static t_cchar	*offsetqt(t_cchar *str, t_crds *crds, t_cchar **qts)
+static int	isqtssv(t_cchar *str, t_cchar ***splt)
 {
 	t_cchar	*tmp;
 
-	tmp = cmpstrv(str + crds->i, qts);
-	if (!tmp)
-		return (NULL);
-	crds->i += ft_strlen(tmp);
+	while (**splt)
+	{
+		tmp = ft_strlcmp(str, (t_cchar *)**splt);
+		if (tmp)
+			return (tmp - str);
+		++(*splt);
+	}
+	return (0);
+}
+
+static int	offsetqt(t_cchar *str, t_crds *crds, t_cchar **qts)
+{
+	t_cchar	*tmp;
+
+	crds->size = isqtssv(str + crds->i, &qts);
+	if (!crds->size)
+		return (0);
+	crds->i += crds->size;
 	crds->size = crds->i;
 	while (crds->size < crds->strsize)
 	{
-		if (ft_strlcmp(str + crds->size, tmp))
-			return (tmp);
+		tmp = ft_strlcmp(str + crds->size, *qts);
+		if (tmp)
+			return ((int)(tmp - str) - crds->size);
 		++crds->size;
 	}
-	crds->i = crds->size;
-	crds->size = -1;
-	return (NULL);
+	crds->i = -1;
+	return (0);
 }
 
 t_llist	*setnodestr(t_cchar *str, t_crds *crds, t_splqt *splt)
 {
-	t_cchar	*tmp;
+	int		tmp;
 	t_llist	*node;
 
 	tmp = offsetqt(str, crds, splt->qts);
 	if (!tmp)
 		return (NULL);
-	node = llistnewnode(crtargt(
-		ft_strndup(str + crds->i, crds->size - crds->i), tmp));
-	crds->i = ft_strlen(tmp) + crds->size;
+	node = llistnewnode(crtargt(ft_strndup(str + crds->i, crds->size - crds->i),
+		crds->i, crds->size));
+	crds->i = tmp + crds->size;
 	return (node);
 }

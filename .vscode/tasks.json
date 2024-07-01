@@ -8,34 +8,6 @@
                 "-fdiagnostics-color=always",
                 "-g",
                 "${file}",
-<<<<<<< HEAD
-<<<<<<< HEAD
-                // "ft_splits.c",
-                "cmpstrv.c",
-                "setnodestr.c",
-                "setnodedata.c",
-                "t_arg.c",
-                "tools.c",
-                "t_splqt.c",
-                "-L../../../libft/",
-                "-lft",
-                "-L../../../get_next_line",
-                "-lgnlfull",
-                "-L../../../ft_printf",
-                "-lftprintffull",
-                // "getpath.c",
-                // "tools.c",
-                // // "t_splqt.c",
-                // "-L../libft/",
-                // "-lft",
-                // "-L../get_next_line",
-                // "-lgnlfull",
-                // "-L../ft_printf",
-                // "-lftprintffull",
-
-=======
-=======
->>>>>>> tmp
                 "-L.",
                 "-lspliter",
                 // // "ft_splits.c",
@@ -51,10 +23,6 @@
                 // "-lgnlfull",
                 // "-L../../../ft_printf",
                 // "-lftprintffull",
-<<<<<<< HEAD
->>>>>>> 0afb9eb (added make lib instruction, added spliterlcl.h, structs.h)
-=======
->>>>>>> tmp
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}"
             ],

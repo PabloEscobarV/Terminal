@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/01 17:17:18 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/01 17:17:19 by blackrider       ###   ########.fr       */
+/*   Created: 2024/06/26 12:03:51 by polenyc           #+#    #+#             */
+/*   Updated: 2024/07/01 16:00:40 by blackrider       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 void	printllist(void *data)
 {
-	printf("args:\t|%s|\tsplt:\t%s\n", ((t_arg *)(data))->arg,
-		((t_arg *)(data))->spliter);
+	printf("[0]: %d\t[1]: %d\t|%s|\n", ((t_arg *)(data))->x,
+		((t_arg *)(data))->size, ((t_arg *)(data))->arg);
 }
 
 void	printmatrix(t_cchar **matrix)

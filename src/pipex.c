@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
+/*   By: polenyc <polenyc@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 14:33:14 by blackrider        #+#    #+#             */
-/*   Updated: 2024/06/30 14:11:50 by blackrider       ###   ########.fr       */
+/*   Updated: 2024/06/26 13:28:57 by polenyc          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,24 @@
 #include <stdlib.h>
 
 
+
 int	main(int argc, char **argv, char **envp)
 {
-	char	**args;
-	char	*path;
+	char	**splts;
 
-	args = ft_split("ls -l > file1.txt", ' ');
-	path = getfilepath(envp, args[0]);
-	printf("PATH:\t%s\n", path);
-	printmatrix((t_cchar **)args);
-	execve(path, args, envp);
-	return (0);
+	splts = ft_split(SPLTS, SPLTCH);
+	printmatrix(splts);
+	// int		i;
+	// char	*data;
+
+	// i = 0;
+	// while (i < 10)
+	// {
+	// 	ft_printf("put your data: ");
+	// 	data = get_next_line(0);
+	// 	printf("data for %d step: %s", i, data);
+	// 	free(data);
+	// 	++i;
+	// }
+	// return (0);
 }

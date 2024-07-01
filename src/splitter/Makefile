@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/07/01 17:17:25 by blackrider        #+#    #+#              #
-#    Updated: 2024/07/01 17:17:26 by blackrider       ###   ########.fr        #
+#    Created: 2024/06/29 15:37:37 by blackrider        #+#    #+#              #
+#    Updated: 2024/07/01 16:26:54 by blackrider       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ SRC = $(wildcard $(SRCDIR)/*.c)
 OBJ = $(SRC:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
 
 CC = gcc
-CFLAGSO = -c -Wall -Wextra -Werror -g
+CFLAGSO = -c -Wall -Wextra -Werror
 
 .PHONY: all, clean, fclean, re, lib
 
@@ -31,7 +31,7 @@ all: $(NAME)
 lib: $(LIBNAME)
 
 clean:
-	# $(MAKE) -C $(LIBFTDIR) clean
+	$(MAKE) -C $(LIBFTDIR) clean
 	rm -rf $(OBJDIR)
 
 fclean: clean
