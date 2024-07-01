@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/25 13:02:37 by blackrider        #+#    #+#             */
-/*   Updated: 2024/06/30 14:54:01 by blackrider       ###   ########.fr       */
+/*   Created: 2024/07/01 17:11:24 by blackrider        #+#    #+#             */
+/*   Updated: 2024/07/01 17:11:25 by blackrider       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../hdrs/splitter.h"
+#include "../hdrs/splitterlcl.h"
 
 t_arg	*crtargt(char *str, t_cchar *spliter)
 {

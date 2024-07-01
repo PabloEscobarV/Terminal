@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/01 17:09:15 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/01 17:09:16 by blackrider       ###   ########.fr       */
+/*   Created: 2024/07/01 17:11:17 by blackrider        #+#    #+#             */
+/*   Updated: 2024/07/01 17:11:19 by blackrider       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../hdrs/splitter.h"
+#include "../hdrs/splitterlcl.h"
 #include "../../../libft/libft.h"
 #include <stdlib.h>
 #include <stdio.h>
@@ -49,27 +49,35 @@ t_llist	*spliter(t_cchar *str, t_splqt *splt)
 	return (llst);
 }
 
+<<<<<<< HEAD
 int main()
 {
 	char	str[] = " | | | | |||$$$     objdump -M intel -D ./test | grep -A20 main.: || wc -l $$ ls -a || cd .. | echo \" data1 || data2 | data3 $$ data4 $ data5 | \" >> file.txt   | | | | | | | | | | |";
 	t_llist *llst;
     t_splqt	*splqt;
+=======
+// int main()
+// {
+// 	char	str[] =  "|  greap -A20   |  cd .. ||";
+// 	t_llist *llst;
+//     t_splqt	*splqt;
+>>>>>>> 0afb9eb (added make lib instruction, added spliterlcl.h, structs.h)
 
-	splqt = crtsplqtt((t_cchar **)ft_split("\"0'", SPLTCH),
-		(t_cchar **)ft_split("||0$$0>>0<<0|0$0", SPLTCH), ' ');
-    printmatrix(splqt->qts);
-	printmatrix(splqt->splts);
-	llst = spliter(str, splqt);
-	// for (int i = 0; i < size; ++i)
-	// 	printf("%d\t", i);
-	// for (int i = 0; i < size; ++i)
-	// 	printf("%c\t", str[i]);
-	// printf("\n%s\n", str);
-	llistiter(llst, printllist);
-	freesplqtt(splqt);
-	llistclear(&llst, freeargt);
-    return (0);
-}
+// 	splqt = crtsplqtt((t_cchar **)ft_split("\"0'", SPLTCH),
+// 		(t_cchar **)ft_split("||0$$0>>0<<0|0$0", SPLTCH), ' ');
+//     printmatrix(splqt->qts);
+// 	printmatrix(splqt->splts);
+// 	llst = spliter(str, splqt);
+// 	// for (int i = 0; i < size; ++i)
+// 	// 	printf("%d\t", i);
+// 	// for (int i = 0; i < size; ++i)
+// 	// 	printf("%c\t", str[i]);
+// 	// printf("\n%s\n", str);
+// 	llistiter(llst, printllist);
+// 	freesplqtt(splqt);
+// 	llistclear(&llst, freeargt);
+//     return (0);
+// }
 
 // "|||$$$     objdump -M intel -D ./test | grep -A20 main.: || wc -l $$ ls -a || cd .. | echo \" data1 || data2 | data3 $$ data4 $ data5 | \" >> file.txt   ||";
 // " objdump -M intel -D ./test | grep -A2 main.: || echo \"data1 | data2 || datat3 $$ data4 $ data5 |\" >> file.txt $ cd .. $$ ls -a "

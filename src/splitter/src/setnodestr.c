@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/29 15:23:47 by blackrider        #+#    #+#             */
-/*   Updated: 2024/06/30 15:46:13 by blackrider       ###   ########.fr       */
+/*   Created: 2024/07/01 17:10:53 by blackrider        #+#    #+#             */
+/*   Updated: 2024/07/01 17:10:55 by blackrider       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../hdrs/splitter.h"
+#include "../hdrs/splitterlcl.h"
 
 static t_cchar	*offsetqt(t_cchar *str, t_crds *crds, t_cchar **qts)
 {

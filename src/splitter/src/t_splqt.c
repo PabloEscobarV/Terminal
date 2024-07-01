@@ -6,11 +6,11 @@
 /*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 19:02:06 by blackrider        #+#    #+#             */
-/*   Updated: 2024/06/29 15:29:38 by blackrider       ###   ########.fr       */
+/*   Updated: 2024/07/01 16:00:35 by blackrider       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../hdrs/splitter.h"
+#include "../hdrs/splitterlcl.h"
 
 t_splqt	*crtsplqtt(t_cchar **qts, t_cchar **splts, t_cchar spcs)
 {
