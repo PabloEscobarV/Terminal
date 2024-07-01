@@ -6,12 +6,13 @@
 #    By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/29 15:37:37 by blackrider        #+#    #+#              #
-#    Updated: 2024/07/01 16:26:54 by blackrider       ###   ########.fr        #
+#    Updated: 2024/07/01 17:30:15 by blackrider       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = spliter
-LIBNAME = libspliter.a
+LIBNAME = libsplitter.a
+LIBNAMEFULL = libsplitterft.a
 
 LIBFTDIR = ../../libft
 SRCDIR = src
@@ -24,7 +25,7 @@ OBJ = $(SRC:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
 CC = gcc
 CFLAGSO = -c -Wall -Wextra -Werror
 
-.PHONY: all, clean, fclean, re, lib
+.PHONY: all, clean, fclean, re, lib, libfull
 
 all: $(NAME)
 
@@ -36,7 +37,7 @@ clean:
 
 fclean: clean
 	$(MAKE) -C $(LIBFTDIR) fclean
-	rm -f $(NAME) $(LIBNAME)
+	rm -f $(NAME) $(LIBNAME) $(LIBNAMEFULL)
 
 re: fclean all
 
@@ -45,6 +46,11 @@ $(NAME): $(OBJ)
 	$(CC) $(OBJ) -L$(LIBFTDIR) -l$(LIBFT) -o $@
 
 $(LIBNAME): $(OBJ)
+	$(MAKE) -C $(LIBFTDIR)
+	ar -rc $(LIBNAME) $(OBJ)
+	ranlib	$@
+
+$(LIBNAMEFULL): $(OBJ)
 	$(MAKE) -C $(LIBFTDIR)
 	ar -rc $(LIBNAME) $(OBJ) $(LIBFTDIR)/$(OBJDIR)/*.o
 	ranlib	$@
