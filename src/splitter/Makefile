@@ -6,13 +6,15 @@
 #    By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/29 15:37:37 by blackrider        #+#    #+#              #
-#    Updated: 2024/07/01 17:30:15 by blackrider       ###   ########.fr        #
+#    Updated: 2024/07/01 18:40:50 by blackrider       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = spliter
 LIBNAME = libsplitter.a
 LIBNAMEFULL = libsplitterft.a
+TEST = test
+TESTFILE = test.c
 
 LIBFTDIR = ../../libft
 SRCDIR = src
@@ -25,11 +27,13 @@ OBJ = $(SRC:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
 CC = gcc
 CFLAGSO = -c -Wall -Wextra -Werror
 
-.PHONY: all, clean, fclean, re, lib, libfull
+.PHONY: all, clean, fclean, re, lib, libfull, run
 
 all: $(NAME)
 
 lib: $(LIBNAME)
+
+libf: $(LIBNAMEFULL)
 
 clean:
 	$(MAKE) -C $(LIBFTDIR) clean
@@ -37,9 +41,13 @@ clean:
 
 fclean: clean
 	$(MAKE) -C $(LIBFTDIR) fclean
-	rm -f $(NAME) $(LIBNAME) $(LIBNAMEFULL)
+	rm -f $(NAME) $(LIBNAME) $(LIBNAMEFULL) $(TEST)
 
 re: fclean all
+
+run: $(LIBNAME)
+	$(CC) $(TESTFILE) -L. -lsplitter -L$(LIBFTDIR) -l$(LIBFT) -o $(TEST)
+	./$(TEST)
 
 $(NAME): $(OBJ)
 	$(MAKE) -C $(LIBFTDIR)
@@ -52,7 +60,7 @@ $(LIBNAME): $(OBJ)
 
 $(LIBNAMEFULL): $(OBJ)
 	$(MAKE) -C $(LIBFTDIR)
-	ar -rc $(LIBNAME) $(OBJ) $(LIBFTDIR)/$(OBJDIR)/*.o
+	ar -rc $(LIBNAMEFULL) $(OBJ) $(LIBFTDIR)/$(OBJDIR)/*.o
 	ranlib	$@
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c

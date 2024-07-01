@@ -9,7 +9,7 @@
                 "-g",
                 "${file}",
                 "-L.",
-                "-lspliter",
+                "-lsplitterft",
                 // // "ft_splits.c",
                 // "offset.c",
                 // "setnodestr.c",

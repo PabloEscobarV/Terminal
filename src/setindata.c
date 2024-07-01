@@ -6,26 +6,22 @@
 /*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 13:20:54 by blackrider        #+#    #+#             */
-/*   Updated: 2024/06/27 15:06:31 by blackrider       ###   ########.fr       */
+/*   Updated: 2024/07/01 18:58:03 by blackrider       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../hdrs/pipex.h"
-#include "../libft/libft.h"
+#include <../hdrs/pipex.h>
+#include "splitter/hdrs/splitter.h"
 #include <stdlib.h>
 #include <stdio.h>
 
-// int main()
-// {
-//     t_llist *llst;
-//     char    **splt;
 
-//     splt = ft_split(SPLTS, '0');
-//     printmatrix(splt);
-// 	llst = ft_splits("grep -A2 main.: || wc -l | cd .. $ ls -a $$ sudo \"sudo data\"", (const char **)splt);
-//     llistiter(llst, printllist);
-// 	ft_free_d((void **)splt);
-// 	llistclear(&llst, freeargt);
-//     return (0);
-// }
 
+t_argv	*getargv(t_cchar *args, t_cchar **envp, t_splqt *splqt)
+{
+	t_llist	*llst;
+
+	llst = spliter(args, splqt);
+	if (!llst)
+		return (NULL);
+}

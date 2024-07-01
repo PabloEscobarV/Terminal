@@ -6,7 +6,7 @@
 /*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 15:56:40 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/01 16:11:47 by blackrider       ###   ########.fr       */
+/*   Updated: 2024/07/01 20:31:37 by blackrider       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@
 
 int main()
 {
-	char	str[] =  "|  greap -A20   |  cd .. ||";
+	char	str[] =  "< file.txt grep 135 | wc -l > file1.txt";
 	t_llist *llst;
     t_splqt	*splqt;
 
 	splqt = crtsplqtt((t_cchar **)ft_split("\"0'", SPLTCH),
-		(t_cchar **)ft_split("||0$$0>>0<<0|0$0", SPLTCH), ' ');
+		(t_cchar **)ft_split("||0$$0<<0|0$0", SPLTCH), ' ');
     printmatrix(splqt->qts);
 	printmatrix(splqt->splts);
 	llst = spliter(str, splqt);
