@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/01 17:11:17 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/01 17:11:19 by blackrider       ###   ########.fr       */
+/*   Created: 2024/07/01 17:16:29 by blackrider        #+#    #+#             */
+/*   Updated: 2024/07/01 17:17:03 by blackrider       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,19 +49,16 @@ t_llist	*spliter(t_cchar *str, t_splqt *splt)
 	return (llst);
 }
 
-<<<<<<< HEAD
-int main()
-{
-	char	str[] = " | | | | |||$$$     objdump -M intel -D ./test | grep -A20 main.: || wc -l $$ ls -a || cd .. | echo \" data1 || data2 | data3 $$ data4 $ data5 | \" >> file.txt   | | | | | | | | | | |";
-	t_llist *llst;
-    t_splqt	*splqt;
-=======
+// int main()
+// {
+// 	char	str[] = " | | | | |||$$$     objdump -M intel -D ./test | grep -A20 main.: || wc -l $$ ls -a || cd .. | echo \" data1 || data2 | data3 $$ data4 $ data5 | \" >> file.txt   | | | | | | | | | | |";
+// 	t_llist *llst;
+//     t_splqt	*splqt;
 // int main()
 // {
 // 	char	str[] =  "|  greap -A20   |  cd .. ||";
 // 	t_llist *llst;
 //     t_splqt	*splqt;
->>>>>>> 0afb9eb (added make lib instruction, added spliterlcl.h, structs.h)
 
 // 	splqt = crtsplqtt((t_cchar **)ft_split("\"0'", SPLTCH),
 // 		(t_cchar **)ft_split("||0$$0>>0<<0|0$0", SPLTCH), ' ');

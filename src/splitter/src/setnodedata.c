@@ -5,45 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/01 17:11:03 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/01 17:11:04 by blackrider       ###   ########.fr       */
+/*   Created: 2024/07/01 17:15:25 by blackrider        #+#    #+#             */
+/*   Updated: 2024/07/01 17:16:10 by blackrider       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../hdrs/splitterlcl.h"
-
-static int	skipsplt(t_cchar *str, t_crds *crds, t_splqt *splt)
-{
-	t_cchar	*tmp;
-
-	while (crds->i < crds->strsize)
-	{
-		tmp = cmpstrv(str + crds->i, splt->splts);
-		if (!tmp)
-			return (0);
-		crds->i += ft_strlen(tmp);
-	}
-	return (1);
-}
-
-static t_cchar	*offset(t_cchar *str, t_crds *crds, t_splqt *splt)
-{
-	t_cchar	*tmp;
-
-	if (skipsplt(str, crds, splt))
-		return (NULL);
-	crds->size = crds->i;
-	tmp = NULL;
-	if (cmpstrv(str + crds->size, splt->qts))
-		return (NULL);
-	while (!tmp && ++crds->size < crds->strsize)
-	{
-		if (cmpstrv(str + crds->size, splt->qts))
-			return (NULL);
-		tmp = cmpstrv(str + crds->size, splt->splts);
-	}
-	return (tmp);
-}
 
 static void		skipspaces(t_cchar *str, t_crds* crds, t_splqt *splt, t_crds *res)
 {

@@ -9,6 +9,7 @@
                 "-g",
                 "${file}",
 <<<<<<< HEAD
+<<<<<<< HEAD
                 // "ft_splits.c",
                 "cmpstrv.c",
                 "setnodestr.c",
@@ -33,6 +34,8 @@
                 // "-lftprintffull",
 
 =======
+=======
+>>>>>>> tmp
                 "-L.",
                 "-lspliter",
                 // // "ft_splits.c",
@@ -48,7 +51,10 @@
                 // "-lgnlfull",
                 // "-L../../../ft_printf",
                 // "-lftprintffull",
+<<<<<<< HEAD
 >>>>>>> 0afb9eb (added make lib instruction, added spliterlcl.h, structs.h)
+=======
+>>>>>>> tmp
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}"
             ],
