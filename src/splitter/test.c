@@ -6,12 +6,11 @@
 /*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 15:56:40 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/01 20:31:37 by blackrider       ###   ########.fr       */
+/*   Updated: 2024/07/02 14:43:36 by blackrider       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hdrs/splitter.h"
-#include "hdrs/splitterlcl.h"
 #include "../../libft/libft.h"
 
 int main()
@@ -21,7 +20,7 @@ int main()
     t_splqt	*splqt;
 
 	splqt = crtsplqtt((t_cchar **)ft_split("\"0'", SPLTCH),
-		(t_cchar **)ft_split("||0$$0<<0|0$0", SPLTCH), ' ');
+		(t_cchar **)ft_split("||0$$0<<0|0$0<0>", SPLTCH), ' ');
     printmatrix(splqt->qts);
 	printmatrix(splqt->splts);
 	llst = spliter(str, splqt);

@@ -6,11 +6,11 @@
 /*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 15:27:33 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/01 16:00:11 by blackrider       ###   ########.fr       */
+/*   Updated: 2024/07/02 14:41:56 by blackrider       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../hdrs/splitterlcl.h"
+#include "../hdrs/splitter.h"
 
 static void		skipspaces(t_cchar *str, t_crds* crds, t_splqt *splt, t_crds *res)
 {

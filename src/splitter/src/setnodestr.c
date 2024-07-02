@@ -6,11 +6,11 @@
 /*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 15:23:47 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/01 16:00:15 by blackrider       ###   ########.fr       */
+/*   Updated: 2024/07/02 14:42:01 by blackrider       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../hdrs/splitterlcl.h"
+#include "../hdrs/splitter.h"
 
 static int	isqtssv(t_cchar *str, t_cchar ***splt)
 {

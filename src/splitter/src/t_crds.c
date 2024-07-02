@@ -6,11 +6,11 @@
 /*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 16:14:27 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/01 16:00:31 by blackrider       ###   ########.fr       */
+/*   Updated: 2024/07/02 14:42:17 by blackrider       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../hdrs/splitterlcl.h"
+#include "../hdrs/splitter.h"
 
 t_crds	*crdcrdst(int i, int size, int strsize)
 {

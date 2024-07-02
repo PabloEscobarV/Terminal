@@ -6,11 +6,11 @@
 /*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 13:02:37 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/01 16:00:26 by blackrider       ###   ########.fr       */
+/*   Updated: 2024/07/02 14:42:12 by blackrider       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../hdrs/splitterlcl.h"
+#include "../hdrs/splitter.h"
 
 t_arg	*crtargt(char *str, int x, int size)
 {

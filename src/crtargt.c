@@ -6,54 +6,60 @@
 /*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 14:38:16 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/01 18:55:19 by blackrider       ###   ########.fr       */
+/*   Updated: 2024/07/02 15:22:22 by blackrider       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../hdrs/pipex.h"
 #include "../libft/libft.h"
 #include <stdlib.h>
+#include <stdio.h>
 
-t_argv    *allocargs(const char *path, const char **argv, const char **envp)
+t_argv    *allocargt(const char *path, const char **argv, const char **envp)
 {
     t_argv	*args;
 
 	args = malloc(sizeof(t_argv));
 	if (!args)
 		return (NULL);
-	args->redir = 0;
+	args->oper = 0;
 	args->path = ft_strdup(path);
 	args->argv = ft_strsdup(argv);
 	args->envp = ft_strsdup(envp);
 	return (args);
 }
 
-t_argv	crtargs(const char *path, const char **argv, const char **envp)
+t_argv	crtargt(const char *path, const char **argv, const char **envp)
 {
 	t_argv	args;
 
-	args.redir = 0;
+	args.oper = 0;
 	args.path = ft_strdup(path);
 	args.argv = ft_strsdup(argv);
 	args.envp = ft_strsdup(envp);
 	return (args);
 }
 
-t_argv	*crtargst(t_cchar *path, t_cchar **argv, t_cchar **envp)
+t_argv	*crtargvt(t_cchar *path, t_cchar **argv, t_cchar **envp)
 {
     t_argv	*args;
 
 	args = malloc(sizeof(t_argv));
 	if (!args)
+	{
+		perror(ERRORMALLOC);
 		return (NULL);
-	args->redir = 0;
+	}
+	args->oper = 0;
 	args->path = path;
 	args->argv = argv;
 	args->envp = envp;
+	args->infile = NULL;
+	args->outfile = NULL;
 	return (args);
 }
 
-void	*freeargst(t_argv *args)
+void	*freeargvt(t_argv *args)
 {
 	free(args->path);
 	ft_free_d(args->argv);

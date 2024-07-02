@@ -6,11 +6,11 @@
 /*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/24 12:41:10 by polenyc           #+#    #+#             */
-/*   Updated: 2024/07/01 18:44:56 by blackrider       ###   ########.fr       */
+/*   Updated: 2024/07/02 14:42:34 by blackrider       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "hdrs/splitterlcl.h"
+#include "hdrs/splitter.h"
 #include "../../libft/libft.h"
 #include <stdlib.h>
 #include <stdio.h>
