@@ -6,7 +6,7 @@
 /*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:04:18 by blackrider        #+#    #+#             */
-/*   Updated: 2024/06/28 19:55:08 by blackrider       ###   ########.fr       */
+/*   Updated: 2024/07/03 16:46:46 by blackrider       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	**crtfullpath(char **path, const char *filename)
 	return (tmp);
 }
 
-char	*getfilepath(char **envp, const char *filename)
+t_cchar	*getapppath(char **envp, const char *filename)
 {
 	char	*filepath;
 	char	**tmp;
@@ -82,7 +82,7 @@ int	main(int argc, char **argv, char **envp)
 {
 	char	*path;
 
-	path = getfilepath(envp, "grep");
+	path = getapppath(envp, "grep");
 	if (!path)
 	{
 		printf("ERROR!!!\n");

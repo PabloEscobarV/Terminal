@@ -6,7 +6,7 @@
 /*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 15:20:39 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/02 14:43:14 by blackrider       ###   ########.fr       */
+/*   Updated: 2024/07/03 17:18:02 by blackrider       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,3 +56,4 @@ void	*freecrds(t_crds *crds);
 ///////////////////////////////TOOLS///////////////////////////////
 void	printmatrix(t_cchar **matrix);
 void	printllist(void *data);
+int		cmpstrv(t_cchar *str, t_cchar **splt);

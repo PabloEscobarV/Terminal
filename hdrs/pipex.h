@@ -6,7 +6,7 @@
 /*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:10:54 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/02 15:45:56 by blackrider       ###   ########.fr       */
+/*   Updated: 2024/07/03 17:15:59 by blackrider       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,29 +21,34 @@
 #define REDIROUTAPP		">>"
 #define HERDOC			"<<"
 #define SPLTCH			'0'
+#define SPLTSP			' '
 #define SPLTQTS			"\"0'"
-#define SPLTS			"$$0||0>>0<<0>0<0|0$"
+#define SPLTS			"$$0||0>>0<<0<0>0|0$"
 // #define SPLTS			" $$ 0$$0 || 0||0>>0<<0 | 0 $ 0<0>0|0\"0'0`0\\0*0"
 
 #include "../libft/libft.h"
 #include "../src/splitter/hdrs/splitter.h"
 
-// enum	e_quotes
-// {
-// 	DBQUETE,
-// 	SGQUOTE,
-// };
+enum	e_quotes
+{
+	DBQUETE,
+	SGQUOTE,
+};
 
 enum	e_spltrs
 {
-	INRDR,
-	OUTRDR,
-	PIPE,
 	END,
 	OR,
 	APPND,
-	DBQUETE,
-	SGQUOTE,
+	HRDOC,
+	INRDR,
+	OUTRDR,
+	PIPE,
+};
+
+enum	e_error
+{
+	MEMERROR = 2,
 };
 
 // enum	e_operations
@@ -66,7 +71,7 @@ enum	e_spltrs
 typedef unsigned char	t_uchar;
 typedef const char		t_cchar;
 
-typedef struct s_splts
+typedef struct s_spltrs
 {
 	char	**iordr;
 	char	**splt;
@@ -78,13 +83,15 @@ typedef struct	s_argv
 {
 	t_uchar	oper;
 	char	*path;
+	char	*str;
 	char	*infile;
 	char	*outfile;
 	char	**argv;
 	char	**envp;
 }				t_argv;
 
-char		*getfilepath(char **envp, const char *filename);
+///////////////////////////////BIT`s OPERATIONS///////////////////////////////
+t_cchar		*getapppath(char **envp, const char *filename);
 ///////////////////////////////BIT`s OPERATIONS///////////////////////////////
 void		setbit(t_uchar *data, t_uchar bit);
 void		resetbit(t_uchar *data, t_uchar bit);
