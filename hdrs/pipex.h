@@ -6,7 +6,7 @@
 /*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:10:54 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/03 17:15:59 by blackrider       ###   ########.fr       */
+/*   Updated: 2024/07/18 11:33:54 by blackrider       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,12 +82,12 @@ typedef struct s_spltrs
 typedef struct	s_argv
 {
 	t_uchar	oper;
-	char	*path;
+	t_cchar	*path;
 	char	*str;
 	char	*infile;
 	char	*outfile;
-	char	**argv;
-	char	**envp;
+	t_cchar	**argv;
+	t_cchar	**envp;
 }				t_argv;
 
 ///////////////////////////////BIT`s OPERATIONS///////////////////////////////
@@ -98,9 +98,9 @@ void		resetbit(t_uchar *data, t_uchar bit);
 t_uchar		getbit(t_uchar data, t_uchar bit);
 ///////////////////////////////T_ARGS///////////////////////////////
 t_argv		*allocargv(const char *path, const char **argv, const char **envp);
-t_argv		crtargv(const char *path, const char **argv, const char **envp);
+// t_argv		crtargv(const char *path, const char **argv, const char **envp);
 t_argv		*crtargvt(t_cchar *path, t_cchar **argv, t_cchar **envp);
-void		*freeargvt(t_argv *args);
+void		freeargvt(void *data);
 ///////////////////////////////T_SPLTRS///////////////////////////////
 t_spltrs	*crtspltst(t_cchar space, t_cchar *qts, t_cchar *iordr, t_cchar *splt);
 void        *freespltrst(t_spltrs *spltrs);

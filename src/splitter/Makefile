@@ -6,7 +6,7 @@
 #    By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/29 15:37:37 by blackrider        #+#    #+#              #
-#    Updated: 2024/07/01 18:40:50 by blackrider       ###   ########.fr        #
+#    Updated: 2024/07/18 11:00:48 by blackrider       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ CFLAGSO = -c -Wall -Wextra -Werror
 
 .PHONY: all, clean, fclean, re, lib, libfull, run
 
-all: $(NAME)
+all: lib
 
 lib: $(LIBNAME)
 

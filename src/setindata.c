@@ -6,7 +6,7 @@
 /*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 13:20:54 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/03 17:19:46 by blackrider       ###   ########.fr       */
+/*   Updated: 2024/07/18 11:30:01 by blackrider       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static t_uchar	setargv(t_argv *argvt, t_llist *data)
 			argvt->outfile = ft_strdup(T_ARG(data)->arg);
 			break;
 		default:
-			argvt->argv = ft_split(T_ARG(data)->arg, SPLTSP);
+			argvt->argv = (t_cchar **)ft_split(T_ARG(data)->arg, SPLTSP);
 	}
 	return (0);
 }
@@ -91,23 +91,23 @@ t_uchar	nodeoprtn(t_cchar *args, t_splqt *splqt, t_argv *argvt, t_llist *data)
 	return (setstr(argvt, data));
 }
 
-t_llist	*setargvtnode(t_cchar *args, char **envp, t_splqt *splqt, t_llist **data)
+t_llist	*setargvtnode(t_cchar *args, t_cchar **envp, t_splqt *splqt, t_llist **data)
 {
 	t_argv	*argvt;
 
 	argvt = crtargvt(NULL, NULL, (t_cchar **)envp);
 	while (*data && cmpstrv(args + T_ARG(*data)->size, splqt->splts))
 	{		
-		if (nodeoprtn(args, splqt, argvt, data))
+		if (nodeoprtn(args, splqt, argvt, *data))
 			return (NULL);
 		*data = (*data)->next;
 	}
-	argvt->path = getapppath(envp, argvt->argv[0]);
+	argvt->path = getapppath((char **)envp, argvt->argv[0]);
 	argvt->envp = envp;
 	return (llistnewnode(argvt));
 }
 
-t_llist	*getargvllst(t_cchar *args, char **envp, t_splqt *splqt)
+t_llist	*getargvllst(t_cchar *args, t_cchar **envp, t_splqt *splqt)
 {
 	t_llist	*argvllst;
 	t_llist	*tmp;
@@ -128,12 +128,15 @@ t_llist	*getargvllst(t_cchar *args, char **envp, t_splqt *splqt)
 	return (argvllst);
 }
 
-static void	printargvt(t_argv *argvt)
+static void	printargvt(void *data)
 {
-		printf("operation:\t%d\nPATH:\t%s\nSTR:\t%s\nINFILE:\t%s\nOUTFILE:\t%s\n",
-			argvt->oper, argvt->path, argvt->str, argvt->infile, argvt->outfile);
-		printmatrix(argvt->argv);
-		ft_putchar('\n');
+	t_argv *argvt;
+
+	argvt = (t_argv *)data;
+	printf("operation:\t%d\nPATH:\t%s\nSTR:\t%s\nINFILE:\t%s\nOUTFILE:\t%s\n",
+		argvt->oper, argvt->path, argvt->str, argvt->infile, argvt->outfile);
+	printmatrix((t_cchar **)argvt->argv);
+	ft_putchar('\n');
 }
 
 int main(int argc, char **argv, char **envp)
@@ -149,7 +152,7 @@ int main(int argc, char **argv, char **envp)
 	printmatrix(splqt->splts);
 	llst = spliter(str, splqt);
 	llistiter(llst, printllist);
-	argvllst = getargvllst(str, envp, splqt);
+	argvllst = getargvllst(str, (t_cchar **)envp, splqt);
 	llistiter(argvllst, printargvt);
 	// for (int i = 0; i < size; ++i)
 	// 	printf("%d\t", i);

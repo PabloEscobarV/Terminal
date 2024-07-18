@@ -6,7 +6,7 @@
 /*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:04:18 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/03 16:46:46 by blackrider       ###   ########.fr       */
+/*   Updated: 2024/07/18 11:34:39 by blackrider       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,23 +78,23 @@ t_cchar	*getapppath(char **envp, const char *filename)
 // 	}
 // }
 
-int	main(int argc, char **argv, char **envp)
-{
-	char	*path;
+// int	main(int argc, char **argv, char **envp)
+// {
+// 	char	*path;
 
-	path = getapppath(envp, "grep");
-	if (!path)
-	{
-		printf("ERROR!!!\n");
-		return (0);
-	}
-	printf("%s\n", path);
-	// printmatrix(envp);
-	// char	**path;
+// 	path = getapppath(envp, "grep");
+// 	if (!path)
+// 	{
+// 		printf("ERROR!!!\n");
+// 		return (0);
+// 	}
+// 	printf("%s\n", path);
+// 	// printmatrix(envp);
+// 	// char	**path;
 
-	// path = getpath((const char **)envp);
-	// path = crtfullpath(path, "/ls");
-	// printmatrix(path);
-	free(path);
-	return (0);
-}
+// 	// path = getpath((const char **)envp);
+// 	// path = crtfullpath(path, "/ls");
+// 	// printmatrix(path);
+// 	free(path);
+// 	return (0);
+// }
