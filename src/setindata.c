@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setindata.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
+/*   By: polenyc <polenyc@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 13:20:54 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/18 11:30:01 by blackrider       ###   ########.fr       */
+/*   Updated: 2024/07/18 13:03:28 by polenyc          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ t_llist	*getargvllst(t_cchar *args, t_cchar **envp, t_splqt *splqt)
 	llst = spliter(args, splqt);
 	if (!llst)
 		return (NULL);
+	llistiter(llst, printllist);
 	argvllst = NULL;
 	tmp = llst;
 	while (tmp)

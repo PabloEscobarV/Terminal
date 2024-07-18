@@ -9,7 +9,7 @@
                 "-g",
                 "${file}",
                 "crtargt.c",
-                "",
+                "getpath.c",
                 "",
                 "-Lsplitter",
                 "-lsplitter",
