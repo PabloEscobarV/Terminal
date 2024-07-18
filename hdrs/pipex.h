@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
+/*   By: polenyc <polenyc@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:10:54 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/18 11:33:54 by blackrider       ###   ########.fr       */
+/*   Updated: 2024/07/18 14:41:19 by polenyc          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 #define SPLTCH			'0'
 #define SPLTSP			' '
 #define SPLTQTS			"\"0'"
-#define SPLTS			"$$0||0>>0<<0<0>0|0$"
+#define SPLTS			"||0&&0<<0>>0|0<0>"
 // #define SPLTS			" $$ 0$$0 || 0||0>>0<<0 | 0 $ 0<0>0|0\"0'0`0\\0*0"
 
 #include "../libft/libft.h"
@@ -37,13 +37,13 @@ enum	e_quotes
 
 enum	e_spltrs
 {
-	END,
 	OR,
+	END,
 	APPND,
 	HRDOC,
+	PIPE,
 	INRDR,
 	OUTRDR,
-	PIPE,
 };
 
 enum	e_error
@@ -81,7 +81,7 @@ typedef struct s_spltrs
 
 typedef struct	s_argv
 {
-	t_uchar	oper;
+	char	oper;
 	t_cchar	*path;
 	char	*str;
 	char	*infile;

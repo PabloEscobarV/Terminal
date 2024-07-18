@@ -6,7 +6,7 @@
 /*   By: polenyc <polenyc@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 13:20:54 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/18 13:03:28 by polenyc          ###   ########.fr       */
+/*   Updated: 2024/07/18 14:41:37 by polenyc          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ static t_uchar	setstr(t_argv *argvt, t_llist *data)
 static int	setx(t_llist *data)
 {
 	if (!data->previous || !data->previous->next)
-		return (T_ARG(data)->x);
+		return (0);
 	return (T_ARG(data->previous)->size);
 }
 
@@ -87,7 +87,7 @@ t_uchar	nodeoprtn(t_cchar *args, t_splqt *splqt, t_argv *argvt, t_llist *data)
 	argvt->oper = defoprtn(args + x, splqt->splts, size);
 	if (argvt->oper >= 0)
 		return (setargv(argvt, data));
-	argvt->oper = defoprtn(args + x, splqt->qts, size);
+	argvt->oper = defoprtn(args + x, splqt->qts, size) + 10;
 	return (setstr(argvt, data));
 }
 
@@ -148,7 +148,7 @@ int main(int argc, char **argv, char **envp)
     t_splqt	*splqt;
 
 	splqt = crtsplqtt((t_cchar **)ft_split("\"0'", SPLTCH),
-		(t_cchar **)ft_split("||0$$0<<0|0$0<0>", SPLTCH), ' ');
+		(t_cchar **)ft_split(SPLTS, SPLTCH), ' ');
     printmatrix(splqt->qts);
 	printmatrix(splqt->splts);
 	llst = spliter(str, splqt);
