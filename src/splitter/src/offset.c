@@ -12,7 +12,7 @@
 
 #include "../hdrs/splitter.h"
 
-static int	cmpstrv(t_cchar *str, t_cchar **splt)
+int	cmpstrv(t_cchar *str, t_cchar **splt)
 {
 	t_cchar	*tmp;
 
