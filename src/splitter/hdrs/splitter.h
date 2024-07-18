@@ -6,14 +6,15 @@
 /*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 15:20:39 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/03 17:18:02 by blackrider       ###   ########.fr       */
+/*   Updated: 2024/07/18 19:02:52 by blackrider       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #include "../../../libft/libft.h"
 
-#define SPLTCH			'0'
+#define SPLTCH	'0'
+#define ESCCH	'\\'
 
 typedef const char	t_cchar;
 
