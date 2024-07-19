@@ -6,7 +6,7 @@
 /*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 15:23:47 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/18 19:07:08 by blackrider       ###   ########.fr       */
+/*   Updated: 2024/07/19 14:23:50 by blackrider       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int	offsetqt(t_cchar *str, t_crds *crds, t_cchar **qts)
 	while (crds->size < crds->strsize)
 	{
 		tmp = ft_strlcmp(str + crds->size, *qts);
-		if (tmp && *(str - 1 + crds->i) != ESCCH)
+		if (tmp && *(str - 1 + crds->size) != ESCCH)
 			return ((int)(tmp - str) - crds->size);
 		++crds->size;
 	}

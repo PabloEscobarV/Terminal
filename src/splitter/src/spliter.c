@@ -6,7 +6,7 @@
 /*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 13:10:06 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/02 14:42:07 by blackrider       ###   ########.fr       */
+/*   Updated: 2024/07/19 14:32:28 by blackrider       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "../../../libft/libft.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <readline/readline.h>
 
 t_llist	*spliter(t_cchar *str, t_splqt *splt)
 {
@@ -36,6 +37,28 @@ t_llist	*spliter(t_cchar *str, t_splqt *splt)
 		return (llistclear(&llst, freeargt));
 	return (llst);
 }
+
+// int	main()
+// {
+// 	char	*line;
+// 	t_llist	*llst;
+// 	t_splqt	*splqt;
+	
+// 	splqt = crtsplqtt((t_cchar **)ft_split("\"0'", SPLTCH),
+// 		(t_cchar **)ft_split("||0$$0<<0|0$0<0>", SPLTCH), ' ');
+// 	while (1)
+// 	{
+// 		line = readline("Pablo Escobar:\t");
+// 		if (!ft_strcmp(line, "exit"))
+// 			break ;
+// 		printf("%s\n", line);
+// 		llst = spliter(line, splqt);
+// 		llistiter(llst, printllist);
+// 		llistclear(&llst, freeargt);
+// 	}
+// 	freesplqtt(splqt);
+// 	return (0);
+// }
 
 // int main()
 // {
