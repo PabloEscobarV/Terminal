@@ -6,7 +6,7 @@
 #    By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/29 15:37:37 by blackrider        #+#    #+#              #
-#    Updated: 2024/07/19 14:03:51 by blackrider       ###   ########.fr        #
+#    Updated: 2024/07/20 13:48:55 by blackrider       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ SRC = $(wildcard $(SRCDIR)/*.c)
 OBJ = $(SRC:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
 
 CC = gcc
-CFLAGSO = -c -Wall -Wextra -Werror
+CFLAGSO = -c -Wall -Wextra
 LIBRS = -L$(LIBFTDIR) -l$(LIBFT) -L$(GNLDIR) -l$(GNL) -l$(READLINE)
 
 .PHONY: all, clean, fclean, re, lib, libfull, run
