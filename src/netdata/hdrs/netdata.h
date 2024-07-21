@@ -6,18 +6,20 @@
 /*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 15:03:44 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/20 22:00:01 by blackrider       ###   ########.fr       */
+/*   Updated: 2024/07/21 14:06:06 by blackrider       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#define ESCCH	'\\'
-#define VARCH	'$'
+#define ESCCH		'\\'
+#define VARCH		'$'
+#define SPCCH		' '
+#define MALLOCERROR	"ALLOC ERROR!!!"
 
 typedef unsigned char	t_uchar;
 typedef const char		t_cchar;
-typedef t_cchar *(* f_hash)(t_cchar *, t_cchar **);
+typedef t_cchar *(* f_hash)(t_cchar *key, char **hashtb);
 
 typedef struct	s_indata
 {
