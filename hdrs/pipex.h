@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: polenyc <polenyc@student.42.fr>            +#+  +:+       +#+        */
+/*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 15:10:54 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/18 14:41:19 by polenyc          ###   ########.fr       */
+/*   Updated: 2024/07/22 13:20:15 by blackrider       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,4 +106,5 @@ t_spltrs	*crtspltst(t_cchar space, t_cchar *qts, t_cchar *iordr, t_cchar *splt);
 void        *freespltrst(t_spltrs *spltrs);
 ///////////////////////////////TOOLS///////////////////////////////
 void		*puterror(t_cchar *msg);
+
 

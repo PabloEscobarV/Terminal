@@ -6,7 +6,7 @@
 /*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 18:40:24 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/21 17:58:10 by blackrider       ###   ########.fr       */
+/*   Updated: 2024/07/22 15:27:56 by blackrider       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,15 @@
 #include "../../../libft/libft.h"
 #include <stdio.h>
 #include <stdlib.h>
+
+char	isqtssv(t_cchar *str, t_cchar *qts)
+{
+	t_cchar	*tmp;
+
+	while (*qts && *str != *qts)
+		++qts;
+	return (*qts);
+}
 
 void	fakefree(void *data)
 {
@@ -31,7 +40,7 @@ int	*crtintdt(int x)
 	return (res);
 }
 
-t_uchar	checkvarch(t_cchar *str, t_cchar var)
+static t_uchar	checkvarch(t_cchar *str, t_cchar var)
 {
 	if (*str != var)
 		return (0);
@@ -42,9 +51,8 @@ t_uchar	checkvarch(t_cchar *str, t_cchar var)
 	return (1);
 }
 
-t_llist	*strsizeexc(t_cchar *args, char **hashtb, t_cchar end, f_hash hashf)
+static t_llist	*strsizeexc(t_cchar *args, t_cchar end, t_hash *hst)
 {
-	t_cchar	*tmp;
 	int		size;
 	t_llist	*llst;
 
@@ -54,22 +62,23 @@ t_llist	*strsizeexc(t_cchar *args, char **hashtb, t_cchar end, f_hash hashf)
 	{
 		if (checkvarch(args, VARCH))
 		{
-			tmp = hashf(args, hashtb);
-			llistadd_back(&llst, llistnewnode((void *)tmp));
+			size += ft_strlen((char *)(llistadd_back(&llst,
+				llistnewnode((void *)hst->hash(args, hst->hashtb)))));
 			while (*args && *args != SPCCH && *args != end)
 				++args;
-			size += ft_strlen(tmp);
 			continue ;
 		}
 		if (*args != ESCCH)
 			++size;
 		++args;
 	}
+	if (!(*args))
+		return (llistclear(&llst, free));
 	llst = llistadd_front(&llst, llistnewnode(crtintdt(size)));
 	return (llst);
 }
 
-int	setresstr(char	*res, t_cchar *args, t_cchar end, t_llist *llst)
+static int	setresstr(char	*res, t_cchar *args, t_cchar end, t_llist *llst)
 {
 	int		i;
 	t_cchar	*tmp;
@@ -93,75 +102,118 @@ int	setresstr(char	*res, t_cchar *args, t_cchar end, t_llist *llst)
 		}
 		++args;
     }
+	res[i] = '\0';
 	return ((int)(args - tmp));
 }
 
-char    *strhandler(t_indata *indt, t_crd *crd, t_cchar end, f_hash hashf)
+char	*dqtshandler(t_cchar *str, t_crd *crd, t_cchar end, t_hash *hst)
 {
-	t_indata	tmp;
-	char    	*res;
-	t_llist		*llst;
+	char		*res;
+	t_llist		*llst;;
 
-	tmp.args = indt->args + crd->i;
-	tmp.hashtb = indt->hashtb;
-	indt->args += crd->i;
-	if (!(*(tmp.args)) || !(*(tmp.args + 1)))
-		return (ft_strdup(tmp.args));
-	llst = strsizeexc(tmp.args, tmp.hashtb, end, hashf);
+	llst = strsizeexc(str, end, hst);
+	if (!llst)
+	{
+		crd->size = -1;
+		return (ft_perror("ERROR in string handler"));
+	}
 	res = malloc((*((int *)llst->data) + 1) * sizeof(char));
 	if (!res)
 		return (ft_perror(MALLOCERROR));
-	printf("finded size:\t%d\n", *(int *)llst->data);
-	crd->i += setresstr(res, tmp.args, end, llst->next);
+	crd->i += setresstr(res, str, end, llst->next);
 	// free(llst->data);
 	llistclear(&llst, free);
 	return (res);
 }
 
-// t_cchar	*hash(t_cchar *key, char **hashtb)
-// {
-// 	return (ft_strdup("ABC"));
-// }
+char	*sqtshadler(t_cchar *args, t_crd *crd, t_cchar end)
+{
+	char	*res;
 
-// int	main()
-// {
-// 	t_indata	indt;
-// 	t_crd		crd;
-// 	t_cchar		end = '"';
-// 	char		*res;
+	res = (char *)args;
+	while (*res && *res != end)
+		++res;
+	if (!(*res))
+	{
+		crd->size = -1;
+		return (ft_perror("ERROR!!! Is not end single quote"));
+	}
+	crd->size = res - args;
+	res = malloc((crd->size + 1) * sizeof(char));
+	if (!res)
+		return(ft_perror("ALLOC ERROR!!! in sqtshandler"));
+	crd->i += crd->size;
+	res[crd->size] = '\0';
+	while (crd->size)
+	{
+		--crd->size;
+		res[crd->size] = args[crd->size];
+	}
+	return (res);
+}
 
-// 	crd.i = 0;
-// 	indt.args = ft_strdup("data from str. $ \\$var $var1 \\\"$vvar into $ \\$ $var\\\" into file: $var ; echo data \\\"DATA\\\" $var after var >> file.txt");
-// 	res = strhandler(&indt, &crd, end, hash);
-// 	printf("|%s|\n", res);
-// 	printf("real size:\t%d\n", ft_strlen(res));
-// 	free(res);
-// 	free((void *)indt.args);
-// 	return (0);
-// }
+char    *strhandler(t_cchar *args, t_crd *crd, t_cchar *qts, t_hash *hst)
+{
+	char		end;
+
+	args + crd->i;
+	end = isqtssv(args, qts);
+	if (!end)
+		return (NULL);
+	++args;
+	crd->i += 2;
+	if (end == QTS[I_DQTS])
+		return (dqtshandler(args, crd, end, hst));
+	return (sqtshadler(args, crd, end));
+}
+
+t_cchar	*hash(t_cchar *key, char **hashtb)
+{
+	return (ft_strdup("ABC"));
+}
+
+int	main()
+{
+	t_hash		hst;
+	t_cchar		*args;
+	t_crd		crd;
+	t_cchar		qts[] = "\"\'";
+	char		*res;
+
+	hst.hash = hash;
+	hst.hashtb = NULL;
+	crd.i = 0;
+	args = ft_strdup("\"data from str. $ \\$var $var1 \\\"$vvar into $ \\$ $var\\\" into file: $var ; echo data \\\"DATA\\\" $var after var\' >> file.txt");
+	res = strhandler(args, &crd, qts, &hst);
+	if (!res)
+		printf("ERROR!!!\n");
+	else
+	{
+		printf("|%s|\n", res);
+		printf("finded size:\t%d\n", ft_strlen(res));
+		printf("size for input string:\t%d\tcrd->i:\t%d\t|%s|\n", ft_strlen(args), crd.i, args + crd.i);
+	}
+	// printf("real size:\t%d\n", ft_strlen(res));
+	free(res);
+	free((void *)args);
+	return (0);
+}
 // echo \"data \\\"DATA\\\" $var after var\" >> file.txt
 // data from str. $ \\$var $var1 \\\"$vvar into $ \\$ $var\\\" into file: $var 
 
-// int		setsize(t_indata *indt, t_llist **llst, t_cchar end, f_hash hashf)
+// char    *strhandler(t_indata *indt, t_crd *crd, t_cchar end, f_hash hashf)
 // {
-// 	int		size;
-// 	t_cchar	*tmp;
+// 	char    	*res;
+// 	t_llist		*llst;
 
-// 	size = 0;
-// 	while (*(indt->args) && !(*(indt->args) == end && *(indt->args - 1) != ESCCH))
-// 	{
-// 		if (checkvarch(indt->args, VARCH))
-// 		{
-// 			tmp = hashf(indt->args, indt->hashtb);
-// 			llistadd_back(llst, llistnewnode((void *)tmp));
-// 			while (*(indt->args) && *(indt->args) != SPCCH && *(indt->args) != end)
-// 				++indt->args;
-// 			size += ft_strlen(tmp);
-// 			continue ;
-// 		}
-// 		if (*(indt->args) != ESCCH)
-// 			++size;
-// 		++indt->args;
-// 	}
-// 	return (size);
+// 	if (!(*(indt->args + crd->i)) || !(*(indt->args + crd->i + 1)))
+// 		return (ft_strdup(indt->args + crd->i));
+// 	llst = strsizeexc(indt->args + crd->i, indt->hashtb, end, hashf);
+// 	res = malloc((*((int *)llst->data) + 1) * sizeof(char));
+// 	if (!res)
+// 		return (ft_perror(MALLOCERROR));
+// 	crd->i += setresstr(res, indt->args + crd->i, end, llst->next);
+// 	// free(llst->data);
+// 	llistclear(&llst, free);
+// 	return (res);
 // }
