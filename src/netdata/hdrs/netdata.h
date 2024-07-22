@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 15:03:44 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/22 18:00:02 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/07/22 20:50:36 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #define SPCCH		' '
 #define MALLOCERROR	"ALLOC ERROR!!!"
 #define QTS			"\"\'"
+#define IORDR		">0<0>>"
 
 typedef unsigned char	t_uchar;
 typedef const char		t_cchar;
@@ -53,6 +54,7 @@ typedef struct	s_sqr
 typedef struct	s_argv
 {
 	char	oper;
+	char	appnd;
 	t_cchar	*path;
 	t_llist	*str;
 	char	*infile;
@@ -67,6 +69,16 @@ enum
 	I_SQTS,
 };
 
+enum
+{
+	I_OFILE,
+	I_IFILE,
+	I_APPOFILE,
+	IOSIZE,
+};
+
+/////////////////////////////////////////RDRHANDLER/////////////////////////////////
+char	*rdrhandler(t_cchar *args, t_crd *crd, t_cchar **rdr, t_argv *argvt);
 /////////////////////////////////////////STRHANDLER/////////////////////////////////
 char    *strhandler(t_cchar *args, t_crd *crd, t_cchar *qts, t_hash *hst);
 /////////////////////////////////////////STRHANDLER/////////////////////////////////

@@ -6,14 +6,14 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 17:42:04 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/22 18:46:56 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/07/22 20:48:47 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../hdrs/netdata.h"
 #include "../../../libft/libft.h"
 
-int		sizerdr(t_cchar *args)
+static int		sizerdr(t_cchar *args)
 {
 	t_cchar	*tmp;
 
@@ -23,7 +23,7 @@ int		sizerdr(t_cchar *args)
 	return (tmp - args);
 }
 
-int	sedirectoin(t_cchar *args, t_cchar **rdr, t_crd *crd)
+static int	findrdr(t_cchar *args, t_crd *crd, t_cchar **rdr)
 {
 	int		i;
 	t_cchar	*tmp;
@@ -39,20 +39,39 @@ int	sedirectoin(t_cchar *args, t_cchar **rdr, t_crd *crd)
 		}
 		++i;
 	}
+	return (i);
+}
+
+static void	f_options(t_cchar *args, t_crd	*crd, int key, t_argv *argvt)
+{
+	switch (key)
+	{
+	case (I_OFILE):
+		argvt->outfile = ft_strldup(args, crd->size);
+		break ;
+	case (I_IFILE):
+		argvt->infile = ft_strldup(args, crd->size);
+		break ;
+	case (I_APPOFILE):
+		argvt->outfile = ft_strldup(args, crd->size);
+		argvt->appnd = 1;
+		break ;
+	}
 }
 
 char	*rdrhandler(t_cchar *args, t_crd *crd, t_cchar **rdr, t_argv *argvt)
 {
-	char	*iordr;
+	int		key;
 
 	args += crd->i;
-	crd->size = cmpstrv(args, rdr); 
-	if (!crd->size)
+	key = findrdr(args, crd, rdr);
+	if (key >= IOSIZE)
 		return (NULL);
 	args += crd->size;
 	crd->i += crd->size;
 	crd->size = sizerdr(args);
-	iordr = ft_strldup(args, crd->size);
+	f_options(args, crd, key, argvt);
+
 	if (!iordr)
 		return (ft_perror("MALLOC ERROR!!! In rdrhandler"));
 	
