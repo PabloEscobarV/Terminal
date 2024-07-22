@@ -6,7 +6,7 @@
 /*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 15:12:13 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/20 15:25:38 by blackrider       ###   ########.fr       */
+/*   Updated: 2024/07/22 17:38:20 by blackrider       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,6 @@ void	*delargvt(t_argv *argv)
 	free(argv->outfile);
 	free(argv->path);
 	free(argv);
+	llistclear(&argv->str, fakefree);
 	return (argv);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   netdata.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
+/*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 15:02:44 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/22 14:34:48 by blackrider       ###   ########.fr       */
+/*   Updated: 2024/07/22 17:59:37 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,24 @@ int	skipsplt(t_cchar *str, t_crd *crd, t_cchar **splts)
 	return (0);
 }
 
-t_llist	*crtnodeargvt(t_indata *indt, t_crd *crd, t_sqr *sqr)
+t_argv	*crtnodeargvt(t_cchar *args, t_crd *crd, t_sqr *sqr, t_hash *hst)
 {
+	char	*str;
 	t_argv	*argvt;
-	t_llist	*node;
 
 	argvt = crtargvt(NULL);
-	node = llistnewnode(argvt);
-	crd->size = cmpstrv(indt->args + crd->i, sqr->splts);
+	crd->size = cmpstrv(args + crd->i, sqr->splts);
 	while (crd->i < crd->strsize && !crd->size)
 	{
-		
-		crd->size = cmpstrv(indt->args + crd->i, sqr->splts);
+		str = strhandler(args, crd, sqr->qts, hst);
+		if (str)
+			llistadd_back(&argvt->str, llistnewnode(str));
+		if (crd->size < 0)
+			return (delargvt(argvt));
+
+		crd->size = cmpstrv(args + crd->i, sqr->splts);
 	}
-	return (node);
+	return (argvt);
 }
 
 t_llist	*crtllistargvt(t_cchar *args, t_sqr *sqr)

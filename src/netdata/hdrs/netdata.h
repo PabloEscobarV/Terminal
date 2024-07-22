@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   netdata.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
+/*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 15:03:44 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/22 15:18:56 by blackrider       ###   ########.fr       */
+/*   Updated: 2024/07/22 18:00:02 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
+
+#include "../../../libft/libft.h"
 
 #define ESCCH		'\\'
 #define VARCH		'$'
@@ -52,7 +54,7 @@ typedef struct	s_argv
 {
 	char	oper;
 	t_cchar	*path;
-	char	*str;
+	t_llist	*str;
 	char	*infile;
 	char	*outfile;
 	t_cchar	**argv;
@@ -80,3 +82,5 @@ void	freesqrt(t_sqr *sqr);
 /////////////////////////////////////////CHECK SPLQTRDR/////////////////////////////////
 char	isqtssv(t_cchar *str, t_cchar *qts);
 int		cmpstrv(t_cchar *str, t_cchar **sqr);
+/////////////////////////////////////////TOOLS/////////////////////////////////
+void	fakefree(void *data);

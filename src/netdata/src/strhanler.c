@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   strhanler.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
+/*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 18:40:24 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/22 15:27:56 by blackrider       ###   ########.fr       */
+/*   Updated: 2024/07/22 18:00:56 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ static t_uchar	checkvarch(t_cchar *str, t_cchar var)
 	if (*(str - 1) == ESCCH)
 		return (0);
 	if (*(str + 1) == SPCCH || *(str + 1) == ESCCH)
+		return (0);
+	if (!ft_isprint(*(str + 1)))
 		return (0);
 	return (1);
 }
@@ -183,7 +185,7 @@ int	main()
 	hst.hash = hash;
 	hst.hashtb = NULL;
 	crd.i = 0;
-	args = ft_strdup("\"data from str. $ \\$var $var1 \\\"$vvar into $ \\$ $var\\\" into file: $var ; echo data \\\"DATA\\\" $var after var\' >> file.txt");
+	args = ft_strdup("\"$\n data from str. $ \\$var $var1 \\\"$vvar into $ \\$ $var\\\" into file: $var ; echo data \\\"DATA\\\" $var after var >> file.txt\"");
 	res = strhandler(args, &crd, qts, &hst);
 	if (!res)
 		printf("ERROR!!!\n");
