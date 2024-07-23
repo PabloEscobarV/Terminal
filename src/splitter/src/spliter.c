@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   spliter.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: polenyc <polenyc@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 13:10:06 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/23 14:28:24 by polenyc          ###   ########.fr       */
+/*   Updated: 2024/07/23 20:07:59 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ t_llist	*spliter(t_cchar *str, t_splqt *splt, t_hash *hst)
 	return (llst);
 }
 
-t_cchar	*hash(t_cchar *key, char **hashtb)
+void	*hash(t_cchar *key, char **hashtb)
 {
-	return (ft_strdup("ABC"));
+	return ((void *)ft_strdup("ABC"));
 }
 
 int	main()

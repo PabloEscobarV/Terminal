@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
+/*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 12:03:51 by polenyc           #+#    #+#             */
-/*   Updated: 2024/07/02 14:42:27 by blackrider       ###   ########.fr       */
+/*   Updated: 2024/07/23 19:59:32 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,15 @@ void	printmatrix(t_cchar **matrix)
 		printf("%s\n", *matrix);
 		++matrix;
 	}
+}
+
+int	*crtintdt(int x)
+{
+	int	*res;
+
+	res = malloc(sizeof(int));
+	if (!res)
+		return (ft_perror(MALLOCERROR));
+	*res = x;
+	return (res);
 }

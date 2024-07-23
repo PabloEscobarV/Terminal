@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 13:12:57 by polenyc           #+#    #+#             */
-/*   Updated: 2024/07/23 16:46:59 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/07/23 20:08:48 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,7 @@
 
 #define T_INT(llist) (*((int *)((llist)->data)))
 
-static int	*crtintdt(int x)
-{
-	int	*res;
-
-	res = malloc(sizeof(int));
-	if (!res)
-		return (ft_perror(MALLOCERROR));
-	*res = x;
-	return (res);
-}
-
-static t_uchar	checkvarch(t_cchar *str, t_cchar var)
+static t_uchar	checkvar(t_cchar *str, t_cchar var)
 {
 	if (*str != var)
 		return (0);
@@ -35,6 +24,17 @@ static t_uchar	checkvarch(t_cchar *str, t_cchar var)
 	if (*(str + 1) == SPCCH || *(str + 1) == ESCCH)
 		return (0);
 	if (!ft_isprint(*(str + 1)))
+		return (0);
+	return (1);
+}
+
+static t_uchar	checkendvar(t_cchar *args, t_cchar *end)
+{
+	if (!(*args))
+		return (0);
+	if (*args == SPCCH || *args == ESCCH || *args == SLASH)
+		return (0);
+	if (ft_strlcmp(args, end))
 		return (0);
 	return (1);
 }
@@ -48,11 +48,11 @@ static t_llist	*strsizeexc(t_cchar *args, t_cchar *end, t_hash *hst)
 	tmp = args;
 	while (*args && !(ft_strlcmp(args, end) && *(args - 1) != ESCCH))
 	{
-		if (checkvarch(args, VARCH))
+		if (checkvar(args, VARCH))
 		{
-			T_INT(llst) += ft_strlen((char *)(llistadd_back(&llst,
-				llistnewnode((void *)hst->hash(args, hst->hashtb))))->data);
-			while (*args && *args != SPCCH && !ft_strlcmp(args, end))
+			llistadd_back(&llst, llistnewnode(hst->hash(args, hst->hashtb)));
+			T_INT(llst) += ft_strlen((t_cchar *)llst->previous->data);
+			while (checkendvar(args, end))
 				++args;
 			continue ;
 		}
@@ -73,10 +73,10 @@ static t_cchar	*setresstr(char *res, t_cchar *args, t_cchar *end, t_llist *llst)
 	i = 0;
     while (args < end)
     {
-		if (llst && checkvarch(args, VARCH))
+		if (llst && checkvar(args, VARCH))
 		{
 			i = ft_strcpy(res + i, (t_cchar *)llst->data) - res; 
-			while (*args && *args != SPCCH && args < end)
+			while (*args && *args != SPCCH && *args != ESCCH && args < end)
 				++args;
 			llst = llst->next;
 			continue ;

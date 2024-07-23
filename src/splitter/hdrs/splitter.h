@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 15:20:39 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/23 16:39:32 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/07/23 20:07:37 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "../../../libft/libft.h"
 
 #define SPLTCH		'0'
+#define SLASH		'/'
 #define ESCCH		'\\'
 #define VARCH		'$'
 #define SPCCH		' '
@@ -38,7 +39,7 @@ enum
 
 typedef unsigned char	t_uchar;
 typedef const char		t_cchar;
-typedef t_cchar *(* f_hash)(t_cchar *key, char **hashtb);
+typedef void *(* f_hash)(t_cchar *key, char **hashtb);
 
 typedef struct	s_hash
 {
@@ -82,8 +83,8 @@ char	*dqtshandler(t_cchar **args, t_cchar *end, t_hash *hst);
 char	*sqtshadler(t_cchar **args, t_cchar *end);
 ///////////////////////////////SETNODE///////////////////////////////
 // t_llist	*setnodestr(t_cchar *str, t_crds *crds, t_splqt *splt);
-// t_llist	*setnodestr(t_cchar *str, t_splqt *splt, t_hash *hst);
-// t_llist	*setnodedata(t_cchar *str, t_crds *crds, t_splqt *splt);
+t_llist	*setnodestr(t_cchar *str, t_crds *crd, t_splqt *splt, t_hash *hst);
+t_llist	*setnodedata(t_cchar *str, t_crds *crds, t_splqt *splt);
 ///////////////////////////////OFFSET///////////////////////////////
 int	    offset(t_cchar *str, t_crds *crds, t_splqt *splt);
 ///////////////////////////////T_ARG///////////////////////////////
@@ -99,3 +100,4 @@ void	*freecrds(t_crds *crds);
 void	printmatrix(t_cchar **matrix);
 void	printllist(void *data);
 int		cmpstrv(t_cchar *str, t_cchar **splt);
+int		*crtintdt(int x);
