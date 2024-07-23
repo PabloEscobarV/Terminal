@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   strhndlrsqt.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: polenyc <polenyc@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 13:16:06 by polenyc           #+#    #+#             */
-/*   Updated: 2024/07/23 15:44:58 by polenyc          ###   ########.fr       */
+/*   Updated: 2024/07/23 16:53:42 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,6 @@ char	*sqtshadler(t_cchar **args, t_cchar *end)
 		++(*args);
 	}
 	*res = '\0';
+	++(*args);
 	return (tmp);
 }

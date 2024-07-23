@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   strhnddrdqt.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: polenyc <polenyc@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 13:12:57 by polenyc           #+#    #+#             */
-/*   Updated: 2024/07/23 15:36:49 by polenyc          ###   ########.fr       */
+/*   Updated: 2024/07/23 16:46:59 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ static t_cchar	*setresstr(char *res, t_cchar *args, t_cchar *end, t_llist *llst)
 		++args;
     }
 	res[i] = '\0';
+	return (end + 1);
 }
 
 char	*dqtshandler(t_cchar **args, t_cchar *end, t_hash *hst)

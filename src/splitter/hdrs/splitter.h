@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   splitter.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: polenyc <polenyc@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 15:20:39 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/23 15:17:21 by polenyc          ###   ########.fr       */
+/*   Updated: 2024/07/23 16:39:32 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ char	*dqtshandler(t_cchar **args, t_cchar *end, t_hash *hst);
 char	*sqtshadler(t_cchar **args, t_cchar *end);
 ///////////////////////////////SETNODE///////////////////////////////
 // t_llist	*setnodestr(t_cchar *str, t_crds *crds, t_splqt *splt);
-t_llist	*setnodestr(t_cchar *str, t_crds *crds, t_splqt *splt, t_hash *hst);
+// t_llist	*setnodestr(t_cchar *str, t_splqt *splt, t_hash *hst);
 // t_llist	*setnodedata(t_cchar *str, t_crds *crds, t_splqt *splt);
 ///////////////////////////////OFFSET///////////////////////////////
 int	    offset(t_cchar *str, t_crds *crds, t_splqt *splt);
