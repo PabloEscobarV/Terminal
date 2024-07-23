@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 18:40:24 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/22 18:00:56 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/07/23 10:43:40 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-char	isqtssv(t_cchar *str, t_cchar *qts)
+int		isqtssv(t_cchar *str, t_cchar **qts)
 {
-	t_cchar	*tmp;
+	int	i;
 
-	while (*qts && *str != *qts)
-		++qts;
-	return (*qts);
+	i = 0;
+	while (qts[i] && !ft_strlcmp(str, qts[i]))
+		++i;
+	return (i);
 }
 
 void	fakefree(void *data)
@@ -53,20 +54,20 @@ static t_uchar	checkvarch(t_cchar *str, t_cchar var)
 	return (1);
 }
 
-static t_llist	*strsizeexc(t_cchar *args, t_cchar end, t_hash *hst)
+static t_llist	*strsizeexc(t_cchar *args, t_cchar *end, t_hash *hst)
 {
 	int		size;
 	t_llist	*llst;
 
 	llst = NULL;
 	size = 0;
-	while (*args && !(*args == end && *(args - 1) != ESCCH))
+	while (*args && !(ft_strlcmp(args, end) && *(args - 1) != ESCCH))
 	{
 		if (checkvarch(args, VARCH))
 		{
 			size += ft_strlen((char *)(llistadd_back(&llst,
 				llistnewnode((void *)hst->hash(args, hst->hashtb)))));
-			while (*args && *args != SPCCH && *args != end)
+			while (*args && *args != SPCCH && !ft_strlcmp(args, end))
 				++args;
 			continue ;
 		}
@@ -80,19 +81,19 @@ static t_llist	*strsizeexc(t_cchar *args, t_cchar end, t_hash *hst)
 	return (llst);
 }
 
-static int	setresstr(char	*res, t_cchar *args, t_cchar end, t_llist *llst)
+static int	setresstr(char	*res, t_cchar *args, t_cchar *end, t_llist *llst)
 {
 	int		i;
 	t_cchar	*tmp;
 
 	tmp = args;
 	i = 0;
-    while (*args && !(*args == end && *(args - 1) != ESCCH))
+    while (*args && !(ft_strlcmp(args, end) && *(args - 1) != ESCCH))
     {
 		if (checkvarch(args, VARCH) && llst)
 		{
 			i = ft_strcpy(res + i, (t_cchar *)llst->data) - res; 
-			while (*args && *args != SPCCH && *args != end)
+			while (*args && *args != SPCCH && !ft_strlcmp(args, end))
 				++args;
 			llst = llst->next;
 			continue ;
@@ -108,7 +109,7 @@ static int	setresstr(char	*res, t_cchar *args, t_cchar end, t_llist *llst)
 	return ((int)(args - tmp));
 }
 
-char	*dqtshandler(t_cchar *str, t_crd *crd, t_cchar end, t_hash *hst)
+char	*dqtshandler(t_cchar *str, t_crd *crd, t_cchar *end, t_hash *hst)
 {
 	char		*res;
 	t_llist		*llst;;
@@ -128,12 +129,12 @@ char	*dqtshandler(t_cchar *str, t_crd *crd, t_cchar end, t_hash *hst)
 	return (res);
 }
 
-char	*sqtshadler(t_cchar *args, t_crd *crd, t_cchar end)
+char	*sqtshadler(t_cchar *args, t_crd *crd, t_cchar *end)
 {
 	char	*res;
 
 	res = (char *)args;
-	while (*res && *res != end)
+	while (*res && !ft_strlcmp(res, end))
 		++res;
 	if (!(*res))
 	{
@@ -154,19 +155,20 @@ char	*sqtshadler(t_cchar *args, t_crd *crd, t_cchar end)
 	return (res);
 }
 
-char    *strhandler(t_cchar *args, t_crd *crd, t_cchar *qts, t_hash *hst)
+char    *strhandler(t_cchar *args, t_crd *crd, t_cchar **qts, t_hash *hst)
 {
-	char		end;
+	int		end;
 
 	args + crd->i;
 	end = isqtssv(args, qts);
 	if (!end)
 		return (NULL);
-	++args;
-	crd->i += 2;
-	if (end == QTS[I_DQTS])
-		return (dqtshandler(args, crd, end, hst));
-	return (sqtshadler(args, crd, end));
+	crd->size = ft_strlen(qts[end]);
+	args += crd->size; 
+	crd->i += crd->size + 1;
+	if (end == I_DQTS)
+		return (dqtshandler(args, crd, qts[end], hst));
+	return (sqtshadler(args, crd, qts[end]));
 }
 
 t_cchar	*hash(t_cchar *key, char **hashtb)
@@ -174,18 +176,28 @@ t_cchar	*hash(t_cchar *key, char **hashtb)
 	return (ft_strdup("ABC"));
 }
 
+void	printmatrix(t_cchar **argv)
+{
+	while (*argv)
+	{
+		printf("%s\n", *argv);
+		++argv;
+	}
+}
+
 int	main()
 {
 	t_hash		hst;
 	t_cchar		*args;
 	t_crd		crd;
-	t_cchar		qts[] = "\"\'";
+	t_cchar		**qts = (t_cchar **)ft_split("\" \'", ' ');
 	char		*res;
 
 	hst.hash = hash;
 	hst.hashtb = NULL;
 	crd.i = 0;
-	args = ft_strdup("\"$\n data from str. $ \\$var $var1 \\\"$vvar into $ \\$ $var\\\" into file: $var ; echo data \\\"DATA\\\" $var after var >> file.txt\"");
+	args = ft_strdup("echo");
+	printmatrix(qts);
 	res = strhandler(args, &crd, qts, &hst);
 	if (!res)
 		printf("ERROR!!!\n");
@@ -219,3 +231,5 @@ int	main()
 // 	llistclear(&llst, free);
 // 	return (res);
 // }
+
+// \"$\n data from str. $ \\$var $var1 \\\"$vvar into $ \\$ $var\\\" into file: $var ; echo data \\\"DATA\\\" $var after var >> file.txt\"

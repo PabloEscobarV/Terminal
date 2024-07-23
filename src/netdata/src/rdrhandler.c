@@ -6,19 +6,33 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 17:42:04 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/22 20:48:47 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/07/23 10:39:19 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../hdrs/netdata.h"
 #include "../../../libft/libft.h"
 
-static int		sizerdr(t_cchar *args)
+int		checkendtxt(t_cchar *args, t_cchar	***qrs)
+{
+	int	tmp;
+
+	while (*qrs)
+	{
+		tmp = cmpstrv(args, *qrs);
+		if (tmp)
+			return (tmp);
+		++qrs;
+	}
+	return (-1);
+}
+
+static int	sizerdr(t_cchar *args, t_cchar	***qrs)
 {
 	t_cchar	*tmp;
 
 	tmp = args;
-	while (*tmp && *tmp != SPCCH && ft_isprint(*tmp))
+	while (*tmp && *tmp != SPCCH && *tmp != ESCCH && !checkendtxt(tmp, qrs))
 		++tmp;
 	return (tmp - args);
 }
@@ -59,21 +73,18 @@ static void	f_options(t_cchar *args, t_crd	*crd, int key, t_argv *argvt)
 	}
 }
 
-char	*rdrhandler(t_cchar *args, t_crd *crd, t_cchar **rdr, t_argv *argvt)
+char	*rdrhandler(t_cchar *args, t_crd *crd, t_sqr *sqr, t_argv *argvt)
 {
 	int		key;
 
 	args += crd->i;
-	key = findrdr(args, crd, rdr);
+	key = findrdr(args, crd, sqr->rdr);
 	if (key >= IOSIZE)
 		return (NULL);
 	args += crd->size;
 	crd->i += crd->size;
-	crd->size = sizerdr(args);
+	crd->size = sizerdr(args, sqr->qrs);
+	crd->i += crd->size;
 	f_options(args, crd, key, argvt);
-
-	if (!iordr)
-		return (ft_perror("MALLOC ERROR!!! In rdrhandler"));
-	
-	return ();
+	return (argvt);
 }
