@@ -6,7 +6,7 @@
 /*   By: polenyc <polenyc@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 13:20:54 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/18 14:41:37 by polenyc          ###   ########.fr       */
+/*   Updated: 2024/07/23 10:58:36 by polenyc          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,25 @@ static t_uchar	setargv(t_argv *argvt, t_llist *data)
 {
 	switch(argvt->oper)
 	{
-		case(INRDR):
-			argvt->infile = ft_strdup(T_ARG(data)->arg);
+		case (OR):
+			// argvt->infile = ft_strdup(T_ARG(data)->arg);
 			break;
-		case(OUTRDR):
+		case (END):
+			// argvt->outfile = ft_strdup(T_ARG(data)->arg);
+			break;
+		case (APPND):
 			argvt->outfile = ft_strdup(T_ARG(data)->arg);
 			break;
-		case(APPND):
+		case (HRDOC):
+			break ;
+		case (PIPE):
+			break ;
+		case (INRDR):
 			argvt->outfile = ft_strdup(T_ARG(data)->arg);
-			break;
+			break ;
+		case (OUTRDR):
+			argvt->outfile = ft_strdup(T_ARG(data)->arg);
+			break ;
 		default:
 			argvt->argv = (t_cchar **)ft_split(T_ARG(data)->arg, SPLTSP);
 	}

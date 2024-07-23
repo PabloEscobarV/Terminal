@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   netdata.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
+/*   By: polenyc <polenyc@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 15:03:44 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/23 10:41:09 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/07/23 11:01:54 by polenyc          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ enum
 {
 	I_DQTS,
 	I_SQTS,
-	IDSSIZE,
+	IQTSSIZE,
 };
 
 enum
