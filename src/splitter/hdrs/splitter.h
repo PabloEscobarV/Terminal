@@ -3,20 +3,48 @@
 /*                                                        :::      ::::::::   */
 /*   splitter.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
+/*   By: polenyc <polenyc@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 15:20:39 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/18 19:02:52 by blackrider       ###   ########.fr       */
+/*   Updated: 2024/07/23 15:17:21 by polenyc          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #include "../../../libft/libft.h"
 
-#define SPLTCH	'0'
-#define ESCCH	'\\'
+#define SPLTCH		'0'
+#define ESCCH		'\\'
+#define VARCH		'$'
+#define SPCCH		' '
+#define MALLOCERROR	"ALLOC ERROR!!!"
+#define QTS			"\"\'"
+#define IORDR		">0<0>>"
 
-typedef const char	t_cchar;
+enum
+{
+	I_DQTS,
+	I_SQTS,
+	IQTSSIZE,
+};
+
+enum
+{
+	I_OFILE,
+	I_IFILE,
+	I_APPOFILE,
+	IOSIZE,
+};
+
+typedef unsigned char	t_uchar;
+typedef const char		t_cchar;
+typedef t_cchar *(* f_hash)(t_cchar *key, char **hashtb);
+
+typedef struct	s_hash
+{
+	f_hash	hash;
+	char	**hashtb;
+}				t_hash;
 
 typedef struct	s_arg
 {
@@ -32,6 +60,14 @@ typedef struct	s_splts
 	t_cchar	**splts;
 }				t_splqt;
 
+typedef struct	s_sqr
+{
+	t_cchar	**qts;
+	t_cchar	**rdr;
+	t_cchar	**splts;
+	t_cchar	***qrs;
+}				t_sqr;
+
 typedef struct	s_crds
 {
 	int	i;
@@ -39,10 +75,15 @@ typedef struct	s_crds
 	int	strsize;
 }				t_crds;
 
-t_llist	*spliter(t_cchar *str, t_splqt *splt);
+t_llist	*spliter(t_cchar *str, t_splqt *splt, t_hash *hst);
+///////////////////////////////STRHENDLER///////////////////////////////
+char    *strhandler(t_cchar **args, t_cchar **qts, t_hash *hst);
+char	*dqtshandler(t_cchar **args, t_cchar *end, t_hash *hst);
+char	*sqtshadler(t_cchar **args, t_cchar *end);
 ///////////////////////////////SETNODE///////////////////////////////
-t_llist	*setnodestr(t_cchar *str, t_crds *crds, t_splqt *splt);
-t_llist	*setnodedata(t_cchar *str, t_crds *crds, t_splqt *splt);
+// t_llist	*setnodestr(t_cchar *str, t_crds *crds, t_splqt *splt);
+t_llist	*setnodestr(t_cchar *str, t_crds *crds, t_splqt *splt, t_hash *hst);
+// t_llist	*setnodedata(t_cchar *str, t_crds *crds, t_splqt *splt);
 ///////////////////////////////OFFSET///////////////////////////////
 int	    offset(t_cchar *str, t_crds *crds, t_splqt *splt);
 ///////////////////////////////T_ARG///////////////////////////////

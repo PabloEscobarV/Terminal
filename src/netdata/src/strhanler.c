@@ -6,7 +6,7 @@
 /*   By: polenyc <polenyc@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 18:40:24 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/23 12:37:54 by polenyc          ###   ########.fr       */
+/*   Updated: 2024/07/23 12:43:16 by polenyc          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -210,6 +210,7 @@ int	main()
 	// printf("real size:\t%d\n", ft_strlen(res));
 	free(res);
 	free((void *)args);
+	ft_free_d(qts);
 	return (0);
 }
 // echo \"data \\\"DATA\\\" $var after var\" >> file.txt

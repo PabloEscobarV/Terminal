@@ -3,14 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   setnodestr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
+/*   By: polenyc <polenyc@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 15:23:47 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/20 18:42:43 by blackrider       ###   ########.fr       */
+/*   Updated: 2024/07/23 14:26:56 by polenyc          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../hdrs/splitter.h"
+
+// t_llist	*setnodestr(t_cchar *str, t_crds *crds, t_splqt *splt, t_hash *hst)
+// {
+// 	t_llist	*node;
+// 	char	*tmp;
+
+// 	tmp = strhandler(str, crds, splt->qts, hst);
+// 	if (!tmp)
+// 		return (NULL);
+// 	node = llistnewnode(crtargt(tmp, crds->i, crds->size));
+// 	crds->i = crds->size;
+// 	return (llistnewnode((void *)tmp));
+// }
 
 static int	isqtssv(t_cchar *str, t_cchar ***splt)
 {

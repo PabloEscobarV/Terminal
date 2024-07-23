@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   netdata.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
+/*   By: polenyc <polenyc@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 15:02:44 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/22 17:59:37 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/07/23 13:10:12 by polenyc          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int	skipsplt(t_cchar *str, t_crd *crd, t_cchar **splts)
 	return (0);
 }
 
+void	
+
 t_argv	*crtnodeargvt(t_cchar *args, t_crd *crd, t_sqr *sqr, t_hash *hst)
 {
 	char	*str;
@@ -42,6 +44,7 @@ t_argv	*crtnodeargvt(t_cchar *args, t_crd *crd, t_sqr *sqr, t_hash *hst)
 			llistadd_back(&argvt->str, llistnewnode(str));
 		if (crd->size < 0)
 			return (delargvt(argvt));
+		
 
 		crd->size = cmpstrv(args + crd->i, sqr->splts);
 	}

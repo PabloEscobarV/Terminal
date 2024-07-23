@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rdrhandler.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
+/*   By: polenyc <polenyc@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 17:42:04 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/23 10:39:19 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/07/23 13:10:12 by polenyc          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ static void	f_options(t_cchar *args, t_crd	*crd, int key, t_argv *argvt)
 		argvt->appnd = 1;
 		break ;
 	}
+	if (!argvt->outfile || !argvt->infile)
+		crd->size = -1;
 }
 
 char	*rdrhandler(t_cchar *args, t_crd *crd, t_sqr *sqr, t_argv *argvt)

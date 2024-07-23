@@ -6,7 +6,7 @@
 /*   By: polenyc <polenyc@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 15:03:44 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/23 11:01:54 by polenyc          ###   ########.fr       */
+/*   Updated: 2024/07/23 12:50:43 by polenyc          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ enum
 };
 
 /////////////////////////////////////////RDRHANDLER/////////////////////////////////
-char	*rdrhandler(t_cchar *args, t_crd *crd, t_cchar **rdr, t_argv *argvt);
+char	*rdrhandler(t_cchar *args, t_crd *crd, t_sqr *sqr, t_argv *argvt);
 /////////////////////////////////////////STRHANDLER/////////////////////////////////
 char    *strhandler(t_cchar *args, t_crd *crd, t_cchar **qts, t_hash *hst);
 /////////////////////////////////////////STRHANDLER/////////////////////////////////

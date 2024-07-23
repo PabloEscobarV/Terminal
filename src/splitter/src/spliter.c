@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   spliter.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
+/*   By: polenyc <polenyc@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 13:10:06 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/20 18:42:49 by blackrider       ###   ########.fr       */
+/*   Updated: 2024/07/23 14:28:24 by polenyc          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <stdio.h>
 #include <readline/readline.h>
 
-t_llist	*spliter(t_cchar *str, t_splqt *splt)
+t_llist	*spliter(t_cchar *str, t_splqt *splt, t_hash *hst)
 {
 	t_crds	crds;
 	t_llist	*llst;
@@ -29,13 +29,43 @@ t_llist	*spliter(t_cchar *str, t_splqt *splt)
 	llst = NULL;
 	while (crds.size < crds.strsize)
 	{
-		if (llistadd_back(&llst, setnodestr(str, &crds, splt)))
+		if (llistadd_back(&llst, setnodestr(str, &crds, splt, hst)))
 			continue ;
 		llistadd_back(&llst, setnodedata(str, &crds, splt));
 	}
 	if (crds.i < 0)
 		return (llistclear(&llst, freeargt));
 	return (llst);
+}
+
+t_cchar	*hash(t_cchar *key, char **hashtb)
+{
+	return (ft_strdup("ABC"));
+}
+
+int	main()
+{
+	char	*line;
+	t_llist	*llst;
+	t_splqt	*splqt;
+	t_hash	hst;
+	
+	hst.hash = hash;
+	hst.hashtb = NULL;
+	splqt = crtsplqtt((t_cchar **)ft_split("\"0'", SPLTCH),
+		(t_cchar **)ft_split("||0$$0<<0|0$0<0>", SPLTCH), ' ');
+	while (1)
+	{
+		line = readline("Pablo Escobar:\t");
+		if (!ft_strcmp(line, "exit"))
+			break ;
+		printf("%s\n", line);
+		llst = spliter(line, splqt, &hst);
+		llistiter(llst, printllist);
+		llistclear(&llst, freeargt);
+	}
+	freesplqtt(splqt);
+	return (0);
 }
 
 // int	main()
