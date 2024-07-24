@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 15:20:39 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/23 20:07:37 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/07/24 16:14:30 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct	s_splts
 	char	spcs;
 	t_cchar	**qts;
 	t_cchar	**splts;
+	t_cchar	**rdr;
 }				t_splqt;
 
 typedef struct	s_sqr
