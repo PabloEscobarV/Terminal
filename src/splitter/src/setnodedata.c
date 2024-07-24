@@ -6,11 +6,24 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 15:27:33 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/24 19:45:02 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/07/24 20:19:30 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../hdrs/splitter.h"
+
+static t_cchar	*setend(t_cchar *args, t_crds *crd)
+{
+	t_cchar	*tmp;
+
+	tmp = args + crd->i;
+	if (crd->i)
+		return (tmp);
+	while (*tmp && ft_isspace(*tmp))
+		++tmp;
+	crd->i = tmp - args;
+	return (tmp);
+}
 
 t_llist	*setnodedata(t_cchar *args, t_crds *crd, t_cchar **splt)
 {
@@ -18,7 +31,9 @@ t_llist	*setnodedata(t_cchar *args, t_crds *crd, t_cchar **splt)
 	t_cchar	*end;
 	t_llist	*node;
 
-	end = args + crd->i;
+	if (crd->i >= crd->strsize)
+		return (NULL);
+	end = setend(args, crd);
 	str = argshndlr(&end, splt);
 	crd->size = end - args;
 	if (!str)
