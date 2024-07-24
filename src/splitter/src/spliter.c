@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 13:10:06 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/23 20:07:59 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/07/24 19:39:14 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_llist	*spliter(t_cchar *str, t_splqt *splt, t_hash *hst)
 	{
 		if (llistadd_back(&llst, setnodestr(str, &crds, splt, hst)))
 			continue ;
-		llistadd_back(&llst, setnodedata(str, &crds, splt));
+		llistadd_back(&llst, setnodedata(str, &crds, splt->splts));
 	}
 	if (crds.i < 0)
 		return (llistclear(&llst, freeargt));
@@ -53,7 +53,7 @@ int	main()
 	hst.hash = hash;
 	hst.hashtb = NULL;
 	splqt = crtsplqtt((t_cchar **)ft_split("\"0'", SPLTCH),
-		(t_cchar **)ft_split("||0$$0<<0|0$0<0>", SPLTCH), ' ');
+		(t_cchar **)ft_split("|| $$ << | $ < > \" \'", ' '), ' ');
 	while (1)
 	{
 		line = readline("Pablo Escobar:\t");

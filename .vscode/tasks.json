@@ -8,6 +8,7 @@
                 "-fdiagnostics-color=always",
                 "-g",
                 "${file}",
+                "argshndlr.c",
                 "strhanler.c",
                 "strhnddrdqt.c",
                 "strhndlrsqt.c",

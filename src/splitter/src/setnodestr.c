@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 15:23:47 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/23 19:56:02 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/07/24 19:36:40 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	qtlen(t_cchar *str, t_cchar **qts)
 	return (ft_strlen(*qts));
 }
 
-t_llist	*setnodestr(t_cchar *args, t_crds *crd, t_splqt *splt, t_hash *hst)
+t_llist		*setnodestr(t_cchar *args, t_crds *crd, t_splqt *splt, t_hash *hst)
 {
 	t_llist	*node;
 	char	*str;
@@ -31,7 +31,10 @@ t_llist	*setnodestr(t_cchar *args, t_crds *crd, t_splqt *splt, t_hash *hst)
 	tmp = args + crd->i;
 	str = strhandler(&tmp, splt->qts, hst);
 	if (!str)
+	{
+		crd->i += cmpstrv(args, splt->splts);
 		return (NULL);
+	}
 	crd->size = (int)(tmp - args);
 	node = llistnewnode(crtargt(str, crd->i + qtlen(args + crd->i, splt->qts),
 		crd->size));

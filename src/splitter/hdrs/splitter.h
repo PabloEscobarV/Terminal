@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 15:20:39 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/24 16:14:30 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/07/24 19:32:07 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ typedef struct	s_crds
 }				t_crds;
 
 t_llist	*spliter(t_cchar *str, t_splqt *splt, t_hash *hst);
+///////////////////////////////ARGSHANDLER///////////////////////////////
+char	*argshndlr(t_cchar **args, t_cchar **splt);
 ///////////////////////////////STRHENDLER///////////////////////////////
 char    *strhandler(t_cchar **args, t_cchar **qts, t_hash *hst);
 char	*dqtshandler(t_cchar **args, t_cchar *end, t_hash *hst);
@@ -85,7 +87,8 @@ char	*sqtshadler(t_cchar **args, t_cchar *end);
 ///////////////////////////////SETNODE///////////////////////////////
 // t_llist	*setnodestr(t_cchar *str, t_crds *crds, t_splqt *splt);
 t_llist	*setnodestr(t_cchar *str, t_crds *crd, t_splqt *splt, t_hash *hst);
-t_llist	*setnodedata(t_cchar *str, t_crds *crds, t_splqt *splt);
+// t_llist	*setnodedata(t_cchar *str, t_crds *crds, t_splqt *splt);
+t_llist	*setnodedata(t_cchar *args, t_crds *crd, t_cchar **splt);
 ///////////////////////////////OFFSET///////////////////////////////
 int	    offset(t_cchar *str, t_crds *crds, t_splqt *splt);
 ///////////////////////////////T_ARG///////////////////////////////
