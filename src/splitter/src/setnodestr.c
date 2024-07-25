@@ -6,7 +6,7 @@
 /*   By: polenyc <polenyc@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 15:23:47 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/25 12:56:23 by polenyc          ###   ########.fr       */
+/*   Updated: 2024/07/25 13:48:16 by polenyc          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "../hdrs/splitter.h"
 #include <stdio.h>
 
-static int	qtlen(t_cchar *str, t_cchar **qts)
+int	cmpsav(t_cchar *str, t_cchar **qts)
 {
 	while (*qts && !ft_strlcmp(str, *qts))
 		++qts;
@@ -37,7 +37,7 @@ t_llist		*setnodestr(t_cchar *args, t_crds *crd, t_splqt *splt, t_hash *hst)
 		return (NULL);
 	}
 	crd->size = (int)(tmp - args);
-	node = llistnewnode(crtargt(str, crd->i + qtlen(args + crd->i, splt->qts),
+	node = llistnewnode(crtargt(str, crd->i + cmpsav(args + crd->i, splt->qts),
 		crd->size));
 	crd->i = crd->size;
 	return (node);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   t_argv.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
+/*   By: polenyc <polenyc@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 15:12:13 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/22 17:38:20 by blackrider       ###   ########.fr       */
+/*   Updated: 2024/07/25 13:54:52 by polenyc          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "../../../libft/libft.h"
 #include <stdlib.h>
 
-t_argv	*crtargvt(t_cchar **envp)
+t_argv	*crtargvt()
 {
 	t_argv	*argv;
 
@@ -22,7 +22,7 @@ t_argv	*crtargvt(t_cchar **envp)
 	if (!argv)
 		return (NULL);
 	argv->oper = 0;
-	argv->envp = envp;
+	argv->envp = NULL;
 	argv->argv = NULL;
 	argv->infile = NULL;
 	argv->outfile = NULL;
