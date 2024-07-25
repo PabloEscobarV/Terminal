@@ -6,7 +6,7 @@
 /*   By: polenyc <polenyc@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 15:56:40 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/23 13:27:08 by polenyc          ###   ########.fr       */
+/*   Updated: 2024/07/25 12:15:48 by polenyc          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	main()
 	hst.hash = hash;
 	hst.hashtb = NULL;
 	splqt = crtsplqtt((t_cchar **)ft_split("\"0'", SPLTCH),
-		(t_cchar **)ft_split("||0$$0<<0|0$0<0>", SPLTCH), ' ');
+		(t_cchar **)ft_split("|| $$ << >> | $ < > \" \'", ' '), ' ');
 	while (1)
 	{
 		line = readline("Pablo Escobar:\t");

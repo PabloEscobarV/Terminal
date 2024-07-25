@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   spliter.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
+/*   By: polenyc <polenyc@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 13:10:06 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/24 20:07:01 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/07/25 12:15:36 by polenyc          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,35 +37,35 @@ t_llist	*spliter(t_cchar *str, t_splqt *splt, t_hash *hst)
 	return (llst);
 }
 
-void	*hash(t_cchar *key, char **hashtb)
-{
-	return ((void *)ft_strdup("ABC"));
-}
+// void	*hash(t_cchar *key, char **hashtb)
+// {
+// 	return ((void *)ft_strdup("ABC"));
+// }
 
-int	main()
-{
-	char	*line;
-	t_llist	*llst;
-	t_splqt	*splqt;
-	t_hash	hst;
+// int	main()
+// {
+// 	char	*line;
+// 	t_llist	*llst;
+// 	t_splqt	*splqt;
+// 	t_hash	hst;
 	
-	hst.hash = hash;
-	hst.hashtb = NULL;
-	splqt = crtsplqtt((t_cchar **)ft_split("\"0'", SPLTCH),
-		(t_cchar **)ft_split("|| $$ << >> | $ < > \" \'", ' '), ' ');
-	while (1)
-	{
-		line = readline("Pablo Escobar:\t");
-		if (!ft_strcmp(line, "exit"))
-			break ;
-		printf("%s\n", line);
-		llst = spliter(line, splqt, &hst);
-		llistiter(llst, printllist);
-		llistclear(&llst, freeargt);
-	}
-	freesplqtt(splqt);
-	return (0);
-}
+// 	hst.hash = hash;
+// 	hst.hashtb = NULL;
+// 	splqt = crtsplqtt((t_cchar **)ft_split("\"0'", SPLTCH),
+// 		(t_cchar **)ft_split("|| $$ << >> | $ < > \" \'", ' '), ' ');
+// 	while (1)
+// 	{
+// 		line = readline("Pablo Escobar:\t");
+// 		if (!ft_strcmp(line, "exit"))
+// 			break ;
+// 		printf("%s\n", line);
+// 		llst = spliter(line, splqt, &hst);
+// 		llistiter(llst, printllist);
+// 		llistclear(&llst, freeargt);
+// 	}
+// 	freesplqtt(splqt);
+// 	return (0);
+// }
 
 // int	main()
 // {
