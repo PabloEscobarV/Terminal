@@ -6,60 +6,24 @@
 /*   By: polenyc <polenyc@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 15:02:44 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/23 13:10:12 by polenyc          ###   ########.fr       */
+/*   Updated: 2024/07/25 13:26:19 by polenyc          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../hdrs/netdata.h"
 #include "../../../libft/libft.h"
+#include "../../splitter/hdrs/splitter.h"
 
-#define T_ARGV(llist) ((t_argv *)((llist)->data))
-
-int	skipsplt(t_cchar *str, t_crd *crd, t_cchar **splts)
+t_llist	*netdata(t_cchar *args, t_hash *hst)
 {
-	crd->size = cmpstrv(str + crd->i, splts);
-	while (crd->size)
-	{
-		if (crd->i >= crd->strsize)
-			return (crd->i);
-		crd->i += crd->size;
-		crd->size = cmpstrv(str + crd->i, splts);
-	}
-	return (0);
-}
+	t_llist	*llargt;
+	t_llist	*llargvt;
 
-void	
-
-t_argv	*crtnodeargvt(t_cchar *args, t_crd *crd, t_sqr *sqr, t_hash *hst)
-{
-	char	*str;
-	t_argv	*argvt;
-
-	argvt = crtargvt(NULL);
-	crd->size = cmpstrv(args + crd->i, sqr->splts);
-	while (crd->i < crd->strsize && !crd->size)
-	{
-		str = strhandler(args, crd, sqr->qts, hst);
-		if (str)
-			llistadd_back(&argvt->str, llistnewnode(str));
-		if (crd->size < 0)
-			return (delargvt(argvt));
-		
-
-		crd->size = cmpstrv(args + crd->i, sqr->splts);
-	}
-	return (argvt);
-}
-
-t_llist	*crtllistargvt(t_cchar *args, t_sqr *sqr)
-{
+	llargt = spliter(args,
+		crtsplqtt(ft_split(QTS, SPLTCH), ft_split(SPLTS, SPLTCH)), hst);
+	if (!llargt)
+		return (ft_perror("ERROR in SPLITTR!!!"));
 
 }
 
-t_llist	*netdata(t_cchar *args, t_sqr *sqr)
-{
-	if (!args || !sqr)
-		return (NULL);
-	return ();
-}
 
