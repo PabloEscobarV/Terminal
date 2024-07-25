@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   t_splqt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
+/*   By: polenyc <polenyc@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 19:02:06 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/02 14:42:22 by blackrider       ###   ########.fr       */
+/*   Updated: 2024/07/25 12:56:51 by polenyc          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../hdrs/servicespltr.h"
 #include "../hdrs/splitter.h"
 
 t_splqt	*crtsplqtt(t_cchar **qts, t_cchar **splts, t_cchar spcs)

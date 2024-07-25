@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   offset.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: blackrider <blackrider@student.42.fr>      +#+  +:+       +#+        */
+/*   By: polenyc <polenyc@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 15:24:52 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/02 14:41:51 by blackrider       ###   ########.fr       */
+/*   Updated: 2024/07/25 12:56:14 by polenyc          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../hdrs/servicespltr.h"
 #include "../hdrs/splitter.h"
 
 int	cmpstrv(t_cchar *str, t_cchar **splt)

@@ -6,10 +6,11 @@
 /*   By: polenyc <polenyc@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 13:10:06 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/25 12:15:36 by polenyc          ###   ########.fr       */
+/*   Updated: 2024/07/25 12:56:27 by polenyc          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../hdrs/servicespltr.h"
 #include "../hdrs/splitter.h"
 #include "../../../libft/libft.h"
 #include <stdlib.h>

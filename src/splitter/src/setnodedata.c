@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   setnodedata.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
+/*   By: polenyc <polenyc@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 15:27:33 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/24 20:19:30 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/07/25 12:56:19 by polenyc          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../hdrs/servicespltr.h"
 #include "../hdrs/splitter.h"
 
 static t_cchar	*setend(t_cchar *args, t_crds *crd)

@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   setnodestr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
+/*   By: polenyc <polenyc@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 15:23:47 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/24 19:58:32 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/07/25 12:56:23 by polenyc          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../hdrs/servicespltr.h"
 #include "../hdrs/splitter.h"
 #include <stdio.h>
 

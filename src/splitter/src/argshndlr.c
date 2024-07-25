@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   argshndlr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
+/*   By: polenyc <polenyc@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 16:11:39 by Pablo Escob       #+#    #+#             */
-/*   Updated: 2024/07/24 20:14:20 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/07/25 12:56:15 by polenyc          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../hdrs/servicespltr.h"
 #include "../hdrs/splitter.h"
 #include "../../../libft/libft.h"
 #include <stdio.h>
