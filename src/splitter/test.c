@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 15:56:40 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/26 14:27:10 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/07/26 15:05:51 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	main()
 	
 	hst.hash = hash;
 	hst.hashtb = NULL;
-	splqt = crtsplqtt(ft_split(QTS, SPLTCH), ft_split(SPLTS, SPLTCH), ft_split(SPLN, SPLTCH));
+	splqt = crtsplqtt(QTS, RDR, SPLN, SPLTS);
 	printmatrix(splqt->spln);
 	while (1)
 	{

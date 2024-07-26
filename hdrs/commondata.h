@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commondata.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: polenyc <polenyc@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 13:00:59 by polenyc           #+#    #+#             */
-/*   Updated: 2024/07/25 14:23:42 by polenyc          ###   ########.fr       */
+/*   Updated: 2024/07/26 15:05:13 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,11 @@
 #define VARCH		'$'
 #define SPCCH		' '
 #define MALLOCERROR	"ALLOC ERROR!!!"
+#define HRDOC		"<<"
 #define QTS			"\" \'"
-#define SPLTS		"<< >> || $$ < > | $ \" \'"
 #define SPLN		"|| $$ | $"
+#define RDR			">> < >"
+#define SPLTS		"<< >> || $$ < > | $ \" \'"
 
 typedef unsigned char	t_uchar;
 typedef const char		t_cchar;
@@ -42,9 +44,11 @@ typedef struct	s_arg
 
 typedef struct	s_splts
 {
+	t_cchar	*hrdoc;
 	t_cchar	**qts;
-	t_cchar	**splts;
 	t_cchar	**spln;
+	t_cchar	**rdr;
+	t_cchar	**splts;
 }				t_splqt;
 
 typedef struct	s_argv

@@ -6,14 +6,14 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 19:02:06 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/26 14:28:38 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/07/26 15:03:31 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../hdrs/servicespltr.h"
 #include "../hdrs/splitter.h"
 
-t_splqt	*crtsplqtt(char **qts, char **splts, char **spln)
+t_splqt	*crtsplqtt(char *qts, char *rdr, char *spln, char *splts)
 {
 	t_splqt	*splqt;
 
@@ -22,17 +22,20 @@ t_splqt	*crtsplqtt(char **qts, char **splts, char **spln)
 	splqt = malloc(sizeof(t_splqt));
 	if (!splqt)
 		return (NULL);
-	splqt->qts = (t_cchar **)qts;
-	splqt->splts = (t_cchar **)splts;
-	splqt->spln = (t_cchar **)spln;
+	splqt->hrdoc = HRDOC;
+	splqt->qts = (t_cchar **)ft_split(qts, SPLTCH);
+	splqt->rdr = (t_cchar **)ft_split(rdr, SPLTCH);
+	splqt->spln = (t_cchar **)ft_split(spln, SPLTCH);
+	splqt->splts = (t_cchar **)ft_split(splts, SPLTCH);
 	return (splqt);
 }
 
 void	*freesplqtt(t_splqt *splqt)
 {
 	ft_free_d((void **)(splqt->qts));
-	ft_free_d((void **)splqt->splts);
+	ft_free_d((void **)splqt->rdr);
 	ft_free_d((void **)splqt->spln);
+	ft_free_d((void **)splqt->splts);
 	free(splqt);
 	return (NULL);
 }
