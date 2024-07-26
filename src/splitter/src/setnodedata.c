@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setnodedata.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: polenyc <polenyc@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 15:27:33 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/25 12:56:19 by polenyc          ###   ########.fr       */
+/*   Updated: 2024/07/26 23:14:21 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static t_cchar	*setend(t_cchar *args, t_crds *crd)
 	return (tmp);
 }
 
-t_llist	*setnodedata(t_cchar *args, t_crds *crd, t_cchar **splt)
+t_llist	*setnodedata(t_cchar *args, t_crds *crd, t_splqt *splt)
 {
 	char	*str;
 	t_cchar	*end;

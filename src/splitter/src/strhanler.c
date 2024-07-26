@@ -6,17 +6,18 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 18:40:24 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/26 14:44:51 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/07/26 23:45:32 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../hdrs/servicespltr.h"
 #include "../hdrs/splitter.h"
+#include "../../../ft_printf/headers/ft_printf_bonus.h"
 #include "../../../libft/libft.h"
 #include <stdio.h>
 #include <stdlib.h>
 
-char    *strhandler(t_cchar **args, t_cchar **qts, t_hash *hst)
+char    *strhandler(t_cchar **args, t_crds *crd, t_cchar **qts, t_hash *hst)
 {
 	int	iqt;
 
@@ -25,9 +26,11 @@ char    *strhandler(t_cchar **args, t_cchar **qts, t_hash *hst)
 		return (NULL);
 	qts += iqt;
 	*args += ft_strlen(*qts);
+	if (!(**args))
+		return (putsprintf(ft_sprintf("%s%s\n", ERRQTS, *qts), &(crd->size)));
 	if (iqt == I_DQTS)
-		return (dqtshandler(args, *qts, hst));
-	return (sqtshadler(args, *qts));
+		return (dqtshandler(args, crd, *qts, hst));
+	return (sqtshadler(args, crd, *qts));
 }
 
 // t_cchar	*hash(t_cchar *key, char **hashtb)

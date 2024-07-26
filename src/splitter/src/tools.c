@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 12:03:51 by polenyc           #+#    #+#             */
-/*   Updated: 2024/07/26 14:47:40 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/07/26 23:40:53 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,21 @@ void	fakefree(void *data)
 
 }
 
-// int	cmpstrv(t_cchar *str, t_cchar **splt)
-// {
-// 	t_cchar	*tmp;
+int	cmpstrv(t_cchar *str, t_cchar **splt)
+{
+	t_cchar	*tmp;
 
-// 	while (*splt)
-// 	{
-// 		tmp = ft_strlcmp(str, (t_cchar *)*splt);
-// 		if (tmp)
-// 			return (tmp - str);
-// 		++splt;
-// 	}
-// 	return (0);
-// }
+	while (*splt)
+	{
+		tmp = ft_strlcmp(str, (t_cchar *)*splt);
+		if (tmp)
+			return (tmp - str);
+		++splt;
+	}
+	return (0);
+}
+
+void	*errorf()
+{
+
+}

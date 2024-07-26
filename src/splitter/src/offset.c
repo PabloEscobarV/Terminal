@@ -3,29 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   offset.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: polenyc <polenyc@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 15:24:52 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/25 12:56:14 by polenyc          ###   ########.fr       */
+/*   Updated: 2024/07/26 21:53:32 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../hdrs/servicespltr.h"
 #include "../hdrs/splitter.h"
-
-int	cmpstrv(t_cchar *str, t_cchar **splt)
-{
-	t_cchar	*tmp;
-
-	while (*splt)
-	{
-		tmp = ft_strlcmp(str, (t_cchar *)*splt);
-		if (tmp)
-			return (tmp - str);
-		++splt;
-	}
-	return (0);
-}
 
 static int	skipsplt(t_cchar *str, t_crds *crds, t_splqt *splt)
 {

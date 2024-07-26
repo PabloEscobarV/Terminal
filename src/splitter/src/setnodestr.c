@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 15:23:47 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/26 14:41:57 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/07/26 23:40:47 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_llist		*setnodestr(t_cchar *args, t_crds *crd, t_splqt *splt, t_hash *hst)
 	if (crd->i >= crd->strsize)
 		return (NULL);
 	tmp = args + crd->i;
-	str = strhandler(&tmp, splt->qts, hst);
+	str = strhandler(&tmp, crd, splt->qts, hst);
 	if (!str)
 	{
 		crd->i += cmpstrv(args + crd->i, splt->splts);
@@ -34,7 +34,6 @@ t_llist		*setnodestr(t_cchar *args, t_crds *crd, t_splqt *splt, t_hash *hst)
 		crd->size));
 	crd->i = crd->size;
 	return (node);
-
 }
 
 // static int	isqtssv(t_cchar *str, t_cchar ***splt)

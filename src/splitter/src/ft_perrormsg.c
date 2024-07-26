@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   srvicetools.c                                      :+:      :+:    :+:   */
+/*   ft_perrormsg.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/26 14:42:33 by Pablo Escob       #+#    #+#             */
-/*   Updated: 2024/07/26 22:29:35 by Pablo Escob      ###   ########.fr       */
+/*   Created: 2024/07/26 23:24:00 by Pablo Escob       #+#    #+#             */
+/*   Updated: 2024/07/26 23:45:36 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../hdrs/servicespltr.h"
-#include "../hdrs/splitter.h"
-#include <stdio.h>
+#include "../../../libft/libft.h"
 
-void	printllist(void *data)
+void	*putsprintf(char *msg, int *ern)
 {
-	printf("[0]: %d\t[1]: %d\t|%s|\n", ((t_arg *)(data))->x,
-		((t_arg *)(data))->size, ((t_arg *)(data))->arg);
+	*ern = -1;
+	ft_perror(msg);
+	free(msg);
+	return (NULL);	
 }
 
-void	printmatrix(t_cchar **matrix)
+void	*pmsgsetern(char *msg, int *ern)
 {
-	if (!matrix)
-		return ;
-	while (*matrix)
-	{
-		printf("%s\n", *matrix);
-		++matrix;
-	}
+	*ern = -1;
+	ft_perror(msg);
+	return (NULL);
 }

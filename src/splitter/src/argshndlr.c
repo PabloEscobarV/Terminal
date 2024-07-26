@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   argshndlr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: polenyc <polenyc@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/24 16:11:39 by Pablo Escob       #+#    #+#             */
-/*   Updated: 2024/07/25 12:56:15 by polenyc          ###   ########.fr       */
+/*   Updated: 2024/07/26 22:48:44 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,14 +66,16 @@ t_uchar	skipspc(t_cchar *args, t_cchar *end, t_crds *crd)
 	return (1);
 }
 
-char	*argshndlr(t_cchar **args, t_cchar **splt)
+char	*argshndlr(t_cchar **args, t_splqt *splt)
 {
 	t_crds	crd;
 	char	*str;
 	t_cchar	*end;
 
-	end = getend(*args, splt);
-	*args = skipsplts(*args, splt);
+	if (cmpstrv(*args, splt->qts))
+		return (NULL);
+	end = getend(*args, splt->splts);
+	*args = skipsplts(*args, splt->splts);
 	if (!skipspc(*args, end, &crd))
 	{
 		*args = end;

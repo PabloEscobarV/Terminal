@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   strhnddrdqt.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: polenyc <polenyc@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 13:12:57 by polenyc           #+#    #+#             */
-/*   Updated: 2024/07/25 12:56:37 by polenyc          ###   ########.fr       */
+/*   Updated: 2024/07/26 23:38:06 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../hdrs/servicespltr.h"
 #include "../hdrs/splitter.h"
 #include "../../../libft/libft.h"
+#include "../../../ft_printf/headers/ft_printf_bonus.h"
 
 #define T_INT(llist) (*((int *)((llist)->data)))
 
@@ -62,7 +63,7 @@ static t_llist	*strsizeexc(t_cchar *args, t_cchar *end, t_hash *hst)
 		++args;
 	}
 	if (!(*args))
-		llistclear(&llst, free);
+		return (llistclear(&llst, free));
 	llistinsert(llst, llistnewnode((void *)crtintdt(args - tmp)));
 	return (llst);
 }
@@ -93,17 +94,17 @@ static t_cchar	*setresstr(char *res, t_cchar *args, t_cchar *end, t_llist *llst)
 	return (end + 1);
 }
 
-char	*dqtshandler(t_cchar **args, t_cchar *end, t_hash *hst)
+char	*dqtshandler(t_cchar **args, t_crds *crd, t_cchar *end, t_hash *hst)
 {
 	char		*res;
 	t_llist		*llst;
 
 	llst = strsizeexc(*args, end, hst);
 	if (!llst)
-		return (ft_perror("ERROR in string handler"));
+		return (pmsgsetern(MALLOCERROR, &(crd->size)));
 	res = malloc((T_INT(llst) + 1) * sizeof(char));
 	if (!res)
-		return (ft_perror(MALLOCERROR));
+		return (pmsgsetern(MALLOCERROR, &(crd->size)));
 	*args = setresstr(res, *args, *args + T_INT(llst->next), llst->next->next);
 	llistclear(&llst, free);
 	return (res);

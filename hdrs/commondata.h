@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 13:00:59 by polenyc           #+#    #+#             */
-/*   Updated: 2024/07/26 16:32:40 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/07/26 22:11:26 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,9 @@ enum	e_operations
 	O_OFILE,
 	O_PIPE,
 	O_DOLAR,
+	O_DQTS,
+	O_SQTS,
+	O_SIZE
 };
 
 typedef unsigned char	t_uchar;

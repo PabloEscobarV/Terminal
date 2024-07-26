@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   spliter.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: polenyc <polenyc@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 13:10:06 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/25 12:56:27 by polenyc          ###   ########.fr       */
+/*   Updated: 2024/07/26 23:49:14 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,10 @@ t_llist	*spliter(t_cchar *str, t_splqt *splt, t_hash *hst)
 	llst = NULL;
 	while (crds.size < crds.strsize)
 	{
-		llistadd_back(&llst, setnodedata(str, &crds, splt->splts));
+		llistadd_back(&llst, setnodedata(str, &crds, splt));
 		llistadd_back(&llst, setnodestr(str, &crds, splt, hst));
+		if (crds.size < 0)
+			return (llistclear(&llst, freeargt));
 	}
 	if (crds.i < 0)
 		return (llistclear(&llst, freeargt));
@@ -52,8 +54,8 @@ t_llist	*spliter(t_cchar *str, t_splqt *splt, t_hash *hst)
 	
 // 	hst.hash = hash;
 // 	hst.hashtb = NULL;
-// 	splqt = crtsplqtt((t_cchar **)ft_split("\"0'", SPLTCH),
-// 		(t_cchar **)ft_split("|| $$ << >> | $ < > \" \'", ' '), ' ');
+// 	splqt = crtsplqtt(QTS, RDR, SPLN, SPLTS);
+// 	printmatrix(splqt->spln);
 // 	while (1)
 // 	{
 // 		line = readline("Pablo Escobar:\t");

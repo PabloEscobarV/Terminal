@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   t_argv.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: polenyc <polenyc@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 15:12:13 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/25 13:54:52 by polenyc          ###   ########.fr       */
+/*   Updated: 2024/07/26 21:57:17 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,22 +33,21 @@ t_argv	*crtargvt()
 
 void	freeargvt(t_argv *argv)
 {
-	ft_free_d(argv->argv);
-	ft_free_d(argv->envp);
+	ft_free_d((void **)argv->argv);
+	ft_free_d((void **)argv->envp);
 	free(argv->infile);
 	free(argv->outfile);
-	free(argv->path);
+	free((void *)argv->path);
 	free(argv);
 }
 
 void	*delargvt(t_argv *argv)
 {
-	ft_free_d(argv->argv);
-	ft_free_d(argv->envp);
+	ft_free_d((void **)argv->argv);
+	ft_free_d((void **)argv->envp);
 	free(argv->infile);
 	free(argv->outfile);
-	free(argv->path);
+	free((void *)argv->path);
 	free(argv);
-	llistclear(&argv->str, fakefree);
 	return (argv);
 }
