@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   t_splqt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: polenyc <polenyc@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 19:02:06 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/25 14:25:26 by polenyc          ###   ########.fr       */
+/*   Updated: 2024/07/26 14:28:38 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../hdrs/servicespltr.h"
 #include "../hdrs/splitter.h"
 
-t_splqt	*crtsplqtt(t_cchar **qts, t_cchar **splts, t_cchar **spln)
+t_splqt	*crtsplqtt(char **qts, char **splts, char **spln)
 {
 	t_splqt	*splqt;
 
@@ -22,9 +22,9 @@ t_splqt	*crtsplqtt(t_cchar **qts, t_cchar **splts, t_cchar **spln)
 	splqt = malloc(sizeof(t_splqt));
 	if (!splqt)
 		return (NULL);
-	splqt->qts = qts;
-	splqt->splts = splts;
-	splqt->spln = spln;
+	splqt->qts = (t_cchar **)qts;
+	splqt->splts = (t_cchar **)splts;
+	splqt->spln = (t_cchar **)spln;
 	return (splqt);
 }
 

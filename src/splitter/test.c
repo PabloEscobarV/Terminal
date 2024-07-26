@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: polenyc <polenyc@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 15:56:40 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/25 14:26:18 by polenyc          ###   ########.fr       */
+/*   Updated: 2024/07/26 14:27:10 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 #include <readline/readline.h>
 #include "../../get_next_line/get_next_line_bonus.h"
 
-t_cchar	*hash(t_cchar *key, char **hashtb)
+void	*hash(t_cchar *key, char **hashtb)
 {
-	return (ft_strdup("ABC"));
+	return ((void *)ft_strdup("ABC"));
 }
 
 int	main()
