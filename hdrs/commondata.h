@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 13:00:59 by polenyc           #+#    #+#             */
-/*   Updated: 2024/07/26 15:05:13 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/07/26 16:32:40 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,39 @@
 #define VARCH		'$'
 #define SPCCH		' '
 #define MALLOCERROR	"ALLOC ERROR!!!"
+#define TOKENERROR	"syntax error near unexpected token"
 #define HRDOC		"<<"
 #define QTS			"\" \'"
 #define SPLN		"|| $$ | $"
-#define RDR			">> < >"
+#define RDR			">> > <"
 #define SPLTS		"<< >> || $$ < > | $ \" \'"
+
+enum	e_quet
+{
+	I_DQTS,
+	I_SQTS,
+	IQTSSIZE,
+};
+
+enum	e_rdr
+{
+	I_APPOFILE,
+	I_OFILE,
+	I_IFILE,
+	IOSIZE,
+};
+
+enum	e_operations
+{
+	O_HRDOC = 1,
+	O_APPND,
+	O_OR,
+	O_END,
+	O_IFILE,
+	O_OFILE,
+	O_PIPE,
+	O_DOLAR,
+};
 
 typedef unsigned char	t_uchar;
 typedef const char		t_cchar;
@@ -63,17 +91,3 @@ typedef struct	s_argv
 	t_cchar	**envp;
 }				t_argv;
 
-enum
-{
-	I_DQTS,
-	I_SQTS,
-	IQTSSIZE,
-};
-
-enum
-{
-	I_OFILE,
-	I_IFILE,
-	I_APPOFILE,
-	IOSIZE,
-};
