@@ -3,31 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: polenyc <polenyc@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 12:03:51 by polenyc           #+#    #+#             */
-/*   Updated: 2024/07/25 12:56:55 by polenyc          ###   ########.fr       */
+/*   Updated: 2024/07/26 14:47:40 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../hdrs/servicespltr.h"
 #include "../hdrs/splitter.h"
-#include <stdio.h>
-
-void	printllist(void *data)
-{
-	printf("[0]: %d\t[1]: %d\t|%s|\n", ((t_arg *)(data))->x,
-		((t_arg *)(data))->size, ((t_arg *)(data))->arg);
-}
-
-void	printmatrix(t_cchar **matrix)
-{
-	while (*matrix)
-	{
-		printf("%s\n", *matrix);
-		++matrix;
-	}
-}
 
 int	*crtintdt(int x)
 {
@@ -39,3 +23,42 @@ int	*crtintdt(int x)
 	*res = x;
 	return (res);
 }
+
+int	cmpsav(t_cchar *str, t_cchar **qts)
+{
+	while (*qts && !ft_strlcmp(str, *qts))
+		++qts;
+	return (ft_strlen(*qts));
+}
+
+int	cmpqts(t_cchar *str, t_cchar **qts)
+{
+	int	i;
+
+	i = 0;
+	while (*qts && !ft_strlcmp(str, *qts))
+	{
+		++qts;
+		++i;
+	}
+	return (i);
+}
+
+void	fakefree(void *data)
+{
+
+}
+
+// int	cmpstrv(t_cchar *str, t_cchar **splt)
+// {
+// 	t_cchar	*tmp;
+
+// 	while (*splt)
+// 	{
+// 		tmp = ft_strlcmp(str, (t_cchar *)*splt);
+// 		if (tmp)
+// 			return (tmp - str);
+// 		++splt;
+// 	}
+// 	return (0);
+// }

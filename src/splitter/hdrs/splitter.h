@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 15:20:39 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/26 14:28:18 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/07/26 14:47:31 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,3 +27,5 @@ t_splqt	*crtsplqtt(char **qts, char **splts, char **spln);
 void	*freesplqtt(t_splqt *splqt);
 ///////////////////////////////TOOLS///////////////////////////////
 int		cmpsav(t_cchar *str, t_cchar **qts);
+int		cmpqts(t_cchar *str, t_cchar **qts);
+// int		cmpstrv(t_cchar *str, t_cchar **splt);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   strhanler.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: polenyc <polenyc@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 18:40:24 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/25 12:56:32 by polenyc          ###   ########.fr       */
+/*   Updated: 2024/07/26 14:44:51 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,6 @@
 #include "../../../libft/libft.h"
 #include <stdio.h>
 #include <stdlib.h>
-
-void	fakefree(void *data)
-{
-
-}
-
-int	cmpqts(t_cchar *str, t_cchar **qts)
-{
-	int	i;
-
-	i = 0;
-	while (*qts && !ft_strlcmp(str, *qts))
-	{
-		++qts;
-		++i;
-	}
-	return (i);
-}
 
 char    *strhandler(t_cchar **args, t_cchar **qts, t_hash *hst)
 {
