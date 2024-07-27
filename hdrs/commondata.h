@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 13:00:59 by polenyc           #+#    #+#             */
-/*   Updated: 2024/07/26 22:11:26 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/07/27 17:31:19 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,11 @@
 
 #define SPLTCH		' '
 #define SLASH		'/'
-#define ESCCH		'\\'
+#define BKSLASH		'\\'
 #define VARCH		'$'
 #define SPCCH		' '
+#define PROCID		"$$"
+#define ESCSMBS		"\\$\"\'"
 #define MALLOCERROR	"ALLOC ERROR!!!"
 #define TOKENERROR	"syntax error near unexpected token"
 #define HRDOC		"<<"
@@ -25,6 +27,13 @@
 #define SPLN		"|| $$ | $"
 #define RDR			">> > <"
 #define SPLTS		"<< >> || $$ < > | $ \" \'"
+
+enum	e_errorcodes
+{
+	E_OK,
+	E_KO,
+	E_ERROR,
+};
 
 enum	e_quet
 {
