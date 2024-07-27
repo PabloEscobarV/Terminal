@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 13:12:57 by polenyc           #+#    #+#             */
-/*   Updated: 2024/07/27 18:04:36 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/07/27 18:21:05 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_cchar	*setsize(t_cchar *args, t_cchar *end, t_llist *llst, t_hash *hst)
 		while (checkvarend(++args, end));
 		return (args);
 	}
-	if (ft_strlcmp(args, PROCID))
+	if (*(args - 1) != BKSLASH && ft_strlcmp(args, PROCID))
 	{
 		llistadd_back(&llst, llistnewnode(ft_itoa(getpid())));
 		T_INT(llst) += ft_strlen((t_cchar *)llst->previous->data);
@@ -84,7 +84,7 @@ char	*setdatares(char *res, t_cchar **args, t_cchar *end, t_llist **llst)
 		*llst = (*llst)->next;
 		return (res);
 	}
-	if (ft_strlcmp(*args, PROCID))
+	if (*((*args) - 1) != BKSLASH && ft_strlcmp(*args, PROCID))
 	{
 		res = ft_strcpy(res, (t_cchar *)(*llst)->data);
 		*llst = (*llst)->next;
