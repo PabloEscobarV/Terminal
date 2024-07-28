@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 15:02:44 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/26 22:33:09 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/07/28 16:52:53 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,13 @@
 #include <readline/readline.h>
 
 #define T_ARG(llst)	((t_arg *)((llst)->data))
+
+static t_cchar	*skipspaces(t_cchar *args)
+{
+	while (*args && ft_isspace(*args))
+		++args;
+	return (args);
+}
 
 t_cchar	*cmpargsv(t_cchar *args, t_cchar **strv)
 {
@@ -33,6 +40,7 @@ int		checksplt(t_cchar *args, t_cchar **escptn, t_cchar **splts)
 
 	if (!(*args))
 		return (0);
+	args = skipspaces(args);
 	if (cmpargsv(args, escptn))
 		return (0);
 	oper = cmpqts(args, splts);
@@ -44,7 +52,7 @@ int		checksplt(t_cchar *args, t_cchar **escptn, t_cchar **splts)
 int	setrdrdt(t_splqt *splt, t_llist **argtll, t_argv *argvt)
 {
 	if (!(argvt->oper))
-			return (0);
+			return (E_OK);
 	switch (argvt->oper)
 	{
 	case (O_APPND):
@@ -61,7 +69,20 @@ int	setrdrdt(t_splqt *splt, t_llist **argtll, t_argv *argvt)
 		return (argvt->oper);
 	}
 	*argtll = (*argtll)->next;
-	return (0);
+	argvt->oper = 0;
+	return (E_OK);
+}
+
+int	rdrdata(t_cchar *args, t_splqt *splt, t_llist **argtll, t_argv *argvt)
+{
+	if (!(*argtll))
+		return (E_OK);
+	if (!((*argtll)->previous) || !((*argtll)->previous->next))
+		argvt->oper = checksplt(args + T_ARG(*argtll)->x, NULL, splt->splts);
+	else
+		argvt->oper = checksplt(args + T_ARG((*argtll)->previous)->size,
+			NULL, splt->splts);
+	return (setrdrdt(splt, argtll, argvt));
 }
 
 int		getsize(t_cchar *args, t_splqt *splt, t_llist *argtll, t_argv *argvt)
@@ -71,26 +92,14 @@ int		getsize(t_cchar *args, t_splqt *splt, t_llist *argtll, t_argv *argvt)
 	size = 0;
 	while (argtll)
 	{
-		++size;
 		argvt->oper = checksplt(args + T_ARG(argtll)->size, splt->qts, splt->splts);
+		printf("|%s|\n", args + T_ARG(argtll)->size);
+		++size;
+		argtll = argtll->next;
 		if (argvt->oper)
 			break ;
-		argtll = argtll->next;
 	}
 	return (size);
-}
-
-int	initdat(t_cchar *args, t_splqt *splt, t_llist **argtll, t_argv *argvt)
-{
-	if ((*argtll)->previous && (*argtll)->previous->next)
-		return (0);
-	argvt->oper = checksplt(args + T_ARG(*argtll)->x, NULL, splt->splts);
-	if (setrdrdt(splt, argtll, argvt))
-	{
-		printf("%s\t\'%s\'", TOKENERROR, splt->splts[argvt->oper]);
-		return (1);
-	}
-	return (0);
 }
 
 int		setargv(t_cchar *args, t_splqt *splt, t_llist **argtll, t_argv *argvt)
@@ -100,12 +109,12 @@ int		setargv(t_cchar *args, t_splqt *splt, t_llist **argtll, t_argv *argvt)
 
 	size = getsize(args, splt, *argtll, argvt);
 	if (!size)
-		return (0);
+		return (E_OK);
 	argvt->argv = malloc((size + 1) * sizeof(t_cchar *));
 	if (!(argvt->argv))
 	{
 		ft_perror("MALLOC ERROR!!!: in setargv");
-		return (1);
+		return (E_KO);
 	}
 	argvt->argv[size] = NULL;
 	tmp = argvt->argv;
@@ -116,21 +125,7 @@ int		setargv(t_cchar *args, t_splqt *splt, t_llist **argtll, t_argv *argvt)
 		--size;
 		++tmp;
 	}
-	return (0);
-}
-
-int		setendargvt(t_cchar *args, t_splqt *splt, t_llist **argtll, t_argv *argvt)
-{
-	if (!(*argtll))
-		return (0);
-	if (argvt->oper != O_APPND && argvt->oper != O_IFILE
-		&& argvt->oper != O_OFILE)
-			return (0);
-	if (setrdrdt(splt, argtll, argvt))
-		return (1);
-	// argvt->oper = checksplt(args + T_ARG(*argtll)->x, NULL, splt->splts);
-	// *argtll = (*argtll)->next;
-	return (0);
+	return (E_OK);
 }
 
 t_argv	*setargvt(t_cchar *args, t_splqt *splt, t_llist **argtll)
@@ -141,12 +136,10 @@ t_argv	*setargvt(t_cchar *args, t_splqt *splt, t_llist **argtll)
 	argvt = crtargvt();
 	if (!argvt)
 		return (ft_perror("MALLOC ERROR!!!: crtargvt"));
-	if (initdat(args, splt, argtll, argvt))
-		return (delargvt(argvt));
+	rdrdata(args, splt, argtll, argvt);
 	if (setargv(args, splt, argtll, argvt))
 		return (delargvt(argvt));
-	if (setendargvt(args, splt, argtll, argvt))
-		return (delargvt(argvt));
+	rdrdata(args, splt, argtll, argvt);
 	return (argvt);
 }
 
@@ -214,7 +207,7 @@ int	main()
 		llst = netdata(line, &hst);
 		llistiter(llst, printargvtllist);
 	}
-	freesplqtt(splqt);
+	// freesplqtt(splqt);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 13:00:59 by polenyc           #+#    #+#             */
-/*   Updated: 2024/07/27 17:31:19 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/07/28 17:20:42 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 #define QTS			"\" \'"
 #define SPLN		"|| $$ | $"
 #define RDR			">> > <"
-#define SPLTS		"<< >> || $$ < > | $ \" \'"
+#define SPLTS		"<< >> || < > | \" \'"
 
 enum	e_errorcodes
 {
@@ -55,14 +55,12 @@ enum	e_operations
 	O_HRDOC = 1,
 	O_APPND,
 	O_OR,
-	O_END,
 	O_IFILE,
 	O_OFILE,
 	O_PIPE,
-	O_DOLAR,
 	O_DQTS,
 	O_SQTS,
-	O_SIZE
+	O_SIZE,
 };
 
 typedef unsigned char	t_uchar;
