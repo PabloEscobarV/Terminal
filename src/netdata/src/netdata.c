@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 15:02:44 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/28 20:19:48 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/07/28 22:51:23 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,13 +71,6 @@ int	setrdrdt(t_llist **argtll, t_argv *argvt, int oper)
 	return (E_OK);
 }
 
-int		isspltoper(int oper)
-{
-	if (oper == O_APPND || oper == O_IFILE || oper == O_OFILE)
-		return (O_NULL);
-	return (oper);
-}
-
 char	**llisttostr(t_llist *llst)
 {
 	int		size;
@@ -114,9 +107,14 @@ t_argv	*setargvt(t_cchar *args, t_splqt *splt, t_llist **argtll)
 		if (setrdrdt(argtll, argvt,
 			getopercode(args + T_ARG(*argtll)->x, splt->qts, splt->splts)))
 				llistadd_back(&(argvt->argll), llistnewnode(T_ARG(*argtll)->arg));
-		argvt->oper = isspltoper(
-			getopercode(args + T_ARG(*argtll)->size, splt->qts, splt->splts));
+		argvt->oper = getopercode(args + T_ARG(*argtll)->size, splt->qts,
+			splt->splts);
 		*argtll = (*argtll)->next;
+		if (!setrdrdt(argtll, argvt, argvt->oper))
+		{
+			argvt->oper = 0;
+			*argtll = (*argtll)->next;
+		}
 	}
 	argvt->argv = (t_cchar **)llisttostr((void *)argvt->argll);
 	return (argvt);
@@ -324,4 +322,11 @@ int	main()
 // 	if (opercode)
 // 		return (opercode);
 // 	return (getopercode(args + T_ARG(argtll)->size, splt->qts, splt->splts));
+// }
+
+// int		isspltoper(int oper)
+// {
+// 	if (oper == O_APPND || oper == O_IFILE || oper == O_OFILE)
+// 		return (O_NULL);
+// 	return (oper);
 // }
