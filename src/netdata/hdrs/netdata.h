@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   netdata.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: polenyc <polenyc@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 15:03:44 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/25 13:55:21 by polenyc          ###   ########.fr       */
+/*   Updated: 2024/07/28 18:57:34 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 ///////////////////////////////////////T_ARGV////////////////////////////////////
 t_argv	*crtargvt();
-void	freeargvt(t_argv *argv);
+void	freeargvt(void *data);
 void	*delargvt(t_argv *argv);
 ///////////////////////////////////////TOOLS////////////////////////////////////
 void	fakefree(void *data);

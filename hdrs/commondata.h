@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 13:00:59 by polenyc           #+#    #+#             */
-/*   Updated: 2024/07/28 17:20:42 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/07/28 19:16:15 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,8 @@ enum	e_rdr
 
 enum	e_operations
 {
-	O_HRDOC = 1,
+	O_NULL,
+	O_HRDOC,
 	O_APPND,
 	O_OR,
 	O_IFILE,
@@ -94,7 +95,7 @@ typedef struct	s_argv
 	char	oper;
 	char	appnd;
 	t_cchar	*path;
-	t_llist	*str;
+	t_llist	*argll;
 	char	*infile;
 	char	*outfile;
 	t_cchar	**argv;

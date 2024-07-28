@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 15:02:44 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/28 16:52:53 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/07/28 20:19:48 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_cchar	*cmpargsv(t_cchar *args, t_cchar **strv)
 	return (*strv);
 }
 
-int		checksplt(t_cchar *args, t_cchar **escptn, t_cchar **splts)
+int		getopercode(t_cchar *args, t_cchar **escptn, t_cchar **splts)
 {
 	int	oper;
 
@@ -49,11 +49,11 @@ int		checksplt(t_cchar *args, t_cchar **escptn, t_cchar **splts)
 	return (0);
 }
 
-int	setrdrdt(t_splqt *splt, t_llist **argtll, t_argv *argvt)
+int	setrdrdt(t_llist **argtll, t_argv *argvt, int oper)
 {
-	if (!(argvt->oper))
-			return (E_OK);
-	switch (argvt->oper)
+	if (!oper)
+			return (E_KO);
+	switch (oper)
 	{
 	case (O_APPND):
 		argvt->appnd = 1;
@@ -66,66 +66,39 @@ int	setrdrdt(t_splqt *splt, t_llist **argtll, t_argv *argvt)
 		argvt->infile = T_ARG(*argtll)->arg;
 		break ;
 	default:
-		return (argvt->oper);
-	}
-	*argtll = (*argtll)->next;
-	argvt->oper = 0;
-	return (E_OK);
-}
-
-int	rdrdata(t_cchar *args, t_splqt *splt, t_llist **argtll, t_argv *argvt)
-{
-	if (!(*argtll))
-		return (E_OK);
-	if (!((*argtll)->previous) || !((*argtll)->previous->next))
-		argvt->oper = checksplt(args + T_ARG(*argtll)->x, NULL, splt->splts);
-	else
-		argvt->oper = checksplt(args + T_ARG((*argtll)->previous)->size,
-			NULL, splt->splts);
-	return (setrdrdt(splt, argtll, argvt));
-}
-
-int		getsize(t_cchar *args, t_splqt *splt, t_llist *argtll, t_argv *argvt)
-{
-	int	size;
-
-	size = 0;
-	while (argtll)
-	{
-		argvt->oper = checksplt(args + T_ARG(argtll)->size, splt->qts, splt->splts);
-		printf("|%s|\n", args + T_ARG(argtll)->size);
-		++size;
-		argtll = argtll->next;
-		if (argvt->oper)
-			break ;
-	}
-	return (size);
-}
-
-int		setargv(t_cchar *args, t_splqt *splt, t_llist **argtll, t_argv *argvt)
-{
-	int	size;
-	t_cchar	**tmp;
-
-	size = getsize(args, splt, *argtll, argvt);
-	if (!size)
-		return (E_OK);
-	argvt->argv = malloc((size + 1) * sizeof(t_cchar *));
-	if (!(argvt->argv))
-	{
-		ft_perror("MALLOC ERROR!!!: in setargv");
 		return (E_KO);
 	}
-	argvt->argv[size] = NULL;
-	tmp = argvt->argv;
-	while (size)
+	return (E_OK);
+}
+
+int		isspltoper(int oper)
+{
+	if (oper == O_APPND || oper == O_IFILE || oper == O_OFILE)
+		return (O_NULL);
+	return (oper);
+}
+
+char	**llisttostr(t_llist *llst)
+{
+	int		size;
+	char	**tmp;
+	char	**str;
+
+	size = llistsize(llst);
+	if (!size)
+		return (NULL);
+	str = malloc((1 + size) * sizeof(char *));
+	if (!str)
+		return (NULL);
+	str[size] = NULL;
+	tmp = str;
+	while (llst)
 	{
-		*tmp = T_ARG(*argtll)->arg;
-		*argtll = (*argtll)->next;
-		--size;
+		*tmp = (char *)llst->data;
+		llst = llst->next;
 		++tmp;
 	}
-	return (E_OK);
+	return (str);
 }
 
 t_argv	*setargvt(t_cchar *args, t_splqt *splt, t_llist **argtll)
@@ -136,10 +109,16 @@ t_argv	*setargvt(t_cchar *args, t_splqt *splt, t_llist **argtll)
 	argvt = crtargvt();
 	if (!argvt)
 		return (ft_perror("MALLOC ERROR!!!: crtargvt"));
-	rdrdata(args, splt, argtll, argvt);
-	if (setargv(args, splt, argtll, argvt))
-		return (delargvt(argvt));
-	rdrdata(args, splt, argtll, argvt);
+	while (*argtll && !(argvt->oper))
+	{
+		if (setrdrdt(argtll, argvt,
+			getopercode(args + T_ARG(*argtll)->x, splt->qts, splt->splts)))
+				llistadd_back(&(argvt->argll), llistnewnode(T_ARG(*argtll)->arg));
+		argvt->oper = isspltoper(
+			getopercode(args + T_ARG(*argtll)->size, splt->qts, splt->splts));
+		*argtll = (*argtll)->next;
+	}
+	argvt->argv = (t_cchar **)llisttostr((void *)argvt->argll);
 	return (argvt);
 }
 
@@ -154,7 +133,7 @@ t_llist	*nodeargvt(t_cchar *args, t_splqt *splt, t_llist *argtll)
 	llst = NULL;
 	while (argtll)
 		if (!llistadd_back(&llst, llistnewnode(setargvt(args, splt, &argtll))))
-			break ;
+			return (llistclear(&llst, freeargvt));
 	return (llst);
 }
 
@@ -250,4 +229,99 @@ int	main()
 // 		return (-1);
 // 	}
 // 	return (IOSIZE);
+// }
+
+// int	rdrdata(t_cchar *args, t_splqt *splt, t_llist **argtll, t_argv *argvt)
+// {
+// 	if (!(*argtll))
+// 		return (E_OK);
+// 	if (!((*argtll)->previous) || !((*argtll)->previous->next))
+// 		argvt->oper = getopercode(args + T_ARG(*argtll)->x, NULL, splt->splts);
+// 	else
+// 		argvt->oper = getopercode(args + T_ARG((*argtll)->previous)->size,
+// 			NULL, splt->splts);
+// 	return (setrdrdt(splt, argtll, argvt));
+// }
+
+// int		getsize(t_cchar *args, t_splqt *splt, t_llist *argtll, t_argv *argvt)
+// {
+// 	int	size;
+
+// 	size = 0;
+// 	while (argtll)
+// 	{
+// 		if (!isspltoper(setopercode(args, splt, argtll, argvt)))
+// 			break;
+// 		printf("|%s|\n", args + T_ARG(argtll)->size);
+// 		++size;
+// 		argtll = argtll->next;
+// 	}
+// 	return (size);
+// }
+
+// int		setargv(t_cchar *args, t_splqt *splt, t_llist **argtll, t_argv *argvt)
+// {
+// 	int	size;
+// 	t_cchar	**tmp;
+
+// 	size = getsize(args, splt, *argtll, argvt);
+// 	if (!size)
+// 		return (E_OK);
+// 	argvt->argv = malloc((size + 1) * sizeof(t_cchar *));
+// 	if (!(argvt->argv))
+// 	{
+// 		ft_perror("MALLOC ERROR!!!: in setargv");
+// 		return (E_KO);
+// 	}
+// 	argvt->argv[size] = NULL;
+// 	tmp = argvt->argv;
+// 	while (size)
+// 	{
+// 		*tmp = T_ARG(*argtll)->arg;
+// 		*argtll = (*argtll)->next;
+// 		--size;
+// 		++tmp;
+// 	}
+// 	return (E_OK);
+// }
+
+// int	setargvtdata(t_cchar *args, t_splqt *splt, t_llist **argtll, t_argv *argvt)
+// {
+// 	argvt->oper = setopercode(args, splt, *argtll, argvt);
+// 	setrdrdt(splt, argtll, argvt);
+// 	setargv(args, splt, argtll, argvt);
+// 	argvt->oper = setopercode(args, splt, *argtll, argvt);
+// 	if (argvt->oper == O_NULL)
+// 		return (E_OK);
+// 	setrdrdt(splt, argtll, argvt);
+// 	argvt->oper = setopercode(args, splt, *argtll, argvt);
+// 	if (!argvt->oper || !isspltoper(argvt->oper))
+// 		return (E_ERROR);
+// }
+
+// int	setargvtdata(t_cchar *args, t_splqt *splt, t_llist **argtll, t_argv *argvt)
+// {
+// 	while (*argtll && !(argvt->oper))
+// 	{
+// 		argvt->oper = setopercode(args, splt, argtll, argvt);
+// 		if (isspltoper(argvt->oper))
+// 			llistadd_back(&(argvt->argll), llistnewnode(T_ARG(*argtll)->arg));
+// 		else
+// 			setrdrdt(splt, argtll,argvt);
+// 		*argtll = (*argtll)->next;
+// 	}
+// 	argvt->argv = llisttostr(argvt->argll);
+// 	return (E_OK);
+// }
+
+// int	setopercode(t_cchar *args, t_splqt *splt, t_llist *argtll, t_argv *argvt)
+// {
+// 	int	opercode;
+
+// 	if (!argtll)
+// 		return (O_NULL);
+// 	opercode = getopercode(args + T_ARG(argtll)->x, splt->qts, splt->splts);
+// 	if (opercode)
+// 		return (opercode);
+// 	return (getopercode(args + T_ARG(argtll)->size, splt->qts, splt->splts));
 // }
