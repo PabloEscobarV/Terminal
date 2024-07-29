@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 15:12:13 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/28 19:16:28 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/07/29 16:04:38 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ t_argv	*crtargvt()
 	if (!argv)
 		return (NULL);
 	argv->oper = 0;
+	argv->appnd = 0;
 	argv->envp = NULL;
 	argv->argv = NULL;
 	argv->infile = NULL;
@@ -36,8 +37,10 @@ void	freeargvt(void *data)
 	t_argv *argv;
 
 	argv = (t_argv *)data;
-	ft_free_d((void **)argv->argv);
+	llistclear(&(argv->argll), free);
+	// ft_free_d((void **)argv->argv);
 	ft_free_d((void **)argv->envp);
+	free(argv->argv);
 	free(argv->infile);
 	free(argv->outfile);
 	free((void *)argv->path);

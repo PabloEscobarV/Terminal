@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 15:02:44 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/28 22:51:23 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/07/29 16:05:22 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,14 @@
 #include <readline/readline.h>
 
 #define T_ARG(llst)	((t_arg *)((llst)->data))
+
+void	printstr(void *data)
+{
+	char	*str;
+
+	str = (char *)data;
+	printf("|%s|\n", str);
+}
 
 static t_cchar	*skipspaces(t_cchar *args)
 {
@@ -34,7 +42,7 @@ t_cchar	*cmpargsv(t_cchar *args, t_cchar **strv)
 	return (*strv);
 }
 
-int		getopercode(t_cchar *args, t_cchar **escptn, t_cchar **splts)
+int		getoper(t_cchar *args, t_cchar **escptn, t_cchar **splts)
 {
 	int	oper;
 
@@ -105,10 +113,9 @@ t_argv	*setargvt(t_cchar *args, t_splqt *splt, t_llist **argtll)
 	while (*argtll && !(argvt->oper))
 	{
 		if (setrdrdt(argtll, argvt,
-			getopercode(args + T_ARG(*argtll)->x, splt->qts, splt->splts)))
+			getoper(args + T_ARG(*argtll)->x, splt->qts, splt->splts)))
 				llistadd_back(&(argvt->argll), llistnewnode(T_ARG(*argtll)->arg));
-		argvt->oper = getopercode(args + T_ARG(*argtll)->size, splt->qts,
-			splt->splts);
+		argvt->oper = getoper(args + T_ARG(*argtll)->size, splt->qts, splt->splts);
 		*argtll = (*argtll)->next;
 		if (!setrdrdt(argtll, argvt, argvt->oper))
 		{
@@ -116,7 +123,7 @@ t_argv	*setargvt(t_cchar *args, t_splqt *splt, t_llist **argtll)
 			*argtll = (*argtll)->next;
 		}
 	}
-	argvt->argv = (t_cchar **)llisttostr((void *)argvt->argll);
+	argvt->argv = (t_cchar **)llisttostr(argvt->argll);
 	return (argvt);
 }
 
@@ -124,10 +131,6 @@ t_llist	*nodeargvt(t_cchar *args, t_splqt *splt, t_llist *argtll)
 {
 	t_llist	*llst;
 
-	if (!argtll)
-		return (ft_perror("ERROR!!! Empty argt dlist"));
-	if (!splt)
-		return (ft_perror("ERROR!!! Empty SPLT"));
 	llst = NULL;
 	while (argtll)
 		if (!llistadd_back(&llst, llistnewnode(setargvt(args, splt, &argtll))))
@@ -145,6 +148,8 @@ t_llist	*netdata(t_cchar *args, t_hash *hst)
 	argtll = spliter(args, splt, hst);
 	if (!argtll)
 		return (ft_perror("ERROR!!! Error in splitter"));
+	if (!splt)
+		return (ft_perror("ERROR!!! Empty SPLT"));
 	argvtll = nodeargvt(args, splt, argtll);
 	llistclear(&argtll, free);
 	freesplqtt(splt);
@@ -156,7 +161,7 @@ void	printargvtllist(void *data)
 	t_argv	*argvt;
 
 	argvt = (t_argv *)data;
-	printf("Operation code:\t%d;\tAPP status:\t%d;\n", argvt->oper, argvt->appnd);
+	printf("Operation code:\t%d;\tAPP status:\t%d;\n", (int)(argvt->oper), (int)(argvt->appnd));
 	printf("Input file:\t%s\nOutput file:\t%s\n", argvt->infile, argvt->outfile);
 	printmatrix(argvt->argv);
 }
@@ -182,7 +187,8 @@ int	main()
 			break ;
 		printf("%s\n", line);
 		llst = netdata(line, &hst);
-		llistiter(llst, printargvtllist);
+		llistiter(llst, printargvtllist);		
+		llistclear(&llst, freeargvt);
 	}
 	// freesplqtt(splqt);
 	return (0);
@@ -234,9 +240,9 @@ int	main()
 // 	if (!(*argtll))
 // 		return (E_OK);
 // 	if (!((*argtll)->previous) || !((*argtll)->previous->next))
-// 		argvt->oper = getopercode(args + T_ARG(*argtll)->x, NULL, splt->splts);
+// 		argvt->oper = getoper(args + T_ARG(*argtll)->x, NULL, splt->splts);
 // 	else
-// 		argvt->oper = getopercode(args + T_ARG((*argtll)->previous)->size,
+// 		argvt->oper = getoper(args + T_ARG((*argtll)->previous)->size,
 // 			NULL, splt->splts);
 // 	return (setrdrdt(splt, argtll, argvt));
 // }
@@ -318,10 +324,10 @@ int	main()
 
 // 	if (!argtll)
 // 		return (O_NULL);
-// 	opercode = getopercode(args + T_ARG(argtll)->x, splt->qts, splt->splts);
+// 	opercode = getoper(args + T_ARG(argtll)->x, splt->qts, splt->splts);
 // 	if (opercode)
 // 		return (opercode);
-// 	return (getopercode(args + T_ARG(argtll)->size, splt->qts, splt->splts));
+// 	return (getoper(args + T_ARG(argtll)->size, splt->qts, splt->splts));
 // }
 
 // int		isspltoper(int oper)
@@ -330,3 +336,4 @@ int	main()
 // 		return (O_NULL);
 // 	return (oper);
 // }
+
