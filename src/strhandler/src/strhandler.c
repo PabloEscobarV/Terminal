@@ -6,7 +6,7 @@
 /*   By: polenyc <polenyc@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 13:54:29 by Pablo Escob       #+#    #+#             */
-/*   Updated: 2024/08/01 13:27:49 by polenyc          ###   ########.fr       */
+/*   Updated: 2024/08/01 14:40:33 by polenyc          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ char	*getvarvalop(t_cchar **args, int size, t_hash *hst)
 
 char	*braceshndlr(t_cchar **args, t_hash *hst)
 {
-	if (**args != VARCH || *(++(*args)) != BRACES[I_LBRACES])
+	if (*((*args) + 1) != BRACES[I_LBRACES])
 		return (NULL);
 	++(*args);
 	return (getvarvalop(args, getvarend(*args, BRACES[I_RBRACES]), hst));
@@ -85,7 +85,7 @@ char	*braceshndlr(t_cchar **args, t_hash *hst)
 
 char	*pidhndlr(t_cchar **args, t_hash *hst)
 {
-	if (**args != VARCH || *(++(*args)) != VARCH)
+	if (*((*args) + 1) != VARCH)
 		return (NULL);
 	return (getvarvalop(args, ft_strlen(PID), hst));
 }
@@ -95,34 +95,12 @@ char	*varhndlr(t_cchar **args, t_hash *hst)
 	int		size;
 
 	size = 0;
-	if (**args != VARCH)
-		return (NULL);
 	while (checkvarend((*args)[size]))
 		++size;
 	return (getvarvalop(args, size, hst));
 }
 
-char	*checkifvar(t_cchar *args, int size, t_hash *hst)
-{
-	char	*varval;
-
-	if (checkvarname(args, size, VARCH))
-		return (E_OK);
-	++args;
-	size = pidhndlr(args, hst);
-	if (size > 0)
-		return ();
-}
-
-int		getfinsize(t_cchar *args, t_strhndlr *strhndl, t_hash *hst)
+char	*getoperation(t_cchar **args, t_subesc *subesc, t_hash *hst)
 {
 
 }
-
-char	*strhandler(t_cchar *args, t_strhndlr *strhndl, t_hash *hst)
-{
-
-}
-
-
-// }
