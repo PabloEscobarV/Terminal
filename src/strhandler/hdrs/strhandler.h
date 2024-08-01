@@ -3,36 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   strhandler.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: polenyc <polenyc@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 14:16:32 by Pablo Escob       #+#    #+#             */
-/*   Updated: 2024/08/01 14:37:16 by polenyc          ###   ########.fr       */
+/*   Updated: 2024/08/01 15:58:51 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#define	PREEXCPT	"="
-#define SUFEXCPT	"\\/ "
-#define STRTOCNHG	"{} $ ?"
+#define	FESC	"="
+#define RESC	"\\/ "
+#define SUBSTR	"{?$"
+#define SUBEND	"}"
 
 enum	e_strtochng_i
 {
 	I_BRACES,
-	I_PID,
 	I_EXTSTS,
-};
-
-enum	e_braces
-{
-	I_LBRACES,
-	I_RBRACES,
-};
-
-enum	e_errorstrhndlr
-{
-	E_MEMERR = -2,
-	E_ERR,
+	I_PID,
+	I_SUBSTRSIZE,
 };
 
 typedef struct	s_strtoinsrt

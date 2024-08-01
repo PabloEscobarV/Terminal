@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commondata.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: polenyc <polenyc@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 13:00:59 by polenyc           #+#    #+#             */
-/*   Updated: 2024/08/01 13:16:14 by polenyc          ###   ########.fr       */
+/*   Updated: 2024/08/01 15:43:58 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 
 enum	e_errorcodes
 {
+	E_ERR = -1,
 	E_OK,
 	E_KO,
 	E_ERROR,
