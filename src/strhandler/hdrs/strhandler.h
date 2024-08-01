@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   strhandler.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
+/*   By: polenyc <polenyc@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 14:16:32 by Pablo Escob       #+#    #+#             */
-/*   Updated: 2024/07/30 15:58:55 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/08/01 13:04:02 by polenyc          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ enum	e_errorstrhndlr
 	E_ERR,
 };
 
-typedef struct	s_strhdlr
+typedef struct	s_strtoinsrt
 {
-	t_cchar	esc;
-	t_cchar	acivatech;
-}				t_strhndlr;
+	t_cchar	varch;
+	t_cchar	**
+}

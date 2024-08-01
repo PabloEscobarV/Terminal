@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   strhandler.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
+/*   By: polenyc <polenyc@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 13:54:29 by Pablo Escob       #+#    #+#             */
-/*   Updated: 2024/07/30 16:59:47 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/08/01 13:27:49 by polenyc          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,47 +29,6 @@ int	getvarend(t_cchar *args, t_cchar end)
 	return (size);
 }
 
-char	*getvarval(t_cchar *args, int size, t_hash *hst)
-{
-	char	*varval;
-
-	if (!size)
-		return (NULL);
-	args = ft_strldup(*args, size);
-	varval = hst->hash(args, hst->hashtb);
-	free(args);
-	return (varval);
-}
-
-int	braceshndlr(char **varval, t_cchar **args, t_cchar *braces, t_hash *hst)
-{
-	int		size;
-
-	if (**args != REPLSCH || *(++(*args)) != braces[I_LBRACES])
-		return (E_KO);
-	++(*args);
-	size = getvarend(*args, braces[I_RBRACES]);
-	*varval = getvarval(args, size, hst);
-	if (!(*varval))
-		return (E_KO);
-	*args += size;
-	return (E_OK);
-}
-
-int		pidhndlr(char **varval, t_cchar **args, t_cchar *pid, t_hash *hst)
-{
-	int		size;
-
-	if (!ft_strlcmp(*args, pid))
-		return (E_KO);
-	size = ft_strlen(pid);
-	*varval = getvarval(args, size, hst);
-	if (!(*varval))
-		return (E_KO);
-	*args += size;
-	return (E_OK);
-}
-
 int	checkvarend(t_cchar *args)
 {
 	if (!ft_isprint(*args))
@@ -79,20 +38,80 @@ int	checkvarend(t_cchar *args)
 	return (E_KO);
 }
 
-int	checkvarname(t_cchar *args, t_cchar var)
+int	checkvarname(t_cchar *args, int size, t_cchar var)
 {
 	if (*args != var)
 		return (E_KO);
-	if (*(args - 1) == BKSLASH)
+	if (size && *(args - 1) == BKSLASH)
 		return (E_KO);
 	if (checkvarend(++args) == E_OK)
 		return (E_KO);
 	return (E_OK);
 }
 
-int		varhndlr(char **varval, t_cchar **args, t_hash *hst)
+char	*getvarval(t_cchar *args, int size, t_hash *hst)
 {
+	char	*varval;
 
+	args = ft_strldup(*args, size);
+	varval = hst->hash(args, hst->hashtb);
+	free(args);
+	return (varval);
+}
+
+char	*getvarvalop(t_cchar **args, int size, t_hash *hst)
+{
+	char	*varval;
+	
+	if (!size)
+		return (NULL);
+	*varval = getvarval(*args, size, hst);
+	if (!varval)
+	{
+		ft_putstr(MALLOCERROR);
+		exit(-1);
+	}
+	*args += size;
+	return (varval);
+}
+
+char	*braceshndlr(t_cchar **args, t_hash *hst)
+{
+	if (**args != VARCH || *(++(*args)) != BRACES[I_LBRACES])
+		return (NULL);
+	++(*args);
+	return (getvarvalop(args, getvarend(*args, BRACES[I_RBRACES]), hst));
+}
+
+char	*pidhndlr(t_cchar **args, t_hash *hst)
+{
+	if (**args != VARCH || *(++(*args)) != VARCH)
+		return (NULL);
+	return (getvarvalop(args, ft_strlen(PID), hst));
+}
+
+char	*varhndlr(t_cchar **args, t_hash *hst)
+{
+	int		size;
+
+	size = 0;
+	if (**args != VARCH)
+		return (NULL);
+	while (checkvarend((*args)[size]))
+		++size;
+	return (getvarvalop(args, size, hst));
+}
+
+char	*checkifvar(t_cchar *args, int size, t_hash *hst)
+{
+	char	*varval;
+
+	if (checkvarname(args, size, VARCH))
+		return (E_OK);
+	++args;
+	size = pidhndlr(args, hst);
+	if (size > 0)
+		return ();
 }
 
 int		getfinsize(t_cchar *args, t_strhndlr *strhndl, t_hash *hst)
@@ -104,3 +123,6 @@ char	*strhandler(t_cchar *args, t_strhndlr *strhndl, t_hash *hst)
 {
 
 }
+
+
+// }

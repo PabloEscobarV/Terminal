@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   commondata.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
+/*   By: polenyc <polenyc@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 13:00:59 by polenyc           #+#    #+#             */
-/*   Updated: 2024/07/28 19:16:15 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/08/01 13:16:14 by polenyc          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 #define SPCCH		' '
 #define PROCID		"$$"
 #define ESCSMBS		"\\$\"\'"
-#define MALLOCERROR	"ALLOC ERROR!!!"
+#define MALLOCERROR	"MEMMORY ALLOCATE ERROR!!!"
 #define TOKENERROR	"syntax error near unexpected token"
 #define HRDOC		"<<"
 #define QTS			"\" \'"
