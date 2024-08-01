@@ -6,16 +6,19 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 14:16:32 by Pablo Escob       #+#    #+#             */
-/*   Updated: 2024/08/01 15:58:51 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/08/01 20:13:09 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
-#define	FESC	"="
-#define RESC	"\\/ "
+#include "../../../hdrs/commondata.h"
+
+#define	FESC	"=\\"
+#define RESC	" \\/\"\'"
 #define SUBSTR	"{?$"
 #define SUBEND	"}"
+#define VARSYM	"_"
 
 enum	e_strtochng_i
 {

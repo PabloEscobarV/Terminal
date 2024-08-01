@@ -8,9 +8,10 @@
                 "-fdiagnostics-color=always",
                 "-g",
                 "${file}",
-                "t_argv.c",
-                "-L../../splitter",
-                "-lsplitter",
+                
+                // "t_argv.c",
+                // "-L../../splitter",
+                // "-lsplitter",
                 // "argshndlr.c",
                 // "strhanler.c",
                 // "strhnddrdqt.c",
