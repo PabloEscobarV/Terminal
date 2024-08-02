@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 13:54:29 by Pablo Escob       #+#    #+#             */
-/*   Updated: 2024/08/02 16:08:13 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/08/02 18:11:34 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ char	*subbraces(char **args, char *end, t_hash *hst)
 	while ((*args)[size] && !ft_strlcmp(*args, end)
 		&& !checkvarend((*args)[size]))
 		++size;
-	if (!size || !ft_strlcmp(*args, end))
+	if (!size || !ft_strlcmp(*args + size, end))
 		return (ft_perror("Command not found"));
 	res = getvar(args, size, hst);
 	++(*args);
@@ -137,6 +137,21 @@ void	setargt(t_arg *argt, char *str, int x, int size)
 	argt->size = size;
 }
 
+int	skipsqts(char **args, t_arg *argt, t_strtosub *strtosub)
+{
+	if (**args != strtosub->qts[I_SQTS])
+		return (E_OK);
+	++(*args);
+	while (**args && **args != strtosub->qts[I_SQTS])
+	{
+		++(*args);
+		++(argt->size);
+	}
+	++(*args);
+	argt->size += 2;
+	return (E_KO);
+}
+
 t_llist	*getvars(char *args, t_strtosub *strtosub, t_hash *hst)
 {
 	char	*argsf;
@@ -148,6 +163,8 @@ t_llist	*getvars(char *args, t_strtosub *strtosub, t_hash *hst)
 	argsf = args;
 	while (*args)
 	{
+		if (skipsqts(&args, &argt, strtosub))
+			continue ;
 		argt.arg = getvalstr(&args, getoperation(&args, argt.x,
 			strtosub->substr), strtosub, hst);
 		if (!argt.arg)
@@ -179,7 +196,7 @@ int		getfullsize(char *args, t_llist *strll)
 
 void	cpydata(char *args, char *str, t_llist *strll)
 {
-	while (*str && strll)
+	while (*str && strll && T_ARG(strll)->arg)
 	{
 		args = ft_strncpy(args, str + T_ARG(strll)->x, T_ARG(strll)->size);
 		args = ft_strcpy(args, T_ARG(strll)->arg);
@@ -207,15 +224,11 @@ char	*getargs(char *str, t_strtosub *strtosub, t_hash *hst)
 	return (args);
 }
 
-char	*strhandler(char *str, char **substr, char **subend, t_hash *hst)
+char	*strhandler(char *str, t_strtosub *strtosub, t_hash *hst)
 {
-	t_strtosub	strtosub;
-
-	strtosub.substr = substr;
-	strtosub.subend = subend;
 	if (!str || !hst || !(*str))
 		return (ft_perror("ERROR!!! EMPTY ARGUMENT!!!"));
-	return (getargs(str, &strtosub, hst));
+	return (getargs(str, strtosub, hst));
 }
 
 void	*hash(t_cchar *key, char **hashtb)
@@ -230,18 +243,20 @@ int	main()
 	char	**substr;
 	char	**subend;
 	t_hash	hst;
+	t_strtosub	tmpt;
 	
 	hst.hash = hash;
 	hst.hashtb = NULL;
-	substr = ft_split(SUBSTR, SPLTCH);
-	subend = ft_split(SUBEND, SPLTCH);
+	tmpt.qts = ft_strdup("\"\'");
+	tmpt.substr = ft_split(SUBSTR, SPLTCH);
+	tmpt.subend = ft_split(SUBEND, SPLTCH);
 	while (1)
 	{
 		line = readline("Pablo Escobar:\t");
 		if (!ft_strcmp(line, "exit"))
 			break ;
 		printf("%s\n", line);
-		argt = strhandler(line, substr, subend, &hst);
+		argt = strhandler(line, &tmpt, &hst);
 		printf("|%s|\n", argt);
 		free(argt);
 		free(line);

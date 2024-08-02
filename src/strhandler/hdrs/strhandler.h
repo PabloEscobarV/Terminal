@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 14:16:32 by Pablo Escob       #+#    #+#             */
-/*   Updated: 2024/08/02 15:04:54 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/08/02 17:55:33 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,15 @@ enum	e_strtochng_i
 	I_SUBSTRSIZE,
 };
 
+// enum	e_qts
+// {
+// 	I_SQTS,
+// 	I_DQTS,
+// };
+
 typedef struct s_strtosub
 {
+	char	*qts;
 	char	**substr;
 	char	**subend;
 }				t_strtosub;
