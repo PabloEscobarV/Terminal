@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 13:54:29 by Pablo Escob       #+#    #+#             */
-/*   Updated: 2024/08/02 18:11:34 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/08/03 16:58:19 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	getoperation(char **args, int pos, char **substr)
 
 	if (**args != VARCH)
 		return (E_ERR);
-	if ((pos && ft_strchr(FESC, (*args)[1])) || ft_strchr(RESC, (*args)[1]))
+	if ((pos && ft_strchr(FESC, *(*args - 1))) || ft_strchr(RESC, *(*args + 1)))
 		return (E_ERR);
 	i = 0;
 	while (substr[i] && !ft_strlcmp(*args, substr[i]))
@@ -152,31 +152,29 @@ int	skipsqts(char **args, t_arg *argt, t_strtosub *strtosub)
 	return (E_KO);
 }
 
-t_llist	*getvars(char *args, t_strtosub *strtosub, t_hash *hst)
+t_llist	*getvars(char *args, char *argsf, t_strtosub *strtosub, t_hash *hst)
 {
-	char	*argsf;
-	t_arg	argt;
+	t_llist	*argt;
 	t_llist	*strll;
 
-	strll = NULL;
-	setargt(&argt, NULL, 0, 0);
-	argsf = args;
+	strll = llistnewnode(crtargt(NULL, 0, 0));
+	argt = strll;
 	while (*args)
 	{
-		if (skipsqts(&args, &argt, strtosub))
+		if (skipsqts(&args, T_ARG(argt), strtosub))
 			continue ;
-		argt.arg = getvalstr(&args, getoperation(&args, argt.x,
+		T_ARG(argt)->arg = getvalstr(&args, getoperation(&args, args - argsf,
 			strtosub->substr), strtosub, hst);
-		if (!argt.arg)
+		if (!T_ARG(argt)->arg )
 		{
+			if (*args != ECRANE)
+				++T_ARG(argt)->size;
 			++args;
-			++argt.size;
 			continue ;
 		}
-		llistadd_back(&strll, llistnewnode(crtargt(argt.arg, argt.x, argt.size - argt.x)));
-		setargt(&argt, NULL, args - argsf, args - argsf);
+		argt = llistadd_back(&strll, llistnewnode(
+			crtargt(NULL, args - argsf, 0)));
 	}
-	llistadd_back(&strll, llistnewnode(crtargt(argt.arg, argt.x, argt.size - argt.x)));
 	return (strll);
 }
 
@@ -190,19 +188,37 @@ int		getfullsize(char *args, t_llist *strll)
 		size += T_ARG(strll)->size + ft_strlen(T_ARG(strll)->arg);
 		strll = strll->next;
 	}
-	size += ft_strlen(args + T_ARG(strll)->size + T_ARG(strll)->x);
+	size += T_ARG(strll)->size;
 	return (size);
+}
+
+char	*strcpyexc(char *dest, char *src, char exc, size_t len)
+{
+	if (!dest || !src || !len)
+		return (dest);
+	while (len)
+	{
+		--len;
+		if (*src == exc)
+			++src;
+		*dest = *src;
+		++dest;
+		++src;
+	}
+	*dest = '\0';
+	return (dest);
 }
 
 void	cpydata(char *args, char *str, t_llist *strll)
 {
 	while (*str && strll && T_ARG(strll)->arg)
 	{
-		args = ft_strncpy(args, str + T_ARG(strll)->x, T_ARG(strll)->size);
+		args = strcpyexc(args, str + T_ARG(strll)->x, ECRANE,
+			T_ARG(strll)->size);
 		args = ft_strcpy(args, T_ARG(strll)->arg);
 		strll = strll->next;
 	}
-	ft_strncpy(args, str + T_ARG(strll)->x, T_ARG(strll)->size);
+	strcpyexc(args, str + T_ARG(strll)->x, ECRANE, T_ARG(strll)->size);
 }
 
 char	*getargs(char *str, t_strtosub *strtosub, t_hash *hst)
@@ -211,7 +227,7 @@ char	*getargs(char *str, t_strtosub *strtosub, t_hash *hst)
 	char	*args;
 	t_llist	*strll;
 
-	strll = getvars(str, strtosub, hst);
+	strll = getvars(str, str, strtosub, hst);
 	size = getfullsize(str, strll);
 	args = malloc((size + 1) * sizeof(char));
 	if (!args)
@@ -261,6 +277,10 @@ int	main()
 		free(argt);
 		free(line);
 	}
+	free(line);
+	ft_free_d((void **)tmpt.subend);
+	ft_free_d((void **)tmpt.substr);
+	free(tmpt.qts);
 	return (0);
 }
 
@@ -427,4 +447,33 @@ int	main()
 // 		return (subpid(argt));		
 // 	}
 // 	return (subvar(argt, hst));
+// }
+
+// t_llist	*tmp(char *args, char *argsf, t_strtosub *strtosub, t_hash *hst)
+// {
+	// t_arg	argt;
+	// t_llist	*strll;
+
+	// strll = NULL;
+	// setargt(&argt, NULL, 0, 0);
+	// while (*args)
+	// {
+	// 	if (skipsqts(args, &argt, strtosub))
+	// 		continue ;
+	// 	argt.arg = getvalstr(args, getoperation(args, args - argsf,
+	// 		strtosub->substr), strtosub, hst);
+	// 	if (!argt.arg)
+	// 	{
+	// 		if (*args != ECRANE)
+	// 			++argt.size;
+	// 		++(*args);
+	// 		continue ;
+	// 	}
+	// 	llistadd_back(&strll, llistnewnode(
+	// 		crtargt(argt.arg, argt.x, argt.size - argt.x)));
+	// 	setargt(&argt, NULL, args - argsf, args - argsf);
+	// }
+	// llistadd_back(&strll, llistnewnode(
+	// 	crtargt(argt.arg, argt.x, argt.size - argt.x)));
+	// return (strll);
 // }

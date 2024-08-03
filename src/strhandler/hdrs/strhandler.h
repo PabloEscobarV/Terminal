@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 14:16:32 by Pablo Escob       #+#    #+#             */
-/*   Updated: 2024/08/02 17:55:33 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/08/03 16:10:44 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 #include "../../../hdrs/commondata.h"
 
+#define ECRANE	'\\'
 #define	FESC	"=\\"
 #define RESC	" \\/\"\'"
 #define SUBSTR	"${ $? $$"
