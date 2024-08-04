@@ -6,13 +6,14 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 15:02:44 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/29 16:05:22 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/08/04 20:03:00 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../hdrs/netdata.h"
 #include "../../../libft/libft.h"
 #include "../../splitter/hdrs/splitter.h"
+#include "../../strhandler/hdrs/strhandler.h"
 #include <stdio.h>
 #include <readline/readline.h>
 
@@ -138,14 +139,14 @@ t_llist	*nodeargvt(t_cchar *args, t_splqt *splt, t_llist *argtll)
 	return (llst);
 }
 
-t_llist	*netdata(t_cchar *args, t_hash *hst)
+t_llist	*netdata(t_cchar *args)
 {
 	t_splqt	*splt;
 	t_llist	*argtll;
 	t_llist	*argvtll;
 
 	splt = crtsplqtt(QTS, RDR, SPLN, SPLTS);
-	argtll = spliter(args, splt, hst);
+	argtll = spliter(args, splt);
 	if (!argtll)
 		return (ft_perror("ERROR!!! Error in splitter"));
 	if (!splt)
@@ -173,24 +174,37 @@ void	*hash(t_cchar *key, char **hashtb)
 
 int	main()
 {
+	char	*str;
 	char	*line;
 	t_llist	*llst;
 	t_splqt	*splqt;
+	t_strtosub	tmpt;
 	t_hash	hst;
 	
 	hst.hash = hash;
 	hst.hashtb = NULL;
+	tmpt.qts = ft_strdup("\"\'");
+	tmpt.substr = ft_split(SUBSTR, SPLTCH);
+	tmpt.subend = ft_split(SUBEND, SPLTCH);
+	splqt = crtsplqtt(QTS, RDR, SPLN, SPLTS);
 	while (1)
 	{
 		line = readline("Pablo Escobar:\t");
 		if (!ft_strcmp(line, "exit"))
 			break ;
 		printf("%s\n", line);
-		llst = netdata(line, &hst);
+		str = strhandler(line, &tmpt, &hst);
+		llst = netdata(str);
 		llistiter(llst, printargvtllist);		
 		llistclear(&llst, freeargvt);
+		free(line);
+		free(str);
 	}
-	// freesplqtt(splqt);
+		free(line);
+	ft_free_d((void **)tmpt.subend);
+	ft_free_d((void **)tmpt.substr);
+	free(tmpt.qts);
+	freesplqtt(splqt);
 	return (0);
 }
 

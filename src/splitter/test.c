@@ -6,17 +6,18 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 15:56:40 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/26 15:05:51 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/08/04 19:18:19 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hdrs/servicespltr.h"
 #include "hdrs/splitter.h"
 #include "../../libft/libft.h"
+#include "../../get_next_line/get_next_line_bonus.h"
+#include "../strhandler/hdrs/strhandler.h"
 #include <stdio.h>
 #include <unistd.h>
 #include <readline/readline.h>
-#include "../../get_next_line/get_next_line_bonus.h"
 
 void	*hash(t_cchar *key, char **hashtb)
 {
@@ -25,13 +26,18 @@ void	*hash(t_cchar *key, char **hashtb)
 
 int	main()
 {
+	char	*str;
 	char	*line;
 	t_llist	*llst;
 	t_splqt	*splqt;
 	t_hash	hst;
+	t_strtosub	tmpt;
 	
 	hst.hash = hash;
 	hst.hashtb = NULL;
+	tmpt.qts = ft_strdup("\"\'");
+	tmpt.substr = ft_split(SUBSTR, SPLTCH);
+	tmpt.subend = ft_split(SUBEND, SPLTCH);
 	splqt = crtsplqtt(QTS, RDR, SPLN, SPLTS);
 	printmatrix(splqt->spln);
 	while (1)
@@ -40,9 +46,12 @@ int	main()
 		if (!ft_strcmp(line, "exit"))
 			break ;
 		printf("%s\n", line);
-		llst = spliter(line, splqt, &hst);
+		str = strhandler(line, &tmpt, &hst);
+		llst = spliter(str, splqt);
 		llistiter(llst, printllist);
 		llistclear(&llst, freeargt);
+		free(str);
+		free(line);
 	}
 	freesplqtt(splqt);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 15:23:47 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/26 23:40:47 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/08/04 19:17:52 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "../hdrs/splitter.h"
 #include <stdio.h>
 
-t_llist		*setnodestr(t_cchar *args, t_crds *crd, t_splqt *splt, t_hash *hst)
+t_llist		*setnodestr(t_cchar *args, t_crds *crd, t_splqt *splt)
 {
 	t_llist	*node;
 	char	*str;
@@ -23,7 +23,7 @@ t_llist		*setnodestr(t_cchar *args, t_crds *crd, t_splqt *splt, t_hash *hst)
 	if (crd->i >= crd->strsize)
 		return (NULL);
 	tmp = args + crd->i;
-	str = strhandler(&tmp, crd, splt->qts, hst);
+	str = strcpytoll(&tmp, crd, splt->qts);
 	if (!str)
 	{
 		crd->i += cmpstrv(args + crd->i, splt->splts);

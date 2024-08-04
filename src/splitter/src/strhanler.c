@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 18:40:24 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/26 23:45:32 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/08/04 19:17:17 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-char    *strhandler(t_cchar **args, t_crds *crd, t_cchar **qts, t_hash *hst)
+char    *strcpytoll(t_cchar **args, t_crds *crd, t_cchar **qts)
 {
 	int	iqt;
 
@@ -28,8 +28,6 @@ char    *strhandler(t_cchar **args, t_crds *crd, t_cchar **qts, t_hash *hst)
 	*args += ft_strlen(*qts);
 	if (!(**args))
 		return (putsprintf(ft_sprintf("%s%s\n", ERRQTS, *qts), &(crd->size)));
-	if (iqt == I_DQTS)
-		return (dqtshandler(args, crd, *qts, hst));
 	return (sqtshadler(args, crd, *qts));
 }
 

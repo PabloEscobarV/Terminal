@@ -6,19 +6,20 @@
 #    By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/04 17:51:31 by Pablo Escob       #+#    #+#              #
-#    Updated: 2024/08/04 17:59:36 by Pablo Escob      ###   ########.fr        #
+#    Updated: 2024/08/04 19:24:53 by Pablo Escob      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = strhandler
 LIBNAME = libstrhandler.a
+LIBNAMEFULL = libstrhandlerfull.a
 TEST = test
 TESTFILE = test.c
 READLINE = readline
 
 LIBFTDIR = ../../libft
 SRCDIR = src
-OBJDIR = obj
+OBJDIR = objs
 
 LIBFT = ft
 SRC = $(wildcard $(SRCDIR)/*.c)
@@ -34,6 +35,8 @@ all: lib
 
 lib: $(LIBNAME)
 
+libfull: $(LIBNAMEFULL)
+
 run: $(LIBNAME)
 	$(CC) $(TESTFILE) -L. -l$(NAME) $(LIBRS) -o $(TEST)
 	./$(TEST)
@@ -46,11 +49,16 @@ clean:
 
 fclean: clean
 	$(MAKE) -C $(LIBFTDIR) fclean
-	rm -rf $(NAME) $(LIBNAME) $(TEST)
+	rm -rf $(NAME) $(LIBNAME) $(LIBNAMEFULL) $(TEST)
 
 $(LIBNAME): $(OBJ)
 	$(MAKE) -C $(LIBFTDIR)
 	ar -rc $(LIBNAME) $(OBJ)
+	ranlib $@
+
+$(LIBNAMEFULL): $(OBJ)
+	$(MAKE) -C $(LIBFTDIR)
+	ar -rc $(LIBNAMEFULL) $(OBJ) $(LIBFTDIR)/$(OBJDIR)/*.o
 	ranlib $@
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c

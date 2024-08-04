@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 13:16:06 by polenyc           #+#    #+#             */
-/*   Updated: 2024/07/26 23:39:30 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/08/04 19:47:33 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*sqtshadler(t_cchar **args, t_crds *crd, t_cchar *end)
 	char	*tmp;
 
 	res = (char *)*args;
-	while (*res && !ft_strlcmp(res, end))
+	while (*res && !(ft_strlcmp(res, end) && *(res - 1) != BKSLASH))
 		++res;
 	if (!(*res))
 		return (pmsgsetern("ERROR!!! Is not end single quote", &(crd->size)));

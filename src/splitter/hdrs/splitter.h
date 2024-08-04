@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 15:20:39 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/28 16:41:20 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/08/04 19:06:11 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ typedef struct	s_crds
 	int	strsize;
 }				t_crds;
 
-t_llist	*spliter(t_cchar *str, t_splqt *splt, t_hash *hst);
+t_llist	*spliter(t_cchar *str, t_splqt *splt);
 ///////////////////////////////T_SPLQT///////////////////////////////
 t_splqt	*crtsplqtt(char *qts, char *rdr, char *spln, char *splts);
 void	*freesplqtt(t_splqt *splqt);

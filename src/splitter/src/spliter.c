@@ -6,18 +6,19 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 13:10:06 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/27 18:08:26 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/08/04 19:48:36 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../hdrs/servicespltr.h"
 #include "../hdrs/splitter.h"
 #include "../../../libft/libft.h"
+#include "../../strhandler/hdrs/strhandler.h"
 #include <stdlib.h>
 #include <stdio.h>
 #include <readline/readline.h>
 
-t_llist	*spliter(t_cchar *str, t_splqt *splt, t_hash *hst)
+t_llist	*spliter(t_cchar *str, t_splqt *splt)
 {
 	t_crds	crds;
 	t_llist	*llst;
@@ -31,7 +32,7 @@ t_llist	*spliter(t_cchar *str, t_splqt *splt, t_hash *hst)
 	while (crds.size < crds.strsize)
 	{
 		llistadd_back(&llst, setnodedata(str, &crds, splt));
-		llistadd_back(&llst, setnodestr(str, &crds, splt, hst));
+		llistadd_back(&llst, setnodestr(str, &crds, splt));
 		if (crds.size < 0)
 			return (llistclear(&llst, freeargt));
 	}
@@ -43,6 +44,39 @@ t_llist	*spliter(t_cchar *str, t_splqt *splt, t_hash *hst)
 // void	*hash(t_cchar *key, char **hashtb)
 // {
 // 	return ((void *)ft_strdup("ABC"));
+// }
+
+// int	main()
+// {
+// 	char	*str;
+// 	char	*line;
+// 	t_llist	*llst;
+// 	t_splqt	*splqt;
+// 	t_hash	hst;
+// 	t_strtosub	tmpt;
+	
+// 	hst.hash = hash;
+// 	hst.hashtb = NULL;
+// 	tmpt.qts = ft_strdup("\"\'");
+// 	tmpt.substr = ft_split(SUBSTR, SPLTCH);
+// 	tmpt.subend = ft_split(SUBEND, SPLTCH);
+// 	splqt = crtsplqtt(QTS, RDR, SPLN, SPLTS);
+// 	printmatrix(splqt->spln);
+// 	while (1)
+// 	{
+// 		line = readline("Pablo Escobar:\t");
+// 		if (!ft_strcmp(line, "exit"))
+// 			break ;
+// 		printf("%s\n", line);
+// 		str = strhandler(line, &tmpt, &hst);
+// 		llst = spliter(str, splqt);
+// 		llistiter(llst, printllist);
+// 		llistclear(&llst, freeargt);
+// 		free(str);
+// 		free(line);
+// 	}
+// 	freesplqtt(splqt);
+// 	return (0);
 // }
 
 // int	main()

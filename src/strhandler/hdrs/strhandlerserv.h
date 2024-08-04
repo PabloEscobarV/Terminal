@@ -6,13 +6,15 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 17:25:47 by Pablo Escob       #+#    #+#             */
-/*   Updated: 2024/08/04 17:55:37 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/08/04 18:59:39 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #include "../hdrs/strhandler.h"
+
+#define QTSERRMSG	"Syntax Error: Missing closing single quote (')."
 
 ///////////////////////////////OPERATIONS\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\/
 char	*subbraces(t_arg *strt, char *end, t_hash *hst);

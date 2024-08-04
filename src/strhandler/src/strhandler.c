@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 23:36:48 by Pablo Escob       #+#    #+#             */
-/*   Updated: 2024/08/04 18:01:05 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/08/04 19:34:26 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 #define T_ARG(argtll)	((t_arg *)((argtll)->data))
 
-static void	cpyqts(t_arg *argt, t_arg *strt, char end)
+static int	cpyqts(t_arg *argt, t_arg *strt, char end)
 {
 	while (strt->x < strt->size)
 	{
@@ -29,16 +29,18 @@ static void	cpyqts(t_arg *argt, t_arg *strt, char end)
 		argt->arg[argt->x] = strt->arg[strt->x];
 		++argt->x;
 		++strt->x;
-		if (strt->arg[strt->x] == end)
+		if (strt->arg[strt->x] == end && strt->arg[strt->x - 1] != BKSLASH)
 		{
 			if (argt->x >= argt->size)
 				setnewparam(argt);
 			argt->arg[argt->x] = strt->arg[strt->x];
 			++argt->x;
 			++strt->x;
-			break ;
+			return (E_OK);
 		}
 	}
+	ft_perror(QTSERRMSG);
+	return (E_ERR);
 }
 
 static void	writedata(t_arg *argt, t_arg *strt)
@@ -63,7 +65,7 @@ static void	cpydata(t_arg *argt, char *tmp)
 	}
 }
 
-static void	setdata(t_arg *argt, t_arg *strt, t_strtosub *strtosub, t_hash *hst)
+static int	setdata(t_arg *argt, t_arg *strt, t_strtosub *strtosub, t_hash *hst)
 {
 	char	*tmp;
 
@@ -73,7 +75,8 @@ static void	setdata(t_arg *argt, t_arg *strt, t_strtosub *strtosub, t_hash *hst)
 			setnewparam(argt);
 		if (strt->arg[strt->x] == strtosub->qts[I_SQTS])
 		{
-			cpyqts(argt, strt, strtosub->qts[I_SQTS]);
+			if (cpyqts(argt, strt, strtosub->qts[I_SQTS]))
+				return (E_ERR);
 			continue ;
 		}
 		tmp = getvalstr(strt, getoperation(strt, strtosub->substr),
@@ -86,6 +89,7 @@ static void	setdata(t_arg *argt, t_arg *strt, t_strtosub *strtosub, t_hash *hst)
 		else
 			writedata(argt, strt);
 	}
+	return (E_OK);
 }
 
 char	*strhandler(char *str, t_strtosub *strtosub, t_hash *hst)
@@ -100,7 +104,8 @@ char	*strhandler(char *str, t_strtosub *strtosub, t_hash *hst)
 	setargt(&argt, NULL, 0, strt.size * kef);
 	argt.arg = malloc((argt.size + 1) * sizeof(char));
 	argt.arg[argt.size] = '\0';
-	setdata(&argt, &strt, strtosub, hst);
+	if (setdata(&argt, &strt, strtosub, hst))
+		return (ft_free(argt.arg));
 	argt.arg[argt.x] = '\0';
 	kef = updatekef(kef, argt.x - strt.size * kef);
 	return (argt.arg);
