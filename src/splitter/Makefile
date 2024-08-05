@@ -6,7 +6,7 @@
 #    By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/29 15:37:37 by blackrider        #+#    #+#              #
-#    Updated: 2024/08/04 19:26:16 by Pablo Escob      ###   ########.fr        #
+#    Updated: 2024/08/05 18:57:38 by Pablo Escob      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,8 @@ all: lib
 lib: $(LIBNAME)
 
 libf: $(LIBNAMEFULL)
+
+cobj: $(OBJ)
 
 clean:
 	$(MAKE) -C $(LIBFTDIR) clean

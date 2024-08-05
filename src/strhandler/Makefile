@@ -6,7 +6,7 @@
 #    By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/04 17:51:31 by Pablo Escob       #+#    #+#              #
-#    Updated: 2024/08/04 19:24:53 by Pablo Escob      ###   ########.fr        #
+#    Updated: 2024/08/05 18:56:58 by Pablo Escob      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,8 @@ all: lib
 lib: $(LIBNAME)
 
 libfull: $(LIBNAMEFULL)
+
+cobj: $(OBJ)
 
 run: $(LIBNAME)
 	$(CC) $(TESTFILE) -L. -l$(NAME) $(LIBRS) -o $(TEST)

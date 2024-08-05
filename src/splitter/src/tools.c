@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 12:03:51 by polenyc           #+#    #+#             */
-/*   Updated: 2024/07/26 23:40:53 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/08/05 18:18:42 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ int	cmpqts(t_cchar *str, t_cchar **qts)
 	return (i);
 }
 
-void	fakefree(void *data)
-{
+// void	fakefree(void *data)
+// {
 
-}
+// }
 
 int	cmpstrv(t_cchar *str, t_cchar **splt)
 {

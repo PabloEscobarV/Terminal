@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 15:03:44 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/28 18:57:34 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/08/05 18:42:54 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "../../../libft/libft.h"
 #include "../../../hdrs/commondata.h"
 
+t_llist	*netdata(t_cchar *args, t_llist *argtll, t_splqt *splt);
 ///////////////////////////////////////T_ARGV////////////////////////////////////
 t_argv	*crtargvt();
 void	freeargvt(void *data);
