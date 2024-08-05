@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 23:36:48 by Pablo Escob       #+#    #+#             */
-/*   Updated: 2024/08/04 19:34:26 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/08/05 17:57:07 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	writedata(t_arg *argt, t_arg *strt)
 {
 	if (strt->arg[strt->x] == BKSLASH && strt->arg[strt->x + 1]
 		&& ft_strchr(ESCSMBS, strt->arg[strt->x + 1]))
-			++strt->x;
+		++strt->x;
 	argt->arg[argt->x] = strt->arg[strt->x];
 	++strt->x;
 	++argt->x;
@@ -69,7 +69,7 @@ static int	setdata(t_arg *argt, t_arg *strt, t_strtosub *strtosub, t_hash *hst)
 {
 	char	*tmp;
 
-	while (strt->arg[strt->x])
+	while (strt->x < strt->size)
 	{
 		if (argt->x >= argt->size)
 			setnewparam(argt);
@@ -80,14 +80,16 @@ static int	setdata(t_arg *argt, t_arg *strt, t_strtosub *strtosub, t_hash *hst)
 			continue ;
 		}
 		tmp = getvalstr(strt, getoperation(strt, strtosub->substr),
-			strtosub, hst);
+				strtosub, hst);
+		if (strt->size < 0)
+			return (E_ERR);
 		if (tmp)
 		{
 			cpydata(argt, tmp);
 			free(tmp);
+			continue ;
 		}
-		else
-			writedata(argt, strt);
+		writedata(argt, strt);
 	}
 	return (E_OK);
 }
@@ -110,3 +112,39 @@ char	*strhandler(char *str, t_strtosub *strtosub, t_hash *hst)
 	kef = updatekef(kef, argt.x - strt.size * kef);
 	return (argt.arg);
 }
+
+// void	*hash(t_cchar *key, char **hashtb)
+// {
+// 	return ((void *)ft_strdup("ABC"));
+// }
+
+// int	main()
+// {
+// 	char	*argt;
+// 	char	*line;
+// 	char	**substr;
+// 	char	**subend;
+// 	t_hash	hst;
+// 	t_strtosub	tmpt;
+// 	hst.hash = hash;
+// 	hst.hashtb = NULL;
+// 	tmpt.qts = ft_strdup("\"\'");
+// 	tmpt.substr = ft_split(SUBSTR, SPLTCH);
+// 	tmpt.subend = ft_split(SUBEND, SPLTCH);
+// 	while (1)
+// 	{
+// 		line = readline("Pablo Escobar:\t");
+// 		if (!ft_strcmp(line, "exit"))
+// 			break ;
+// 		printf("%s\n", line);
+// 		argt = strhandler(line, &tmpt, &hst);
+// 		printf("|%s|\n", argt);
+// 		free(argt);
+// 		free(line);
+// 	}
+// 	free(line);
+// 	ft_free_d((void **)tmpt.subend);
+// 	ft_free_d((void **)tmpt.substr);
+// 	free(tmpt.qts);
+// 	return (0);
+// }
