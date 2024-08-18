@@ -6,10 +6,12 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/17 17:50:01 by Pablo Escob       #+#    #+#             */
-/*   Updated: 2024/08/17 19:22:16 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/08/18 18:42:51 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../../../hdrs/commondata.h"
+#include "../../../libft/libft.h"
 #include <stdint.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -57,7 +59,7 @@ uint32_t setfinalhash(uint32_t hash, int len)
 	return (hash);
 }
 
-uint32_t	murmur3_32(const char* str, int len, uint32_t hash)
+uint32_t	murmur3_32(const char *str, int len, uint32_t hash)
 {
 	int				i;
 	uint32_t		data;

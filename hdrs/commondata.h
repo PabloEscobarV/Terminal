@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 13:00:59 by polenyc           #+#    #+#             */
-/*   Updated: 2024/08/01 15:43:58 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/08/18 19:14:17 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ enum	e_operations
 
 typedef unsigned char	t_uchar;
 typedef const char		t_cchar;
-typedef void *(* f_hash)(t_cchar *key, char **hashtb);
+// typedef void *(* f_hash)(t_cchar *key, char **hashtb);
 
 typedef struct	s_hash
 {
