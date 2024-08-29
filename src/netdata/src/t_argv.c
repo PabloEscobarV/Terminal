@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 15:12:13 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/29 16:04:38 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/08/29 21:10:53 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ void	freeargvt(void *data)
 
 	argv = (t_argv *)data;
 	llistclear(&(argv->argll), free);
-	// ft_free_d((void **)argv->argv);
-	ft_free_d((void **)argv->envp);
+	ft_free_d((void **)argv->argv);
+	// ft_freee_d((void **)argv->envp);
 	free(argv->argv);
 	free(argv->infile);
 	free(argv->outfile);

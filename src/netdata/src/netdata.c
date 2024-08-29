@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 15:02:44 by blackrider        #+#    #+#             */
-/*   Updated: 2024/08/05 18:43:01 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/08/29 20:18:19 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,29 +55,6 @@ int	setrdrdt(t_llist **argtll, t_argv *argvt, int oper)
 		return (E_KO);
 	}
 	return (E_OK);
-}
-
-char	**llisttostr(t_llist *llst)
-{
-	int		size;
-	char	**tmp;
-	char	**str;
-
-	size = llistsize(llst);
-	if (!size)
-		return (NULL);
-	str = malloc((1 + size) * sizeof(char *));
-	if (!str)
-		return (NULL);
-	str[size] = NULL;
-	tmp = str;
-	while (llst)
-	{
-		*tmp = (char *)llst->data;
-		llst = llst->next;
-		++tmp;
-	}
-	return (str);
 }
 
 t_argv	*setargvt(t_cchar *args, t_splqt *splt, t_llist **argtll)
