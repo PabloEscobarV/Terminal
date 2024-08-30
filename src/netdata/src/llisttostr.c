@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 20:17:58 by Pablo Escob       #+#    #+#             */
-/*   Updated: 2024/08/29 21:14:19 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/08/30 16:24:34 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	cpylist(char **dest, t_llist *llst)
 {
 	while (llst)
 	{
-		*dest = (char *)llst->data;
+		*dest = ft_strdup((char *)llst->data);
 		llst = llst->next;
 		++dest;
 	}

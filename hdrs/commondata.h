@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 13:00:59 by polenyc           #+#    #+#             */
-/*   Updated: 2024/08/28 12:32:35 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/08/30 16:00:49 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,3 +103,7 @@ typedef struct	s_argv
 	t_cchar	**envp;
 }				t_argv;
 
+///////////////////////////////T_ARG///////////////////////////////
+void	freeargtonly(void *data);
+void	freeargt(void *data);
+t_arg	*crtargt(char *str, int x, int size);

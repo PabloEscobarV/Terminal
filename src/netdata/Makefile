@@ -6,7 +6,7 @@
 #    By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/05 18:22:27 by Pablo Escob       #+#    #+#              #
-#    Updated: 2024/08/18 21:15:29 by Pablo Escob      ###   ########.fr        #
+#    Updated: 2024/08/30 16:11:41 by Pablo Escob      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,7 +79,7 @@ fclean: clean
 re: fclean all
 
 run: $(LIBNAMEFULL)
-	$(CC) $(TESTFILE) -L. -l$(NAME)full $(LIBRS) -o $(TEST)
+	$(CC) $(TESTFILE) -g -L. -l$(NAME)full $(LIBRS) -o $(TEST)
 	./$(TEST)
 
 $(LIBNAME): $(OBJ)
@@ -102,4 +102,4 @@ $(LIBNAMEFULL): $(OBJ)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
 	mkdir -p $(OBJDIR)
-	$(CC) $(CFLAGSO) $< -o $@
+	$(CC) -g $(CFLAGSO) $< -o $@

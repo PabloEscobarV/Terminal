@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 15:02:44 by blackrider        #+#    #+#             */
-/*   Updated: 2024/08/29 20:18:19 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/08/30 16:28:09 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,13 @@ int	setrdrdt(t_llist **argtll, t_argv *argvt, int oper)
 	{
 	case (O_APPND):
 		argvt->appnd = 1;
-		argvt->outfile = T_ARG(*argtll)->arg;
+		argvt->outfile = ft_strdup(T_ARG(*argtll)->arg);
 		break ;
 	case (O_OFILE):
-		argvt->outfile = T_ARG(*argtll)->arg;
+		argvt->outfile = ft_strdup(T_ARG(*argtll)->arg);
 		break ;
 	case (O_IFILE):
-		argvt->infile = T_ARG(*argtll)->arg;
+		argvt->infile = ft_strdup(T_ARG(*argtll)->arg);
 		break ;
 	default:
 		return (E_KO);

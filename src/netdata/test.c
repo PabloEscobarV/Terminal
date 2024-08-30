@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 18:42:36 by Pablo Escob       #+#    #+#             */
-/*   Updated: 2024/08/05 18:46:07 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/08/30 16:24:12 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	main()
 		ndata = netdata(str, spliterll, splqt);
 		llistiter(ndata, printargvtllist);		
 		llistclear(&ndata, freeargvt);
-		llistclear(&spliterll, free);
+		llistclear(&spliterll, freeargt);
 		free(line);
 		free(str);
 	}

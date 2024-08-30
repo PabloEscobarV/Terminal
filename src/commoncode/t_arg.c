@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/25 13:02:37 by blackrider        #+#    #+#             */
-/*   Updated: 2024/08/30 16:04:52 by Pablo Escob      ###   ########.fr       */
+/*   Created: 2024/08/30 15:57:46 by Pablo Escob       #+#    #+#             */
+/*   Updated: 2024/08/30 15:59:16 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,13 @@ t_arg	*crtargt(char *str, int x, int size)
 	return (arg);
 }
 
+void	setargt(t_arg *argt, char *str, int x, int size)
+{
+	argt->arg = str;
+	argt->x = x;
+	argt->size = size;
+}
+
 void	freeargt(void *data)
 {
 	free(((t_arg *)data)->arg);
@@ -32,11 +39,4 @@ void	freeargt(void *data)
 void	freeargtonly(void *data)
 {
 	free(data);
-}
-
-void	setargt(t_arg *argt, char *str, int x, int size)
-{
-	argt->arg = str;
-	argt->x = x;
-	argt->size = size;
 }

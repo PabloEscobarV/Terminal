@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 15:56:40 by blackrider        #+#    #+#             */
-/*   Updated: 2024/08/04 19:18:19 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/08/30 15:51:10 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,10 @@ int	main()
 		free(line);
 	}
 	freesplqtt(splqt);
+	free(tmpt.qts);
+	free(line);
+	ft_free_d((void **)tmpt.substr);
+	ft_free_d((void **)tmpt.subend);
 	return (0);
 }
 

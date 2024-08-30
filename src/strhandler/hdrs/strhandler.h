@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 14:16:32 by Pablo Escob       #+#    #+#             */
-/*   Updated: 2024/08/04 17:48:31 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/08/30 16:00:35 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,3 @@ char	*strhandler(char *str, t_strtosub *strtosub, t_hash *hst);
 ////////////////////////////////////T_ESCS\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\/
 t_subesc	*crtescs(char var, t_cchar *fesc, t_cchar *resc, t_cchar **substr);
 void		*freeescs(t_subesc *escs);
-///////////////////////////////T_ARG///////////////////////////////
-void	freeargt(void *data);
-t_arg	*crtargt(char *str, int x, int size);
