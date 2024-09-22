@@ -6,15 +6,16 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 17:19:35 by Pablo Escob       #+#    #+#             */
-/*   Updated: 2024/08/04 17:33:26 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/09/22 14:56:04 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../hdrs/strhandler.h"
 #include "../hdrs/strhandlerserv.h"
 #include "../../../libft/libft.h"
+#include "../../../HashTable/hdrs/hashtable.h"
 
-char	*subvar(t_arg *strt, t_hash *hst)
+char	*subvar(t_arg *strt, t_hashtable *hst)
 {
 	int	size;
 

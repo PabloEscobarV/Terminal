@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 23:36:48 by Pablo Escob       #+#    #+#             */
-/*   Updated: 2024/08/05 17:57:07 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/09/22 14:56:00 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "../hdrs/strhandlerserv.h"
 #include "../../../libft/libft.h"
 #include "../../splitter/hdrs/splitter.h"
+#include "../../../HashTable/hdrs/hashtable.h"
 #include <unistd.h>
 #include <stdio.h>
 #include <readline/readline.h>
@@ -65,7 +66,7 @@ static void	cpydata(t_arg *argt, char *tmp)
 	}
 }
 
-static int	setdata(t_arg *argt, t_arg *strt, t_strtosub *strtosub, t_hash *hst)
+static int	setdata(t_arg *argt, t_arg *strt, t_strtosub *strtosub, t_hashtable *hst)
 {
 	char	*tmp;
 
@@ -94,7 +95,7 @@ static int	setdata(t_arg *argt, t_arg *strt, t_strtosub *strtosub, t_hash *hst)
 	return (E_OK);
 }
 
-char	*strhandler(char *str, t_strtosub *strtosub, t_hash *hst)
+char	*strhandler(char *str, t_strtosub *strtosub, t_hashtable *hst)
 {
 	static float	kef = 1.0;
 	t_arg			argt;

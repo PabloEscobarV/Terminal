@@ -6,12 +6,13 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 13:00:59 by polenyc           #+#    #+#             */
-/*   Updated: 2024/08/30 16:00:49 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/09/22 15:28:32 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #include "../libft/libft.h"
+#include "../ErrorCodes/errorcodes.h"
 
 #define SPLTCH		' '
 #define SLASH		'/'
@@ -27,14 +28,6 @@
 #define SPLN		"|| $$ | $"
 #define RDR			">> > <"
 #define SPLTS		"<< >> || < > | \" \'"
-
-enum	e_errorcodes
-{
-	E_ERR = -1,
-	E_OK,
-	E_KO,
-	E_ERROR,
-};
 
 enum	e_quet
 {
@@ -67,13 +60,6 @@ enum	e_operations
 
 typedef unsigned char	t_uchar;
 typedef const char		t_cchar;
-typedef void *(* f_hash)(t_cchar *key, char **hashtb);
-
-typedef struct	s_hash
-{
-	f_hash	hash;
-	char	**hashtb;
-}				t_hash;
 
 typedef struct	s_arg
 {

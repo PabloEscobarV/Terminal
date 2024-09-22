@@ -6,13 +6,14 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/30 14:16:32 by Pablo Escob       #+#    #+#             */
-/*   Updated: 2024/08/30 16:00:35 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/09/22 15:00:41 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #include "../../../hdrs/commondata.h"
+#include "../../../HashTable/hdrs/hashtable.h"
 
 #define ECRANE	'\\'
 #define	FESC	"=\\"
@@ -59,7 +60,7 @@ typedef struct	s_strtoinsrt
 	t_cchar	**substr;
 }				t_subesc;
 
-char	*strhandler(char *str, t_strtosub *strtosub, t_hash *hst);
+char	*strhandler(char *str, t_strtosub *strtosub, t_hashtable *hst);
 ////////////////////////////////////T_ESCS\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\/
 t_subesc	*crtescs(char var, t_cchar *fesc, t_cchar *resc, t_cchar **substr);
 void		*freeescs(t_subesc *escs);

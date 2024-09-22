@@ -10,3 +10,9 @@
 [submodule "src/ft_pow"]
 	path = src/ft_pow
 	url = git@github.com:PabloEscobarV/ft_pow.git
+[submodule "HashTable"]
+	path = HashTable
+	url = git@github.com:PabloEscobarV/HashTable.git
+[submodule "ErrorCodes"]
+	path = ErrorCodes
+	url = git@github.com:PabloEscobarV/ErrorCodes.git
