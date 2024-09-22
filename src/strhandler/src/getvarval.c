@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 17:18:35 by Pablo Escob       #+#    #+#             */
-/*   Updated: 2024/09/22 14:55:58 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/09/22 18:44:53 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 #include "../../../libft/libft.h"
 #include "../../../HashTable/hdrs/hashtable.h"
 
-char	*getvarval(char *args, int size, t_hashtable *hst)
+const char	*getvarval(char *args, int size, t_hashtable *hst)
 {
-	char	*varval;
+	const char	*varval;
 
 	args = ft_strndup(args, size);
 	varval = hst->table[hst->find(hst, args)]->data;
@@ -24,9 +24,9 @@ char	*getvarval(char *args, int size, t_hashtable *hst)
 	return (varval);
 }
 
-char	*getvar(t_arg *strt, int size, t_hashtable *hst)
+const char	*getvar(t_arg *strt, int size, t_hashtable *hst)
 {
-	char	*varval;
+	const char	*varval;
 	
 	if (!size)
 		return (NULL);

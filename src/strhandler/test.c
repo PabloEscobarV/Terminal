@@ -6,12 +6,13 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 23:36:48 by Pablo Escob       #+#    #+#             */
-/*   Updated: 2024/08/04 17:48:06 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/09/22 18:58:50 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hdrs/strhandler.h"
 #include "../../libft/libft.h"
+#include "../../HashTable/hdrs/hashtable.h"
 #include <stdio.h>
 #include <readline/readline.h>
 
@@ -22,15 +23,14 @@ void	*hash(t_cchar *key, char **hashtb)
 
 int	main()
 {
-	char	*argt;
-	char	*line;
-	char	**substr;
-	char	**subend;
-	t_hash	hst;
+	char		*argt;
+	char		*line;
+	char		**substr;
+	char		**subend;
+	t_hashtable	*hst;
 	t_strtosub	tmpt;
 	
-	hst.hash = hash;
-	hst.hashtb = NULL;
+	hst = crthashtable(64);
 	tmpt.qts = ft_strdup("\"\'");
 	tmpt.substr = ft_split(SUBSTR, SPLTCH);
 	tmpt.subend = ft_split(SUBEND, SPLTCH);
@@ -40,7 +40,7 @@ int	main()
 		if (!ft_strcmp(line, "exit"))
 			break ;
 		printf("%s\n", line);
-		argt = strhandler(line, &tmpt, &hst);
+		argt = strhandler(line, &tmpt, hst);
 		printf("|%s|\n", argt);
 		free(argt);
 		free(line);
@@ -49,5 +49,6 @@ int	main()
 	ft_free_d((void **)tmpt.subend);
 	ft_free_d((void **)tmpt.substr);
 	free(tmpt.qts);
+	freehashtablet(hst);
 	return (0);
 }

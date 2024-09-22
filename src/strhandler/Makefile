@@ -6,7 +6,7 @@
 #    By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/04 17:51:31 by Pablo Escob       #+#    #+#              #
-#    Updated: 2024/08/05 18:56:58 by Pablo Escob      ###   ########.fr        #
+#    Updated: 2024/09/22 19:13:35 by Pablo Escob      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,9 +25,14 @@ LIBFT = ft
 SRC = $(wildcard $(SRCDIR)/*.c)
 OBJ = $(SRC:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
 
+HASHTABLENAME = hashtablefull
+HASHTABLEDIR = HashTable
+HASHTABLEPATH = ../../$(HASHTABLEDIR)
+LIB_HST = -L$(HASHTABLEPATH) -l$(HASHTABLENAME)
+
 CC = gcc
 CFLAGSO = -c -Wall -Wextra
-LIBRS = -L$(LIBFTDIR) -l$(LIBFT) -l$(READLINE)
+LIBRS = -l$(READLINE) -L$(LIBFTDIR) -l$(LIBFT) -L$(HASHTABLEPATH) -l$(HASHTABLENAME)
 
 .PHONY: all, clean, fclean, re, lib, libfull, run
 
@@ -40,27 +45,31 @@ libfull: $(LIBNAMEFULL)
 cobj: $(OBJ)
 
 run: $(LIBNAME)
+	$(MAKE) -C $(LIBFTDIR)
+	$(MAKE) -C $(HASHTABLEPATH) libfull
 	$(CC) $(TESTFILE) -L. -l$(NAME) $(LIBRS) -o $(TEST)
 	./$(TEST)
 
 re: fclean lib
 
 clean:
+	$(MAKE) -C $(HASHTABLEPATH) clean
 	$(MAKE) -C $(LIBFTDIR) clean
 	rm -rf $(OBJDIR)
 
 fclean: clean
 	$(MAKE) -C $(LIBFTDIR) fclean
+	$(MAKE) -C $(HASHTABLEPATH) fclean
 	rm -rf $(NAME) $(LIBNAME) $(LIBNAMEFULL) $(TEST)
 
 $(LIBNAME): $(OBJ)
-	$(MAKE) -C $(LIBFTDIR)
 	ar -rc $(LIBNAME) $(OBJ)
 	ranlib $@
 
 $(LIBNAMEFULL): $(OBJ)
 	$(MAKE) -C $(LIBFTDIR)
-	ar -rc $(LIBNAMEFULL) $(OBJ) $(LIBFTDIR)/$(OBJDIR)/*.o
+	$(MAKE) -C $(HASHTABLEPATH)
+	ar -rc $(LIBNAMEFULL) $(OBJ) $(LIBFTDIR)/$(OBJDIR)/*.o $(HASHTABLEPATH)/$(OBJDIR)/*.o
 	ranlib $@
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c

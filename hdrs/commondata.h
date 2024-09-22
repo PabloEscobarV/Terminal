@@ -6,13 +6,12 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 13:00:59 by polenyc           #+#    #+#             */
-/*   Updated: 2024/09/22 15:28:32 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/09/22 16:09:10 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #include "../libft/libft.h"
-#include "../ErrorCodes/errorcodes.h"
 
 #define SPLTCH		' '
 #define SLASH		'/'
@@ -28,6 +27,14 @@
 #define SPLN		"|| $$ | $"
 #define RDR			">> > <"
 #define SPLTS		"<< >> || < > | \" \'"
+
+enum	e_errorcodes
+{
+	E_ERR = -1,
+	E_OK,
+	E_KO,
+	E_ERROR,
+};
 
 enum	e_quet
 {

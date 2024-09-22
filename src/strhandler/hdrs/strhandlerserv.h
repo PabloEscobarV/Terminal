@@ -6,30 +6,32 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 17:25:47 by Pablo Escob       #+#    #+#             */
-/*   Updated: 2024/08/04 18:59:39 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/09/22 23:56:48 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #include "../hdrs/strhandler.h"
+#include "../../../HashTable/hdrs/hashtable.h"
 
 #define QTSERRMSG	"Syntax Error: Missing closing single quote (')."
+#define VARSIGNE    '='
 
 ///////////////////////////////OPERATIONS\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\/
-char	*subbraces(t_arg *strt, char *end, t_hash *hst);
-char	*subexicd(t_arg *strt, t_hash *hst);
-char	*subvar(t_arg *strt, t_hash *hst);
+char	*subbraces(t_arg *strt, char *end, t_hashtable *hst);
+char	*subexicd(t_arg *strt, t_hashtable *hst);
+char	*subvar(t_arg *strt, t_hashtable *hst);
 ///////////////////////////////REALLOC STR\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\/
 char	*reallocstr(char *args, int size);
 ///////////////////////////////KEF\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\/
 void	setnewparam(t_arg *argt);
 float	updatekef(float kef, int diff);
 ///////////////////////////////GETVARSTR\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\/
-char	*getvalstr(t_arg *strt, int oper, t_strtosub *strtosub, t_hash *hst);
+char	*getvalstr(t_arg *strt, int oper, t_strtosub *strtosub, t_hashtable *hst);
 ///////////////////////////////GET FUNC\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\/
-char	*getvarval(char *args, int size, t_hash *hst);
-char	*getvar(t_arg *strt, int size, t_hash *hst);
+t_cchar	*getvarval(char *args, int size, t_hashtable *hst);
+t_cchar	*getvar(t_arg *strt, int size, t_hashtable *hst);
 int		getoperation(t_arg *strt, char **substr);
 ///////////////////////////////CHEKS\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\/
 int		checkvarend(char args);
@@ -37,3 +39,5 @@ int		checkvarfront(char args);
 ///////////////////////////////REALLOC\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\/
 char	*reallocstr(char *args, int size);
 void	setargt(t_arg *argt, char *str, int x, int size);
+
+char	*nahdlvariable(const char *str, t_hashtable *hst);
