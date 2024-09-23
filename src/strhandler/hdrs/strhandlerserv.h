@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 17:25:47 by Pablo Escob       #+#    #+#             */
-/*   Updated: 2024/09/22 23:56:48 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/09/23 21:51:04 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,4 @@ int		checkvarfront(char args);
 char	*reallocstr(char *args, int size);
 void	setargt(t_arg *argt, char *str, int x, int size);
 
-char	*nahdlvariable(const char *str, t_hashtable *hst);
+const char	*handlvariable(const char *str, t_hashtable *hst);

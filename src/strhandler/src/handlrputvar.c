@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 23:13:57 by Pablo Escob       #+#    #+#             */
-/*   Updated: 2024/09/22 23:56:14 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/09/23 21:50:52 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	checkvar(const char *var)
 	return (E_OK);
 }
 
-static char	*getvarval(const char *data)
+static char	*variablevalue(const char *data)
 {
 	int		size;
 	char	*var;
@@ -47,10 +47,10 @@ static char	*getvarval(const char *data)
 	return (var);
 }
 
-char	*nahdlvariable(const char *str, t_hashtable *hst)
+const char	*handlvariable(const char *str, t_hashtable *hst)
 {
-	char	*tmp;
-	char	*var;
+	const char	*tmp;
+	char		*var;
 
 	tmp = str;
 	while (*tmp)
@@ -63,10 +63,10 @@ char	*nahdlvariable(const char *str, t_hashtable *hst)
 		return (NULL);
 	var = ft_strldup(str, tmp - str);
 	str = tmp + 1;
-	tmp = getvarval(tmp + 1);
+	tmp = variablevalue(tmp + 1);
 	hst->add(hst, var, tmp);
 	str += ft_strlen(tmp);
 	free(var);
-	free(tmp);
+	free((void *)tmp);
 	return (str);
 }
