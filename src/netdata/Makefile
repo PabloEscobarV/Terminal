@@ -6,14 +6,13 @@
 #    By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/05 18:22:27 by Pablo Escob       #+#    #+#              #
-#    Updated: 2024/08/30 16:11:41 by Pablo Escob      ###   ########.fr        #
+#    Updated: 2024/09/28 22:29:19 by Pablo Escob      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = netdata
 FULLLIB = full
 LIBNAME = lib$(NAME).a
-LIBNAMEFULL = lib$(NAME)$(FULLLIB).a
 TEST = test
 TESTFILE = test.c
 READLINE = readline
@@ -48,7 +47,7 @@ OBJSPLITER = $(SPLITERDIR)/$(OBJDIR)/*.o
 CC = gcc
 CFLAGSO = -c -Wall -Wextra
 
-LIBRS = $(LIBLIBFT) $(LIBGNL) $(LIBPRINTF) $(LIBRLINE)
+LIBRS = -lreadline
 
 .PHONY: all, clean, fclean, re, lib, libfull, run
 
@@ -79,25 +78,18 @@ fclean: clean
 re: fclean all
 
 run: $(LIBNAMEFULL)
-	$(CC) $(TESTFILE) -g -L. -l$(NAME)full $(LIBRS) -o $(TEST)
+	$(CC) $(TESTFILE) -g -L. -l$(NAME) $(LIBRS) -o $(TEST)
 	./$(TEST)
 
 $(LIBNAME): $(OBJ)
 	$(MAKE) -C $(LIBFTDIR)
-	$(MAKE) -C $(GNLDIR) bonus
-	$(MAKE) -C $(PRINTFDIR) bonus
-	$(MAKE) -C $(STRHANDLERDIR) cobj
-	$(MAKE) -C $(SPLITERDIR) cobj
-	ar -rc $(LIBNAME) $(OBJ)
-	ranlib	$@
-
-$(LIBNAMEFULL): $(OBJ)
-	$(MAKE) -C $(LIBFTDIR)
-	$(MAKE) -C $(GNLDIR) bonus
-	$(MAKE) -C $(PRINTFDIR) bonus
-	$(MAKE) -C $(STRHANDLERDIR) cobj
-	$(MAKE) -C $(SPLITERDIR) cobj
-	ar -rc $(LIBNAMEFULL) $(OBJ) $(OBJLIBFT) $(OBJSPLITER) $(OBJSTRHNLR)
+	$(MAKE) -C $(STRHANDLERDIR)
+	$(MAKE) -C $(SPLITERDIR)
+	ar -x $(LIBFTDIR)/lib$(LIBFT).a
+	ar -x $(STRHANDLER)/lib$(STRHANDLER).a
+	ar -x $(SPLITER)/lib$(SPLITER).a
+	mv *.o $(OBJDIR)
+	ar -rc $(LIBNAME) $(OBJDIR)/*.o
 	ranlib	$@
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c

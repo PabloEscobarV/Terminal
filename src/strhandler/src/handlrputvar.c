@@ -6,25 +6,22 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 23:13:57 by Pablo Escob       #+#    #+#             */
-/*   Updated: 2024/09/23 21:50:52 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/09/28 20:46:42 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../HashTable/hdrs/hashtable.h"
 #include "../hdrs/strhandlerserv.h"
 #include "../../../libft/libft.h"
+#include <stdio.h>
 
-static int	checkvar(const char *var)
+static int	check_key(const char *var)
 {
 	if (ft_isdigit(*var))
 		return (E_KO);
-	while (*var && *var != VARSIGNE)
-	{
-		if (!ft_isalnum(*var) || *var != VARSIGNE)
-			return (E_KO);
+	while (ft_isalnum(*var) && *var != VARSIGNE)
 		++var;
-	}
-	if (*var)
+	if (*var != VARSIGNE)
 		return (E_KO);
 	return (E_OK);
 }
@@ -47,25 +44,34 @@ static char	*variablevalue(const char *data)
 	return (var);
 }
 
+static const char	*skip_spaces(const char *str)
+{
+	while (*str && ft_isspace(*str))
+		++str;
+	return (str);
+}
+
 const char	*handlvariable(const char *str, t_hashtable *hst)
 {
 	const char	*tmp;
 	char		*var;
 
 	tmp = str;
-	while (*tmp)
-	{
+	while (*tmp && *tmp != VARSIGNE)
 		++tmp;
-		if (*tmp == VARSIGNE && ft_isalnum(*(tmp + 1)))
-			break ;
-	}
-	if (checkvar(str))
-		return (NULL);
+	if (check_key(str))
+		return (str);
 	var = ft_strldup(str, tmp - str);
 	str = tmp + 1;
 	tmp = variablevalue(tmp + 1);
-	hst->add(hst, var, tmp);
 	str += ft_strlen(tmp);
+	if (*str)
+	{
+		str = skip_spaces(str);
+		printf("minishell: %s: command not found...\n", str);
+		return (NULL);
+	}
+	hst->add(hst, var, tmp);
 	free(var);
 	free((void *)tmp);
 	return (str);

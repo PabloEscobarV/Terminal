@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 15:56:40 by blackrider        #+#    #+#             */
-/*   Updated: 2024/08/30 15:51:10 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/09/28 21:15:27 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,26 +19,20 @@
 #include <unistd.h>
 #include <readline/readline.h>
 
-void	*hash(t_cchar *key, char **hashtb)
-{
-	return ((void *)ft_strdup("ABC"));
-}
-
 int	main()
 {
-	char	*str;
-	char	*line;
-	t_llist	*llst;
-	t_splqt	*splqt;
-	t_hash	hst;
+	char		*str;
+	char		*line;
+	t_llist		*llst;
+	t_splqt		*splqt;
 	t_strtosub	tmpt;
+	t_hashtable *hashtable;
 	
-	hst.hash = hash;
-	hst.hashtb = NULL;
 	tmpt.qts = ft_strdup("\"\'");
 	tmpt.substr = ft_split(SUBSTR, SPLTCH);
 	tmpt.subend = ft_split(SUBEND, SPLTCH);
 	splqt = crtsplqtt(QTS, RDR, SPLN, SPLTS);
+	hashtable = crthashtable(64);
 	printmatrix(splqt->spln);
 	while (1)
 	{
@@ -46,7 +40,7 @@ int	main()
 		if (!ft_strcmp(line, "exit"))
 			break ;
 		printf("%s\n", line);
-		str = strhandler(line, &tmpt, &hst);
+		str = strhandler(line, &tmpt, hashtable);
 		llst = spliter(str, splqt);
 		llistiter(llst, printllist);
 		llistclear(&llst, freeargt);

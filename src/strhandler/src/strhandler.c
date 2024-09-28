@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 23:36:48 by Pablo Escob       #+#    #+#             */
-/*   Updated: 2024/09/22 23:57:00 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/09/28 20:42:16 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,8 @@ char	*strhandler(char *str, t_strtosub *strtosub, t_hashtable *hst)
 	if (!str || !hst || !(*str))
 		return (ft_perror("ERROR!!! EMPTY ARGUMENT!!!"));
 	str = handlvariable(str, hst);
+	if (!str || !(*str))
+		return (NULL);
 	setargt(&strt, str, 0, ft_strlen(str));
 	setargt(&argt, NULL, 0, strt.size * kef);
 	argt.arg = malloc((argt.size + 1) * sizeof(char));

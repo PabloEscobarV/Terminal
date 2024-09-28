@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 17:37:09 by blackrider        #+#    #+#             */
-/*   Updated: 2024/08/05 18:17:17 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/09/28 21:10:19 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void	fakefree(void *data)
 {
-
+	(void *)data;
 }
 
 void	printstr(void *data)

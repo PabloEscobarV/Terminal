@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 17:18:35 by Pablo Escob       #+#    #+#             */
-/*   Updated: 2024/09/22 18:44:53 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/09/28 20:58:24 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ const char	*getvarval(char *args, int size, t_hashtable *hst)
 	const char	*varval;
 
 	args = ft_strndup(args, size);
-	varval = hst->table[hst->find(hst, args)]->data;
+	varval = hst->get_data(hst, args);
 	free(args);
 	return (varval);
 }
@@ -31,11 +31,6 @@ const char	*getvar(t_arg *strt, int size, t_hashtable *hst)
 	if (!size)
 		return (NULL);
 	varval = getvarval(strt->arg + strt->x, size, hst);
-	if (!varval)
-	{
-		ft_putstr(MALLOCERROR);
-		exit(-1);
-	}
 	strt->x += size;
 	return (varval);
 }

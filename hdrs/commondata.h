@@ -6,11 +6,12 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 13:00:59 by polenyc           #+#    #+#             */
-/*   Updated: 2024/09/22 16:09:10 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/09/28 22:37:03 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
+
 #include "../libft/libft.h"
 
 #define SPLTCH		' '

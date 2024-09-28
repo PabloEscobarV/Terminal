@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 12:54:36 by polenyc           #+#    #+#             */
-/*   Updated: 2024/08/04 19:17:33 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/09/28 21:13:45 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,12 @@
 char	*argshndlr(t_cchar **args, t_splqt *splt);
 ///////////////////////////////STRHENDLER///////////////////////////////
 char    *strcpytoll(t_cchar **args, t_crds *crd, t_cchar **qts);
-char	*dqtshandler(t_cchar **args, t_crds *crd, t_cchar *end, t_hash *hst);
+// char	*dqtshandler(t_cchar **args, t_crds *crd, t_cchar *end);
 char	*sqtshadler(t_cchar **args, t_crds *crd, t_cchar *end);
 ///////////////////////////////SETNODE///////////////////////////////
 // t_llist	*setnodestr(t_cchar *str, t_crds *crds, t_splqt *splt);
 t_llist	*setnodestr(t_cchar *str, t_crds *crd, t_splqt *splt);
 t_llist	*setnodedata(t_cchar *args, t_crds *crds, t_splqt *splt);
-// t_llist	*setnodedata(t_cchar *args, t_crds *crd, t_cchar **splt);
 ///////////////////////////////OFFSET///////////////////////////////
 int	    offset(t_cchar *str, t_crds *crds, t_splqt *splt);
 ///////////////////////////////T_ARG///////////////////////////////

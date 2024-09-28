@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 15:12:13 by blackrider        #+#    #+#             */
-/*   Updated: 2024/08/30 15:42:03 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/09/28 21:09:53 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,5 @@ void	*delargvt(t_argv *argv)
 	free(argv->outfile);
 	free((void *)argv->path);
 	free(argv);
-	return (argv);
+	return (NULL);
 }
