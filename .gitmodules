@@ -16,3 +16,6 @@
 [submodule "ErrorCodes"]
 	path = ErrorCodes
 	url = git@github.com:PabloEscobarV/ErrorCodes.git
+[submodule "E_Codes"]
+	path = E_Codes
+	url = git@github.com:PabloEscobarV/E_Codes.git
