@@ -6,13 +6,14 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/22 23:13:57 by Pablo Escob       #+#    #+#             */
-/*   Updated: 2024/09/28 20:46:42 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/09/29 15:27:13 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../HashTable/hdrs/hashtable.h"
 #include "../hdrs/strhandlerserv.h"
 #include "../../../libft/libft.h"
+#include "../../../hdrs/commondata.h"
 #include <stdio.h>
 
 static int	check_key(const char *var)

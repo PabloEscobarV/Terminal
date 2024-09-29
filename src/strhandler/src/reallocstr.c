@@ -6,11 +6,12 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 17:25:22 by Pablo Escob       #+#    #+#             */
-/*   Updated: 2024/08/04 17:33:04 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/09/29 15:27:21 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../hdrs/strhandler.h"
+#include "../../../hdrs/commondata.h"
 
 char	*reallocstr(char *args, int size)
 {

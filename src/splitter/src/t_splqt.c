@@ -6,12 +6,13 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 19:02:06 by blackrider        #+#    #+#             */
-/*   Updated: 2024/07/26 15:03:31 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/09/29 15:30:51 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../hdrs/servicespltr.h"
 #include "../hdrs/splitter.h"
+#include "../../../hdrs/commondata.h"
 
 t_splqt	*crtsplqtt(char *qts, char *rdr, char *spln, char *splts)
 {

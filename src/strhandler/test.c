@@ -6,13 +6,15 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/03 23:36:48 by Pablo Escob       #+#    #+#             */
-/*   Updated: 2024/09/28 20:47:31 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/09/29 15:29:05 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hdrs/strhandler.h"
 #include "../../libft/libft.h"
 #include "../../HashTable/hdrs/hashtable.h"
+#include "../../hdrs/commondata.h"
+
 #include <stdio.h>
 #include <readline/readline.h>
 

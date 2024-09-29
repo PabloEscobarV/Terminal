@@ -6,13 +6,14 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/23 13:16:06 by polenyc           #+#    #+#             */
-/*   Updated: 2024/08/04 19:47:33 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/09/29 15:30:42 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../hdrs/servicespltr.h"
 #include "../hdrs/splitter.h"
 #include "../../../libft/libft.h"
+#include "../../../hdrs/commondata.h"
 
 char	*sqtshadler(t_cchar **args, t_crds *crd, t_cchar *end)
 {

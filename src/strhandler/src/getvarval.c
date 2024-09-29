@@ -6,13 +6,14 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/04 17:18:35 by Pablo Escob       #+#    #+#             */
-/*   Updated: 2024/09/28 20:58:24 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/09/29 15:26:50 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../hdrs/strhandler.h"
 #include "../../../libft/libft.h"
 #include "../../../HashTable/hdrs/hashtable.h"
+#include "../../../hdrs/commondata.h"
 
 const char	*getvarval(char *args, int size, t_hashtable *hst)
 {

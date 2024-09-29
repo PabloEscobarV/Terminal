@@ -6,11 +6,11 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 13:02:37 by blackrider        #+#    #+#             */
-/*   Updated: 2024/08/30 16:04:52 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/09/29 15:28:31 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../hdrs/commondata.h"
+#include "../hdrs/strhandler.h"
 
 t_arg	*crtargt(char *str, int x, int size)
 {

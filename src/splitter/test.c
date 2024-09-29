@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/01 15:56:40 by blackrider        #+#    #+#             */
-/*   Updated: 2024/09/28 21:15:27 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/09/29 15:31:08 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "../../libft/libft.h"
 #include "../../get_next_line/get_next_line_bonus.h"
 #include "../strhandler/hdrs/strhandler.h"
+#include "../../hdrs/commondata.h"
 #include <stdio.h>
 #include <unistd.h>
 #include <readline/readline.h>

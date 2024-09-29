@@ -6,12 +6,13 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/26 12:03:51 by polenyc           #+#    #+#             */
-/*   Updated: 2024/09/28 22:19:30 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/09/29 15:30:25 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../hdrs/servicespltr.h"
 #include "../hdrs/splitter.h"
+#include "../../../hdrs/commondata.h"
 
 int	*crtintdt(int x)
 {
