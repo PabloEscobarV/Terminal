@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/29 20:17:58 by Pablo Escob       #+#    #+#             */
-/*   Updated: 2024/08/30 16:24:34 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/09/29 16:35:13 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "../hdrs/netdataservice.h"
 #include "../../../libft/libft.h"
 #include "../../splitter/hdrs/splitter.h"
-#include "../../strhandler/hdrs/strhandler.h"
+#include "../../../hdrs/commondata.h"
 #include <stdio.h>
 
 static char	**matcpy(char **dest, char **src)

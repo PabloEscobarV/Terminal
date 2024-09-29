@@ -6,7 +6,7 @@
 #    By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/05 18:22:27 by Pablo Escob       #+#    #+#              #
-#    Updated: 2024/09/28 22:29:19 by Pablo Escob      ###   ########.fr        #
+#    Updated: 2024/09/29 16:39:14 by Pablo Escob      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,7 +77,7 @@ fclean: clean
 
 re: fclean all
 
-run: $(LIBNAMEFULL)
+run: $(LIBNAME)
 	$(CC) $(TESTFILE) -g -L. -l$(NAME) $(LIBRS) -o $(TEST)
 	./$(TEST)
 
@@ -86,8 +86,8 @@ $(LIBNAME): $(OBJ)
 	$(MAKE) -C $(STRHANDLERDIR)
 	$(MAKE) -C $(SPLITERDIR)
 	ar -x $(LIBFTDIR)/lib$(LIBFT).a
-	ar -x $(STRHANDLER)/lib$(STRHANDLER).a
-	ar -x $(SPLITER)/lib$(SPLITER).a
+	ar -x $(STRHANDLERDIR)/lib$(STRHANDLER).a
+	ar -x $(SPLITERDIR)/lib$(SPLITER).a
 	mv *.o $(OBJDIR)
 	ar -rc $(LIBNAME) $(OBJDIR)/*.o
 	ranlib	$@

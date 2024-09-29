@@ -6,14 +6,13 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 18:42:36 by Pablo Escob       #+#    #+#             */
-/*   Updated: 2024/09/22 14:58:41 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/09/29 16:33:57 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "hdrs/netdata.h"
 #include "../splitter/hdrs/splitter.h"
-#include "../strhandler/hdrs/strhandler.h"
-#include "../../../HashTable/hdrs/hashtable.h"
+#include "../../hdrs/commondata.h"
 #include <stdio.h>
 #include <readline/readline.h>
 
