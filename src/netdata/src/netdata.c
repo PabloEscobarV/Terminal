@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/20 15:02:44 by blackrider        #+#    #+#             */
-/*   Updated: 2024/08/30 16:28:09 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/09/29 19:50:01 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ t_llist	*netdata(t_cchar *args, t_llist *argtll, t_splqt *splt)
 	t_llist	*argvtll;
 
 	if (!argtll)
-		return (ft_perror("ERROR!!! Error in splitter"));
+		return (NULL);
 	if (!splt)
 		return (ft_perror("ERROR!!! Empty SPLT"));
 	argvtll = NULL;

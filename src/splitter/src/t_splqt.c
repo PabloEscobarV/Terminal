@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/27 19:02:06 by blackrider        #+#    #+#             */
-/*   Updated: 2024/09/29 15:30:51 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/09/29 20:23:45 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ t_splqt	*crtsplqtt(char *qts, char *rdr, char *spln, char *splts)
 {
 	t_splqt	*splqt;
 
-	if (!qts || !splts || !spln)
-		return (NULL);
 	splqt = malloc(sizeof(t_splqt));
 	if (!splqt)
 		return (NULL);

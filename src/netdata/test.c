@@ -6,7 +6,7 @@
 /*   By: Pablo Escobar <sataniv.rider@gmail.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/05 18:42:36 by Pablo Escob       #+#    #+#             */
-/*   Updated: 2024/09/29 16:33:57 by Pablo Escob      ###   ########.fr       */
+/*   Updated: 2024/09/29 20:14:52 by Pablo Escob      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,13 @@ int	main()
 		line = readline("Pablo Escobar:\t");
 		if (!ft_strcmp(line, "exit"))
 			break ;
-		printf("%s\n", line);
+		// printf("%s\n", line);
 		str = strhandler(line, &tmpt, hst);
 		spliterll = spliter(str, splqt);
 		ndata = netdata(str, spliterll, splqt);
-		llistiter(ndata, printargvtllist);		
+		llistiter(ndata, printargvtllist);
+		// if (ndata)
+		// 	printmatrix(((t_argv *)(ndata->data))->argv);
 		llistclear(&ndata, freeargvt);
 		llistclear(&spliterll, freeargt);
 		free(line);
